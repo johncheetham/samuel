@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 #
 #   Samuel 0.1.8    October 2009
 #
