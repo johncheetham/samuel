@@ -1,0 +1,5 @@
+#!/usr/bin/python
+
+import samuel.samuel
+samuel.samuel.run()
+

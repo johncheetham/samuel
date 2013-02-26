@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: samuel
+Version: 0.1.8
+Summary: A Draughts Program
+Home-page: http://www.johncheetham.com/projects/samuel/
+Author: John Cheetham
+Author-email: developer@johncheetham.com
+License: GPLv3+
+Description: A Draughts program for Linux written in Python, GTK, C++. Derived from the windows program guicheckers
+Platform: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications :: GTK
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: C++
+Classifier: Topic :: Games/Entertainment :: Board Games
