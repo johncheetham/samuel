@@ -17,8 +17,9 @@
 #   along with Samuel.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import gtk
-import pango
+from gi.repository import Gtk, Gdk
+from gi.repository import Pango
+from gi.repository import GdkPixbuf
 import os
 import engine
 from constants import *
@@ -28,7 +29,7 @@ class Gui:
     def build_gui(self):                        
 
         # Create Main Window
-        self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
         self.window.set_resizable(False)        
         self.window.set_title(NAME + " " + VERSION)
 
@@ -38,13 +39,13 @@ class Gui:
         self.window.connect("key_press_event", self.game.key_press_event)
         self.window.connect("configure_event", self.configure_event)        
    	
-        main_vbox = gtk.VBox(False, 0)                
+        main_vbox = Gtk.VBox(False, 0)                
         self.window.add(main_vbox)
         main_vbox.show()
         
         # menu
         # Create a UIManager instance
-        uimanager = gtk.UIManager()
+        uimanager = Gtk.UIManager()
 
         # Add the accelerator group to the toplevel window
         accelgroup = uimanager.get_accel_group()
@@ -53,11 +54,11 @@ class Gui:
         # Create ActionGroups
 
         # main action group
-        actiongroup = gtk.ActionGroup('UIManagerAG')        
+        actiongroup = Gtk.ActionGroup('UIManagerAG')        
         self.actiongroup = actiongroup
 
         # action group for setting search depth level        
-        search_depth_actiongroup = gtk.ActionGroup('AGSearchDepth')              
+        search_depth_actiongroup = Gtk.ActionGroup('AGSearchDepth')              
         search_depth_actiongroup.add_radio_actions([('Beginner', None, '_Beginner', None, None, 0),
                                        ('Advanced', None, '_Advanced', None, None, 1),
                                        ('Expert', None, '_Expert', None, None, 2),
@@ -65,7 +66,7 @@ class Gui:
                                        ], 0, self.game.set_level)        
 
         # action group for showing/hiding panel        
-        panel_action_group = gtk.ActionGroup('AGPanel')
+        panel_action_group = Gtk.ActionGroup('AGPanel')
         panel_action_group.add_toggle_actions([('showpanel', None, '_Information Panel', None, None,
                                                self.set_info_panel)])
         panel_action_group.add_toggle_actions([('statusbar', None, '_Status Bar', None, None,
@@ -73,7 +74,7 @@ class Gui:
         self.panel_action_group = panel_action_group                                        
         
         # Computer Player
-        computer_player_action_group = gtk.ActionGroup('ComputerPlayer')
+        computer_player_action_group = Gtk.ActionGroup('ComputerPlayer')
         computer_player_action_group.add_radio_actions([('ComputerPlaysWhite', None, '_Computer Plays White', None, None, 0),
                                               ('ComputerPlaysRed', None, '_Computer Plays Red', None, None, 1),
                                               ('ComputerPlaysWhiteAndRed', None, '_Computer Plays White and Red', None, None, 2),
@@ -82,16 +83,16 @@ class Gui:
         self.computer_player_action_group = computer_player_action_group        
 
         # Create a ToggleAction for flipping the board        
-        flip_the_board_action_group = gtk.ActionGroup('FlipTheBoard')
+        flip_the_board_action_group = Gtk.ActionGroup('FlipTheBoard')
         flip_the_board_action_group.add_toggle_actions([('FlipTheBoard', None, '_Flip the Board', None,
                                          'Flip the Board', self.game.flip_the_board)])
         self.flip_the_board_action_group = flip_the_board_action_group
 
         # Create actions
-        actiongroup.add_actions([('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.game.quit_game),
-                                 ('NewGame', gtk.STOCK_NEW, '_New Game', None, 'New Game', self.game.new_game),
-                                 ('LoadGame', gtk.STOCK_OPEN, '_Load Game', None, 'Load Game', self.game.load_game),
-                                 ('SaveGame', gtk.STOCK_SAVE, '_Save Game', None, 'Save Game', self.game.save_game),
+        actiongroup.add_actions([('Quit', Gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.game.quit_game),
+                                 ('NewGame', Gtk.STOCK_NEW, '_New Game', None, 'New Game', self.game.new_game),
+                                 ('LoadGame', Gtk.STOCK_OPEN, '_Load Game', None, 'Load Game', self.game.load_game),
+                                 ('SaveGame', Gtk.STOCK_SAVE, '_Save Game', None, 'Save Game', self.game.save_game),
                                  ('MoveNow', None, '_Move Now (m)', None, 'Move Now', self.game.move_now),
                                  ('Game', None, '_Game'),
                                  ('PositionEdit', None, '_Position Edit', None, 'Position Edit', \
@@ -100,23 +101,23 @@ class Gui:
                                      self.game.copy_FEN_to_clipboard),
                                  ('PasteFenFromCB', None, '_Paste FEN from clipboard', None, 'Paste FEN from clipboard', \
                                      self.game.paste_FEN_from_clipboard),       
-                                 ('CopyPDNToCB', gtk.STOCK_COPY, '_Copy PDN to clipboard', None, 'Copy PDN to clipboard', \
+                                 ('CopyPDNToCB', Gtk.STOCK_COPY, '_Copy PDN to clipboard', None, 'Copy PDN to clipboard', \
                                      self.game.copy_PDN_to_clipboard),
-                                 ('PastePDNFromCB', gtk.STOCK_PASTE, '_Paste PDN from clipboard', None, 'Paste PDN from clipboard', \
+                                 ('PastePDNFromCB', Gtk.STOCK_PASTE, '_Paste PDN from clipboard', None, 'Paste PDN from clipboard', \
                                      self.game.paste_PDN_from_clipboard),                      
                                  ('Edit', None, '_Edit'),
                                  ('SetCustomLevelDepth', None, '_Set User-defined Level', None, 'Set Custom Level Depth', \
                                     self.game.set_custom_search_depth),                                 
                                  ('Level', None, '_Level'), 
                                  ('Options', None, '_Options'),
-                                 ('IncBoardSize',  gtk.STOCK_ZOOM_IN, '_Increase Board Size', "<Control>plus", 'Inc Board Size', \
+                                 ('IncBoardSize',  Gtk.STOCK_ZOOM_IN, '_Increase Board Size', "<Control>plus", 'Inc Board Size', \
                                     self.board.resize_board),
-                                 ('DecBoardSize',  gtk.STOCK_ZOOM_OUT, '_Decrease Board Size', "<Control>minus", 'Dec Board Size', \
+                                 ('DecBoardSize',  Gtk.STOCK_ZOOM_OUT, '_Decrease Board Size', "<Control>minus", 'Dec Board Size', \
                                     self.board.resize_board),
-                                 ('NormalBoardSize',  gtk.STOCK_ZOOM_100, '_Normal Board Size', "<Control>0", 'Normal Board Size', \
+                                 ('NormalBoardSize',  Gtk.STOCK_ZOOM_100, '_Normal Board Size', "<Control>0", 'Normal Board Size', \
                                     self.board.resize_board),                                 
-                                 ('About', gtk.STOCK_ABOUT, '_About', None, 'Show About Box', self.about_box),
-                                 ('samhelp', gtk.STOCK_HELP, '_Help (online)', None, 'Samuel Help (Online)', \
+                                 ('About', Gtk.STOCK_ABOUT, '_About', None, 'Show About Box', self.about_box),
+                                 ('samhelp', Gtk.STOCK_HELP, '_Help (online)', None, 'Samuel Help (Online)', \
                                     self.game.open_help),
                                  ('Help', None, '_Help'),
                                 ])        
@@ -193,47 +194,48 @@ class Gui:
 
         # Create a MenuBar
         menubar = uimanager.get_widget('/MenuBar')                
-        main_vbox.pack_start(menubar, False)        
+        main_vbox.pack_start(menubar, False, True, 0)        
         
         # Create a 8x8 table
-        self.table = gtk.Table(8, 8, True)
+        self.table = Gtk.Table(8, 8, True)
         self.table.set_border_width(25)
     
-        aspect_frame = gtk.AspectFrame(label=None, xalign=0.5, yalign=0.5, ratio=1.0, obey_child=False)
+        aspect_frame = Gtk.AspectFrame(label=None, xalign=0.5, yalign=0.5, ratio=1.0, obey_child=False)
         aspect_frame.add(self.table)
 
-        eb = gtk.EventBox()
+        eb = Gtk.EventBox()
         #eb.add(self.table) 
         eb.add(aspect_frame) 
         eb.show()
-        eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("darkslategrey"))                 
+        eb.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse("darkslategrey"))                 
         main_vbox.pack_start(eb, False, True, 0) 
 
-        bot_hbox = gtk.HBox(False, 0) 
+        bot_hbox = Gtk.HBox(False, 0) 
         main_vbox.pack_start(bot_hbox, False, True, 7)                        
         bot_hbox.show()  
 
-        vbox = gtk.VBox(False, 0) 
+        vbox = Gtk.VBox(False, 0) 
         bot_hbox.pack_end(vbox, False, False, 5) 
-        hbox1 = gtk.HBox(False, 0) 
+        hbox1 = Gtk.HBox(False, 0) 
         vbox.pack_start(hbox1, True, False, 0) 
-        hbox2 = gtk.HBox(False, 0) 
+        hbox2 = Gtk.HBox(False, 0) 
         vbox.pack_start(hbox2, True, False, 7) 
         
-        frame = gtk.Frame()                              
-        frame.set_shadow_type(gtk.SHADOW_IN)        
+        frame = Gtk.Frame()                              
+        frame.set_shadow_type(Gtk.ShadowType.IN)       
         frame.show()        
 
-        vp = gtk.Viewport()
+        vp = Gtk.Viewport()
         vp.add(frame)
         vp.show()
+        vp.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse('#EDECEB'))
        
         bot_hbox.pack_end(vp, True, True, 7)        
 
         self.bot_hbox = bot_hbox              
 
-        self.infolabel = gtk.Label()
-        self.infolabel.modify_font(pango.FontDescription("monospace 8"))                
+        self.infolabel = Gtk.Label()
+        self.infolabel.modify_font(Pango.FontDescription("monospace 8"))                
         
         frame.add(self.infolabel)
         self.infolabel.show()        
@@ -243,37 +245,37 @@ class Gui:
         self.infolabel.set_text(msg)              
 
         # go button
-        self.go_button = gtk.Button("Go")
+        self.go_button = Gtk.Button("Go")
         self.go_button.connect("clicked", self.game.callback, 'Go') 
         hbox1.pack_start(self.go_button, True, False, 0) 
         self.go_button.show()
         
         # retract button
-        self.retract_button = gtk.Button("Retract")
+        self.retract_button = Gtk.Button("Retract")
         self.retract_button.connect("clicked", self.game.callback, 'Retract') 
         hbox1.pack_start(self.retract_button, True, False, 0) 
         self.retract_button.show()
 
         # rewind to start button
-        self.rts_button = gtk.Button("<|")
+        self.rts_button = Gtk.Button("<|")
         self.rts_button.connect("clicked", self.game.callback, '<|') 
         hbox2.pack_start(self.rts_button, True, False, 0) 
         self.rts_button.show()
 
         # rewind 1 move buttton
-        self.rom_button = gtk.Button("<")
+        self.rom_button = Gtk.Button("<")
         self.rom_button.connect("clicked", self.game.callback, '<') 
         hbox2.pack_start(self.rom_button, True, False, 0) 
         self.rom_button.show()
 
         # forward 1 move buttton
-        self.fom_button = gtk.Button(">")
+        self.fom_button = Gtk.Button(">")
         self.fom_button.connect("clicked", self.game.callback, '>') 
         hbox2.pack_start(self.fom_button, True, False, 0) 
         self.fom_button.show()
 
         # forward to end of game button
-        self.fteog_button = gtk.Button("|>")
+        self.fteog_button = Gtk.Button("|>")
         self.fteog_button.connect("clicked", self.game.callback, '|>') 
         hbox2.pack_start(self.fteog_button, True, False, 0) 
         self.fteog_button.show()
@@ -285,51 +287,52 @@ class Gui:
         #
         # widgets for position edit
         #
-        self.posedit_hbox = gtk.HBox(False, 0) 
+        self.posedit_hbox = Gtk.HBox(False, 0) 
         main_vbox.pack_start(self.posedit_hbox, False, True, 7)         
 
-        vbox = gtk.VBox(False, 0) 
+        vbox = Gtk.VBox(False, 0) 
         self.posedit_hbox.pack_end(vbox, False, False, 5) 
-        hbox1 = gtk.HBox(False, 0) 
+        hbox1 = Gtk.HBox(False, 0) 
         vbox.pack_start(hbox1, True, False, 0) 
-        label = gtk.Label()
+        label = Gtk.Label()
         label.set_text("Side to Move")
         label.show()
         vbox.pack_start(label, True, False, 7) 
-        hbox2 = gtk.HBox(False, 0) 
+        hbox2 = Gtk.HBox(False, 0) 
         vbox.pack_start(hbox2, True, False, 0) 
         
-        frame = gtk.Frame()                              
-        frame.set_shadow_type(gtk.SHADOW_IN)        
+        frame = Gtk.Frame()                              
+        frame.set_shadow_type(Gtk.ShadowType.IN)        
         frame.show()        
 
-        vp = gtk.Viewport()
+        vp = Gtk.Viewport()
         vp.add(frame)
         vp.show()
+        vp.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse('#EDECEB'))
        
         self.posedit_hbox.pack_end(vp, True, True, 7)                  
 
-        self.infolabel2 = gtk.Label()
-        self.infolabel2.modify_font(pango.FontDescription("monospace 8"))                 
+        self.infolabel2 = Gtk.Label()
+        self.infolabel2.modify_font(Pango.FontDescription("monospace 8"))                 
         
         frame.add(self.infolabel2)
         self.infolabel2.show()        
         
-        self.cancel_button = gtk.Button("Cancel")
+        self.cancel_button = Gtk.Button("Cancel")
         self.cancel_button.connect("clicked", self.game.callback, 'Cancel') 
         hbox1.pack_start(self.cancel_button, True, False, 0) 
         self.cancel_button.show()       
 
-        button = gtk.Button("OK")
+        button = Gtk.Button("OK")
         button.connect("clicked", self.game.callback, 'OK') 
         hbox1.pack_start(button, True, False, 0) 
         button.show()        
 
-        self.radio_button_red = gtk.RadioButton(None, "Red")        
+        self.radio_button_red = Gtk.RadioButton.new_with_label_from_widget(None, "Red")        
         hbox2.pack_start(self.radio_button_red, True, False, 0) 
         self.radio_button_red.show()
 
-        self.radio_button_white = gtk.RadioButton(self.radio_button_red, "White")        
+        self.radio_button_white = Gtk.RadioButton.new_with_label_from_widget(self.radio_button_red, "White")
         hbox2.pack_start(self.radio_button_white, True, False, 0) 
         self.radio_button_white.show()        
 
@@ -338,7 +341,7 @@ class Gui:
         hbox2.show()
 
         # status bar 
-        self.status_bar = gtk.Statusbar() 
+        self.status_bar = Gtk.Statusbar() 
         main_vbox.pack_start(self.status_bar, False, False, 0)        
         self.context_id = self.status_bar.get_context_id("samuel statusbar")        
         self.set_status_bar_msg("Red to Move")           
@@ -356,7 +359,7 @@ class Gui:
 
     # about box
     def about_box(self, widget):
-        about = gtk.AboutDialog()        
+        about = Gtk.AboutDialog()        
         about.set_program_name(NAME)
         about.set_version(VERSION)
         about.set_copyright(u'Copyright \u00A9 2009 John Cheetham')                             
@@ -364,7 +367,7 @@ class Gui:
 It is based on the windows program guicheckers")
         about.set_authors(["John Cheetham"])
         about.set_website("http://www.johncheetham.com/projects/samuel/index.shtml")
-        about.set_logo(gtk.gdk.pixbuf_new_from_file(os.path.join(self.game.prefix, "images/logo.png")))
+        about.set_logo(GdkPixbuf.Pixbuf.new_from_file(os.path.join(self.game.prefix, "images/logo.png")))
 
         license = '''Samuel is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -386,11 +389,11 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
 
     def init_black_board_square(self, image, x, y):
 
-        event_box = gtk.EventBox()
+        event_box = Gtk.EventBox()
         event_box.add(image) 
         self.table.attach(event_box, x, x+1, y, y+1)
         event_box.show()    
-        event_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         data = (x, y)
         event_box.connect('button_press_event', self.game.square_clicked, data)
         image.show()
@@ -410,20 +413,20 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
 
     def set_panel_font_size(self, font_size):
         fs = str(font_size) 
-        self.infolabel.modify_font(pango.FontDescription("monospace " + fs))
-        self.infolabel2.modify_font(pango.FontDescription("monospace " + fs))
+        self.infolabel.modify_font(Pango.FontDescription("monospace " + fs))
+        self.infolabel2.modify_font(Pango.FontDescription("monospace " + fs))
         # Make the bottom panels display correctly after a resize
-        if self.bot_hbox.flags() & gtk.VISIBLE:                
+        if self.bot_hbox.get_visible():                
             self.bot_hbox.hide()                    
             self.bot_hbox.show()
-        if self.posedit_hbox.flags() & gtk.VISIBLE:       
+        if self.posedit_hbox.get_visible():       
             self.posedit_hbox.hide()                    
             self.posedit_hbox.show()         
 
     def init_posedit_panel(self, text):
         self.infolabel2.set_text(text) 
         # save status of infopanel(visible or not) so it can be restored at end of position edit        
-        if self.bot_hbox.flags() & gtk.VISIBLE:
+        if self.bot_hbox.get_visible():
             self.infopanel_visible = True
         else:
             self.infopanel_visible = False
@@ -515,13 +518,13 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
             
             for a in action_list:                
                 # RadioActions - save the active action
-                if isinstance(a, gtk.RadioAction):                    
+                if isinstance(a, Gtk.RadioAction):                    
                     if a.get_active():                        
                         a_name = a.get_name()                    
                         tup = ('radioaction', ag_name, a_name)
                         lst.append(tup)
                 # Toggle Actions - save the on/off setting
-                elif isinstance(a, gtk.ToggleAction):                     
+                elif isinstance(a, Gtk.ToggleAction):                     
                     a_name = a.get_name()                    
                     tup = ('toggleaction', ag_name, a_name, a.get_active())
                     lst.append(tup)                    

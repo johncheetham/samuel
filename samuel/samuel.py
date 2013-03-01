@@ -22,13 +22,13 @@
 #   along with Samuel.  If not, see <http://www.gnu.org/licenses/>.
 #   
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk
 
 import sys, time, thread, traceback
 import engine
-import gobject
+from gi.repository import GObject
 import os
 import errno
 import pickle
@@ -212,12 +212,16 @@ class Game:
             self.src = 0
             self.thinking = True
             # disable some functionality while the computer is thinking
-            self.gui.disable_menu_items()      
+            Gdk.threads_enter()
+            self.gui.disable_menu_items()
+            Gdk.threads_leave()
             
-            self.gui.set_status_bar_msg(self.get_side_to_move_msg() + '...') 
+            Gdk.threads_enter()
+            self.gui.set_status_bar_msg(self.get_side_to_move_msg() + '...')
+            Gdk.threads_leave()
 
-            gobject.timeout_add(200, self.running_display)
-            #gobject.idle_add(self.running_display)            
+            GObject.timeout_add(200, self.running_display)
+            #GObject.idle_add(self.running_display)            
                        
             pre_board = self.board.get_board_position()
             self.pre_board = pre_board[:]
@@ -231,12 +235,14 @@ class Game:
             self.post_board = post_board[:]            
 
             # enable functionality previously disabled
-            self.gui.enable_menu_items()            
+            Gdk.threads_enter()
+            self.gui.enable_menu_items()
+            Gdk.threads_leave()
                                    
             self.thinking = False
 
             # display updated board
-            gobject.timeout_add(200, self.show_computer_move)                          
+            GObject.timeout_add(200, self.show_computer_move)                          
                          
         except:
             traceback.print_exc()
@@ -291,8 +297,8 @@ class Game:
                 self.board.move_piece(cp[i], cp[i + 1])
                 self.board.display_board()
          
-                while gtk.events_pending():                      
-                    gtk.main_iteration()
+                while Gtk.events_pending():                      
+                    Gtk.main_iteration()
 
                 time.sleep(0.5)      
                 
@@ -466,7 +472,7 @@ class Game:
     def quit_game(self, b):
 
         self.save_settings()
-        gtk.main_quit()
+        Gtk.main_quit()
 
 
     def new_game(self, b):                       
@@ -480,33 +486,28 @@ class Game:
 
     # Load Board Position from a previously saved game
     # The file to be loaded must be in pdn format with a .pdn extension
-    def load_game(self, b):        
+    def load_game(self, b):       
         
-        # Check for pygtk 2.4 or later
-        if gtk.pygtk_version < (2,3,90):
-           print "PyGtk 2.3.90 or later required for Save Game"
-           raise SystemExit
-        
-        dialog = gtk.FileChooserDialog("Load..",
+        dialog = Gtk.FileChooserDialog("Load..",
                                None,
-                               gtk.FILE_CHOOSER_ACTION_OPEN,
-                               (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                gtk.STOCK_OPEN, gtk.RESPONSE_OK))
-        dialog.set_default_response(gtk.RESPONSE_OK)
+                               Gtk.FileChooserAction.OPEN,
+                               (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.set_current_folder(os.path.expanduser("~"))
 
-        filter = gtk.FileFilter()  
+        filter = Gtk.FileFilter()  
         filter.set_name("pdn files")      
         filter.add_pattern("*.pdn")        
         dialog.add_filter(filter)
 
-        filter = gtk.FileFilter()
+        filter = Gtk.FileFilter()
         filter.set_name("All files")
         filter.add_pattern("*")
         dialog.add_filter(filter)        
 
         response = dialog.run()
-        if response == gtk.RESPONSE_OK:                                    
+        if response == Gtk.ResponseType.OK:                                    
             self.board.board_position = engine.loadgame(dialog.get_filename())                                
             self.board.display_board()
             self.set_panel_msg()
@@ -516,32 +517,27 @@ class Game:
     # Save Board Position to a file
     # The file is saved in pdn format with a .pdn extension
     def save_game(self, b):        
-        
-        # Check for pygtk 2.4 or later
-        if gtk.pygtk_version < (2,3,90):
-           print "PyGtk 2.3.90 or later required for Save Game"
-           raise SystemExit
 
-        dialog = gtk.FileChooserDialog("Save..",
+        dialog = Gtk.FileChooserDialog("Save..",
                                None,
-                               gtk.FILE_CHOOSER_ACTION_SAVE,
-                               (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                gtk.STOCK_SAVE, gtk.RESPONSE_OK))
-        dialog.set_default_response(gtk.RESPONSE_OK)
+                               Gtk.FileChooserAction.SAVE,
+                               (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+        dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.set_current_folder(os.path.expanduser("~"))
 
-        filter = gtk.FileFilter()  
+        filter = Gtk.FileFilter()  
         filter.set_name("pdn files")      
         filter.add_pattern("*.pdn")        
         dialog.add_filter(filter)
 
-        filter = gtk.FileFilter()
+        filter = Gtk.FileFilter()
         filter.set_name("All files")
         filter.add_pattern("*")
         dialog.add_filter(filter)        
 
         response = dialog.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             filename = dialog.get_filename()
             if filename[-4:] != '.pdn':
                 filename = filename + '.pdn'            
@@ -558,13 +554,13 @@ class Game:
     def copy_FEN_to_clipboard(self, b):                
 
         # get the clipboard
-        clipboard = gtk.clipboard_get()
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         # get the FEN data board position from the engine        
         text = engine.getFEN()
 
         # put the FEN data on the clipboard
-        clipboard.set_text(text)
+        clipboard.set_text(text, -1)
 
         # make our data available to other applications
         clipboard.store()
@@ -573,7 +569,7 @@ class Game:
     def paste_FEN_from_clipboard(self, b):        
 
         # get the clipboard
-        clipboard = gtk.clipboard_get()
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         # read the clipboard FEN data. 
         text = clipboard.wait_for_text()
@@ -589,13 +585,13 @@ class Game:
     def copy_PDN_to_clipboard(self, b): 
         
         # get the clipboard
-        clipboard = gtk.clipboard_get()
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         # get the moves PDN moves from the engine.
         text = engine.PDNtoCB()        
 
         # put the PDN data on the clipboard
-        clipboard.set_text(text)
+        clipboard.set_text(text, -1)
 
         # make our data available to other applications
         clipboard.store()
@@ -604,7 +600,7 @@ class Game:
     def paste_PDN_from_clipboard(self, b):        
 
         # get the clipboard
-        clipboard = gtk.clipboard_get()
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         # read the clipboard PDN data. 
         text = clipboard.wait_for_text()
@@ -618,35 +614,35 @@ class Game:
 
     def set_custom_search_depth(self, b):   
         
-        dialog = gtk.MessageDialog(
+        dialog = Gtk.MessageDialog(
             None,  
-            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,  
-            gtk.MESSAGE_QUESTION,  
-            gtk.BUTTONS_OK_CANCEL,  
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,  
+            Gtk.MessageType.QUESTION,  
+            Gtk.ButtonsType.OK_CANCEL,  
             None)
         
         markup = "<b>Set User-Defined Level</b>"
         dialog.set_markup(markup)
 
         #create the text input fields  
-        entry = gtk.Entry() 
+        entry = Gtk.Entry() 
         entry.set_text(str(self.custom_search_depth))
         entry.set_max_length(2)
         entry.set_width_chars(5)
         
-        entry2 = gtk.Entry() 
+        entry2 = Gtk.Entry() 
         entry2.set_text(str(self.custom_time_limit))
         entry2.set_max_length(5)
         entry2.set_width_chars(5)
 
         #allow the user to press enter to do ok  
-        entry.connect("activate", self.response_to_dialog, dialog, gtk.RESPONSE_OK) 
-        entry2.connect("activate", self.response_to_dialog, dialog, gtk.RESPONSE_OK)  
+        entry.connect("activate", self.response_to_dialog, dialog, Gtk.ResponseType.OK) 
+        entry2.connect("activate", self.response_to_dialog, dialog, Gtk.ResponseType.OK)  
 
-        tbl = gtk.Table(2, 2, True)
-        tbl.attach(gtk.Label("Search Depth\n(max 52)\n"), 0, 1, 0, 1)
+        tbl = Gtk.Table(2, 2, True)
+        tbl.attach(Gtk.Label(label="Search Depth\n(max 52)\n"), 0, 1, 0, 1)
         tbl.attach(entry, 1, 2, 0, 1)
-        tbl.attach(gtk.Label("Time Limit\n(in seconds)"), 0, 1, 1, 2)
+        tbl.attach(Gtk.Label(label="Time Limit\n(in seconds)"), 0, 1, 1, 2)
         tbl.attach(entry2, 1, 2, 1, 2)
   
         #some secondary text
@@ -658,7 +654,7 @@ class Game:
         dialog.show_all()  
 
         # If user hasn't clicked on OK then exit now
-        if dialog.run() != gtk.RESPONSE_OK:
+        if dialog.run() != Gtk.ResponseType.OK:
             dialog.destroy()
             return
 
@@ -694,17 +690,17 @@ class Game:
     # This callback quits the program
     def delete_event(self, widget, event, data=None):
         self.save_settings()        
-        gtk.main_quit()
+        Gtk.main_quit()
         return False
 
 
     # process key presses
     def key_press_event(self, widget, event):        
-        kp = gtk.gdk.keyval_name(event.keyval)                   
+        kp = Gdk.keyval_name(event.keyval)                   
         kp = kp.lower()
         
         # treat ctrl+= same as ctrl++ (i.e. increase board size)
-        if kp == "equal" and event.state & gtk.gdk.CONTROL_MASK:            
+        if kp == "equal" and event.get_state() & Gdk.ModifierType.CONTROL_MASK:            
             self.board.resize_board(widget)
             return        
          
@@ -887,9 +883,10 @@ class Settings:
     pass
 
 def run():
-    Game()        
-    gobject.threads_init()
-    gtk.main()
+    Game()
+    Gdk.threads_init()        
+    GObject.threads_init()
+    Gtk.main()
     return 0     
 
 if __name__ == "__main__":        

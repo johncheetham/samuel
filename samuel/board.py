@@ -17,7 +17,7 @@
 #   along with Samuel.  If not, see <http://www.gnu.org/licenses/>.
 #   
 
-import gtk
+from gi.repository import Gtk, Gdk, GdkPixbuf
 import os.path
 import sys, thread, time
 import engine
@@ -72,14 +72,14 @@ class Board:
         #                 0, 0, 0, 0, 0, 8, 2, 2, 2, 2, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 8, 8, 8, 8, 8, 8, 0, 0, 1]  
 
         self.myimage = [ \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()], \
-            [gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image(), gtk.Image()]  \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
+            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()]  \
             ]    
 
         self.pos_edit = False
@@ -190,27 +190,27 @@ class Board:
 
         prefix = self.game.get_prefix()
 
-        self.wchecksel_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wchecksel.png"))
-        self.wcheck_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wcheck.png"))
-        self.rchecksel_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rchecksel.png"))
-        self.rcheck_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rcheck.png")) 
-        self.bsquare_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Bsquare.png"))
-        self.wkingsel_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wkingsel.png")) 
-        self.wking_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wking.png"))
-        self.rkingsel_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rkingsel.png"))
-        self.rking_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rking.png"))
-        self.wsquare_pixbuf1 = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wsquare.png")) 
+        self.wchecksel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wchecksel.png"))
+        self.wcheck_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wcheck.png"))
+        self.rchecksel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rchecksel.png"))
+        self.rcheck_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rcheck.png")) 
+        self.bsquare_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Bsquare.png"))
+        self.wkingsel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wkingsel.png")) 
+        self.wking_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wking.png"))
+        self.rkingsel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rkingsel.png"))
+        self.rking_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rking.png"))
+        self.wsquare_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wsquare.png")) 
 
-        self.wchecksel_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wchecksel.png"))
-        self.wcheck_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wcheck.png"))
-        self.rchecksel_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rchecksel.png"))
-        self.rcheck_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rcheck.png")) 
-        self.bsquare_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Bsquare.png")) 
-        self.wkingsel_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wkingsel.png"))
-        self.wking_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wking.png"))
-        self.rkingsel_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rkingsel.png"))
-        self.rking_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Rking.png"))
-        self.wsquare_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(prefix, "images/Wsquare.png"))   
+        self.wchecksel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wchecksel.png"))
+        self.wcheck_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wcheck.png"))
+        self.rchecksel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rchecksel.png"))
+        self.rcheck_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rcheck.png")) 
+        self.bsquare_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Bsquare.png")) 
+        self.wkingsel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wkingsel.png"))
+        self.wking_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wking.png"))
+        self.rkingsel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rkingsel.png"))
+        self.rking_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rking.png"))
+        self.wsquare_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wsquare.png"))   
 
         # loop through all squares on the board setting the correct
         # image for that square
@@ -292,16 +292,16 @@ class Board:
         if self.font_size < 4: self.font_size = 4
         
         # scale the pixbufs to the new size
-        self.wchecksel_pixbuf = self.wchecksel_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.wcheck_pixbuf = self.wcheck_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.rchecksel_pixbuf = self.rchecksel_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.rcheck_pixbuf = self.rcheck_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.bsquare_pixbuf = self.bsquare_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.wkingsel_pixbuf = self.wkingsel_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.wking_pixbuf = self.wking_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.rkingsel_pixbuf = self.rkingsel_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.rking_pixbuf = self.rking_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)
-        self.wsquare_pixbuf = self.wsquare_pixbuf1.scale_simple(width, height, gtk.gdk.INTERP_HYPER)        
+        self.wchecksel_pixbuf = self.wchecksel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.wcheck_pixbuf = self.wcheck_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.rchecksel_pixbuf = self.rchecksel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.rcheck_pixbuf = self.rcheck_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.bsquare_pixbuf = self.bsquare_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.wkingsel_pixbuf = self.wkingsel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.wking_pixbuf = self.wking_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.rkingsel_pixbuf = self.rkingsel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.rking_pixbuf = self.rking_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
+        self.wsquare_pixbuf = self.wsquare_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)        
         
         # update white squares to use the new image
         for x in range(0, 8):
