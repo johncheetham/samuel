@@ -20,6 +20,7 @@
 from gi.repository import Gtk, Gdk
 from gi.repository import Pango
 from gi.repository import GdkPixbuf
+import cairo
 import os
 import engine
 from constants import *
@@ -30,8 +31,10 @@ class Gui:
 
         # Create Main Window
         self.window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
-        self.window.set_resizable(False)        
+        #self.window.set_resizable(False)        
         self.window.set_title(NAME + " " + VERSION)
+        self.window.set_default_size(550, 550) # startup size        
+        self.window.set_size_request(400, 400) # minimum size
 
         # Set a handler for delete_event that immediately
         # exits GTK.
@@ -109,13 +112,7 @@ class Gui:
                                  ('SetCustomLevelDepth', None, '_Set User-defined Level', None, 'Set Custom Level Depth', \
                                     self.game.set_custom_search_depth),                                 
                                  ('Level', None, '_Level'), 
-                                 ('Options', None, '_Options'),
-                                 ('IncBoardSize',  Gtk.STOCK_ZOOM_IN, '_Increase Board Size', "<Control>plus", 'Inc Board Size', \
-                                    self.board.resize_board),
-                                 ('DecBoardSize',  Gtk.STOCK_ZOOM_OUT, '_Decrease Board Size', "<Control>minus", 'Dec Board Size', \
-                                    self.board.resize_board),
-                                 ('NormalBoardSize',  Gtk.STOCK_ZOOM_100, '_Normal Board Size', "<Control>0", 'Normal Board Size', \
-                                    self.board.resize_board),                                 
+                                 ('Options', None, '_Options'),                                                    
                                  ('About', Gtk.STOCK_ABOUT, '_About', None, 'Show About Box', self.about_box),
                                  ('samhelp', Gtk.STOCK_HELP, '_Help (online)', None, 'Samuel Help (Online)', \
                                     self.game.open_help),
@@ -166,11 +163,7 @@ class Gui:
                 <menuitem action="SetCustomLevelDepth"/>
                 <separator/>            
             </menu>
-            <menu action="Options">
-                <menuitem action="IncBoardSize"/>
-                <menuitem action="DecBoardSize"/>
-                <menuitem action="NormalBoardSize"/>
-                <separator/>                
+            <menu action="Options">                             
                 <menuitem action="ComputerPlaysWhite"/>
                 <menuitem action="ComputerPlaysRed"/>
                 <menuitem action="ComputerPlaysWhiteAndRed"/>
@@ -196,6 +189,8 @@ class Gui:
         menubar = uimanager.get_widget('/MenuBar')                
         main_vbox.pack_start(menubar, False, True, 0)        
         
+        self.load_images()
+
         # Create a 8x8 table
         self.table = Gtk.Table(8, 8, True)
         self.table.set_border_width(25)
@@ -208,7 +203,7 @@ class Gui:
         eb.add(aspect_frame) 
         eb.show()
         eb.modify_bg(Gtk.StateType.NORMAL, Gdk.color_parse("darkslategrey"))                 
-        main_vbox.pack_start(eb, False, True, 0) 
+        main_vbox.pack_start(eb, True, True, 0) 
 
         bot_hbox = Gtk.HBox(False, 0) 
         main_vbox.pack_start(bot_hbox, False, True, 7)                        
@@ -357,6 +352,57 @@ class Gui:
         self.game = game
         self.board = board        
 
+
+    def load_images(self):
+        print "in load images"
+        prefix = self.game.get_prefix()
+        print "prefix=",prefix
+        # create a cairo surface from each image 
+        self.wchecksel = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wchecksel.png"))
+        self.wcheck    = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wcheck.png"))
+        self.rchecksel = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Rchecksel.png"))
+        self.rcheck    = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Rcheck.png"))
+        self.bsquare   = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Bsquare.png"))
+        self.wkingsel  = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wkingsel.png"))
+        self.wking     = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wking.png"))
+        self.rkingsel  = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Rkingsel.png"))
+        self.rking     = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Rking.png"))
+        self.wsquare   = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wsquare.png"))
+
+        self.board_squares = [
+                    (37, 1, 0), (38, 3, 0), (39, 5, 0), (40, 7, 0),         
+                    (32, 0, 1), (33, 2, 1), (34, 4, 1), (35, 6, 1),
+                    (28, 1, 2), (29, 3, 2), (30, 5, 2), (31, 7, 2),        
+                    (23, 0, 3), (24, 2, 3), (25, 4, 3), (26, 6, 3),
+                    (19, 1, 4), (20, 3, 4), (21, 5, 4), (22, 7, 4),        
+                    (14, 0, 5), (15, 2, 5), (16, 4, 5), (17, 6, 5),
+                    (10, 1, 6), (11, 3, 6), (12, 5, 6), (13, 7, 6),        
+                    (5, 0, 7), (6, 2, 7), (7, 4, 7), (8, 6, 7)]
+        """
+        # loop through all squares on the board setting the correct
+        # image for that square
+        for x in range(0, 8):
+            for y in range(0, 8): 
+                found = False
+                for sq in self.board_squares:
+                    gc_loc, sqx, sqy = sq
+                    if (sqx, sqy) == (x, y):
+                        found = True                        
+                        self.setpiece(gc_loc, x, y)                        
+                                                
+                        # call gui to process this square when clicked on
+                        self.gui.init_black_board_square(self.myimage[x][y], x, y)                        
+
+                        break 
+
+                if not found:
+                    # if not in board squares then must be a white square (not used)                    
+                    self.myimage[x][y].set_from_pixbuf(self.wsquare_pixbuf)                    
+
+                    # call gui to show this square
+                    self.gui.init_white_board_square(self.myimage[x][y], x, y)
+        """
+ 
     # about box
     def about_box(self, widget):
         about = Gtk.AboutDialog()        
@@ -387,21 +433,85 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
         about.destroy()
 
 
-    def init_black_board_square(self, image, x, y):
+    def init_black_board_square(self, x, y):
+
+        da = Gtk.DrawingArea()
+        #da.connect('draw', self.da_draw_eventw, x, y)
+        da.show()
 
         event_box = Gtk.EventBox()
-        event_box.add(image) 
+        da.connect('draw', self.eb_draw_event, x, y)  
+        event_box.add(da) 
         self.table.attach(event_box, x, x+1, y, y+1)
         event_box.show()    
         event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         data = (x, y)
         event_box.connect('button_press_event', self.game.square_clicked, data)
-        image.show()
+        #image.show()
 
 
-    def init_white_board_square(self, image, x, y):
-        self.table.attach(image, x, x+1, y, y+1)
-        image.show()
+    def draw_board(self):
+        self.table.queue_draw()
+
+
+    def eb_draw_event(self, eb, cr, x, y):
+        allocation = eb.get_allocation()
+        width, height = allocation.width, allocation.height
+        cr.scale(width / 64.00, height / 64.00) 
+        pce = self.board.get_piece_at_square(x, y)
+        gc_loc = self.board.get_gc_loc(x, y)
+        if self.game.get_src() == gc_loc:
+            selected = True 
+        else:
+            selected = False
+        #print "pce=",pce 
+        #   0 is unoccupied
+        #   1 is a red piece   
+        #   2 is a white piece
+        #   5 is a red king
+        #   6 is a white king 
+        if pce == 0:            
+            cr.set_source_surface(self.bsquare, 0.0, 0.0)       
+        elif pce == 1:
+            if selected:
+                cr.set_source_surface(self.rchecksel, 0.0, 0.0)
+            else: 
+                cr.set_source_surface(self.rcheck, 0.0, 0.0)
+        elif pce == 2:
+            if selected:
+                cr.set_source_surface(self.wchecksel, 0.0, 0.0)
+            else: 
+                cr.set_source_surface(self.wcheck, 0.0, 0.0)
+        elif pce == 5:
+            if selected:
+                cr.set_source_surface(self.rkingsel, 0.0, 0.0)
+            else:
+                cr.set_source_surface(self.rking, 0.0, 0.0)
+        elif pce == 6:
+            if selected:
+                cr.set_source_surface(self.wkingsel, 0.0, 0.0)
+            else:
+                cr.set_source_surface(self.wking, 0.0, 0.0)
+        else:
+            cr.set_source_surface(self.bsquare, 0.0, 0.0)
+        cr.paint()
+
+ 
+
+    def init_white_board_square(self, x, y):
+        da = Gtk.DrawingArea()
+        da.connect('draw', self.da_draw_eventw, x, y)
+        da.show()
+        self.table.attach(da, x, x+1, y, y+1, Gtk.AttachOptions.FILL, Gtk.AttachOptions.FILL)
+        #image.show()
+
+
+    def da_draw_eventw(self, da, cr, x, y):      
+        allocation = da.get_allocation()
+        width, height = allocation.width, allocation.height
+        cr.scale(width / 64.00, height / 64.00) 
+        cr.set_source_surface(self.wsquare, 0.0, 0.0)       
+        cr.paint() 
 
 
     # return the side to move after a position edit as set in the radio button
@@ -538,6 +648,9 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
     def get_main_window_size(self):        
         #return self.window.get_size()
         return (self.win_width, self.win_height)
+    
+    def set_window_size(self, width, height):
+        self.window.resize(width, height)
 
     # process window size change
     def configure_event(self, widget, event):        

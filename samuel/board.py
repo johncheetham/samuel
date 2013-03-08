@@ -27,8 +27,9 @@ from constants import *
 class Board:
 
     def __init__(self, board_position):
-        self.board_position = board_position        
+        self.board_position = board_position 
 
+  
     def build_board(self):        
 
         #
@@ -69,18 +70,7 @@ class Board:
         # This sets the initial board position
         # Initial board position is returned by the engine 
         #self.board_position = [8, 8, 8, 8, 8, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 8, 0, 0, 0, \
-        #                 0, 0, 0, 0, 0, 8, 2, 2, 2, 2, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 8, 8, 8, 8, 8, 8, 0, 0, 1]  
-
-        self.myimage = [ \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()], \
-            [Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image(), Gtk.Image()]  \
-            ]    
+        #                 0, 0, 0, 0, 0, 8, 2, 2, 2, 2, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 8, 8, 8, 8, 8, 8, 0, 0, 1]          
 
         self.pos_edit = False
         
@@ -122,48 +112,22 @@ class Board:
 
     def display_board(self):        
 
-        for sq in self.board_squares:
-            gc_loc, x, y = sq
-            self.setpiece(gc_loc, x, y)
+        #for sq in self.board_squares:
+        #    gc_loc, x, y = sq
+        #    self.setpiece(gc_loc, x, y)
 
         self.set_board_status()
+        self.gui.draw_board()
            
 
-    def setpiece(self, gc_loc, x, y):        
-           
-        if self.board_position[gc_loc] == self.white_piece:
-            if self.game.get_src() == gc_loc:
-                self.myimage[x][y].set_from_pixbuf(self.wchecksel_pixbuf)       
-            else:            
-                self.myimage[x][y].set_from_pixbuf(self.wcheck_pixbuf)                                       
-        elif self.board_position[gc_loc] == self.red_piece:            
-            if self.game.get_src() == gc_loc:
-                self.myimage[x][y].set_from_pixbuf(self.rchecksel_pixbuf)                                
-            else:
-                self.myimage[x][y].set_from_pixbuf(self.rcheck_pixbuf)                                                
-        elif self.board_position[gc_loc] == self.not_occupied:
-            # not occupied            
-            self.myimage[x][y].set_from_pixbuf(self.bsquare_pixbuf)            
-        elif self.board_position[gc_loc] == self.white_king:
-            # white king
-            if self.game.get_src() == gc_loc:
-                self.myimage[x][y].set_from_pixbuf(self.wkingsel_pixbuf)
-            else:
-                self.myimage[x][y].set_from_pixbuf(self.wking_pixbuf)            
-        elif self.board_position[gc_loc] == self.red_king:
-            # red king
-            if self.game.get_src() == gc_loc:                
-                self.myimage[x][y].set_from_pixbuf(self.rkingsel_pixbuf)                  
-            else:                
-                self.myimage[x][y].set_from_pixbuf(self.rking_pixbuf)                                   
-        else:
-            print "setpiece error - invalid value:"
-            print self.board_position[gc_loc]
-            print "x=", x
-            print "y=", y
-            sys.exit()
-        self.myimage[x][y].show()     
-      
+    def get_piece_at_square(self, x, y):
+        for sq in self.board_squares:
+            gc_loc, sx, sy = sq
+            if sx == x and sy == y:
+                return self.board_position[gc_loc]
+        print "error in board.py get_piece_at_square" 
+        sys.exit()      
+
 
     #
     # get_gc_loc
@@ -174,44 +138,26 @@ class Board:
     def get_gc_loc(self, x, y):
         
         for sq in self.board_squares:
+            #print sq
             gc_loc, sqx, sqy = sq
             if (sqx, sqy) == (x, y):
                 return gc_loc
 
         print "get_gc_loc error"
+        print "x,y=",x,y
         sys.exit()
 
     def init_board(self):
 
         # Board images
         #del pb
-        #gc.collect()  
+        #gc.collect()
+        #return  
         self.font_size = 8      
 
         prefix = self.game.get_prefix()
 
-        self.wchecksel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wchecksel.png"))
-        self.wcheck_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wcheck.png"))
-        self.rchecksel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rchecksel.png"))
-        self.rcheck_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rcheck.png")) 
-        self.bsquare_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Bsquare.png"))
-        self.wkingsel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wkingsel.png")) 
-        self.wking_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wking.png"))
-        self.rkingsel_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rkingsel.png"))
-        self.rking_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rking.png"))
-        self.wsquare_pixbuf1 = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wsquare.png")) 
-
-        self.wchecksel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wchecksel.png"))
-        self.wcheck_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wcheck.png"))
-        self.rchecksel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rchecksel.png"))
-        self.rcheck_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rcheck.png")) 
-        self.bsquare_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Bsquare.png")) 
-        self.wkingsel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wkingsel.png"))
-        self.wking_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wking.png"))
-        self.rkingsel_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rkingsel.png"))
-        self.rking_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Rking.png"))
-        self.wsquare_pixbuf = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/Wsquare.png"))   
-
+        
         # loop through all squares on the board setting the correct
         # image for that square
         for x in range(0, 8):
@@ -221,107 +167,25 @@ class Board:
                     gc_loc, sqx, sqy = sq
                     if (sqx, sqy) == (x, y):
                         found = True                        
-                        self.setpiece(gc_loc, x, y)                        
+                        #self.setpiece(gc_loc, x, y)                        
                                                 
                         # call gui to process this square when clicked on
-                        self.gui.init_black_board_square(self.myimage[x][y], x, y)                        
+                        self.gui.init_black_board_square(x, y)                        
 
                         break 
 
                 if not found:
                     # if not in board squares then must be a white square (not used)                    
-                    self.myimage[x][y].set_from_pixbuf(self.wsquare_pixbuf)                    
+                    #self.myimage[x][y].set_from_pixbuf(self.wsquare_pixbuf)                    
 
                     # call gui to show this square
-                    self.gui.init_white_board_square(self.myimage[x][y], x, y)
+                    self.gui.init_white_board_square(x, y)
+
 
     def get_board_size(self):
-        return (self.wcheck_pixbuf.get_width(), self.wcheck_pixbuf.get_height(), self.font_size)  
+        return (64, 64, 8)
+        #return (self.wcheck_pixbuf.get_width(), self.wcheck_pixbuf.get_height(), self.font_size)  
 
-    def resize_board(self, b, w = None, h = None, fs = None):        
-
-        inc = 1        # the amount to change each board square by in pixels
-
-        width = self.wcheck_pixbuf.get_width()
-        height = self.wcheck_pixbuf.get_height()        
-
-        if b == None:
-            height = h
-            width = w
-            self.font_size = fs
-        else:
-            name = b.get_name()
-            # GtkWindow means called with key combination ctrl+= (treat same as ctrl++)
-            if name == 'IncBoardSize' or name == 'GtkWindow':
-                
-                # check window size will not be bigger than screen size                
-
-                # get screen dimensions
-                (screen_width, screen_height) = self.gui.get_screen_size()                      
-                
-                # get current size of main window
-                (win_width, win_height) = self.gui.get_main_window_size()
-
-                # calculate size of main window after resizing
-                win_height += (inc * 8)
-                win_width += (inc * 8)
-
-                # if window size will exceed screen size then don't do the resize
-                if win_height > screen_height or win_width > screen_width:
-                    return
-
-                # validation OK - increase the sizes
-                height += inc
-                width += inc                 
-                if height % 8 == 0:                
-                    self.font_size +=1
-
-            elif name == 'DecBoardSize':                         
-                height -= inc
-                width -= inc
-                if height % 8 == 0:
-                    self.font_size -= 1            
-            elif name == 'NormalBoardSize':            
-                height = 64
-                width = 64
-                self.font_size = 8        
-        
-        # check not less than minimum
-        if height < 32: height = 32
-        if width < 32: width = 32
-        if self.font_size < 4: self.font_size = 4
-        
-        # scale the pixbufs to the new size
-        self.wchecksel_pixbuf = self.wchecksel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.wcheck_pixbuf = self.wcheck_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.rchecksel_pixbuf = self.rchecksel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.rcheck_pixbuf = self.rcheck_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.bsquare_pixbuf = self.bsquare_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.wkingsel_pixbuf = self.wkingsel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.wking_pixbuf = self.wking_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.rkingsel_pixbuf = self.rkingsel_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.rking_pixbuf = self.rking_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)
-        self.wsquare_pixbuf = self.wsquare_pixbuf1.scale_simple(width, height, GdkPixbuf.InterpType.HYPER)        
-        
-        # update white squares to use the new image
-        for x in range(0, 8):
-            for y in range(0, 8): 
-                found = False
-                for sq in self.board_squares:
-                    gc_loc, sqx, sqy = sq
-                    if (sqx, sqy) == (x, y):
-                        found = True
-                        break                 
-                if not found:
-                    # if not in board squares then must be a white square (not used)                    
-                    self.myimage[x][y].set_from_pixbuf(self.wsquare_pixbuf)
-        
-        # update black squares to use the new image
-        self.display_board()
-
-        # change size of panel font to match the new board size
-        self.gui.set_panel_font_size(self.font_size)
-        
 
     # Edit Board Position     
     def position_edit_init(self, b):
@@ -354,7 +218,7 @@ class Board:
                 self.board_position[gc_loc] = self.red_king            
             else:  
                 self.board_position[gc_loc] = self.red_piece               
-            self.setpiece(gc_loc, x, y)
+            #self.setpiece(gc_loc, x, y)
 
         # if right click then set white pieces 
         if event.button == 3:
@@ -364,7 +228,8 @@ class Board:
                 self.board_position[gc_loc] = self.white_king            
             else:  
                 self.board_position[gc_loc] = self.white_piece               
-            self.setpiece(gc_loc, x, y)       
+            #self.setpiece(gc_loc, x, y)
+        self.gui.draw_board()       
 
 
     def position_edit_clear_board(self):
@@ -382,7 +247,7 @@ class Board:
 
         for (gc_loc, x, y) in self.board_squares:            
             self.board_position[gc_loc] = self.not_occupied
-            self.setpiece(gc_loc, x, y)
+            #self.setpiece(gc_loc, x, y)
             
 
     #

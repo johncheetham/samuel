@@ -136,7 +136,9 @@ class Game:
         return (opening_book_path, end_game_2pc_path, end_game_3pc_path, end_game_4pc_path) 
 
     def square_clicked(self, widget, event, data):       
- 
+
+        #self.gui.draw_board()
+
         # if we are in position edit mode then pass all clicks on squares to the
         # edit routine        
         if self.board.get_pos_edit():
@@ -242,8 +244,7 @@ class Game:
             self.thinking = False
 
             # display updated board
-            GObject.timeout_add(200, self.show_computer_move)                          
-                         
+            GObject.timeout_add(200, self.show_computer_move)                                              
         except:
             traceback.print_exc()
 
@@ -284,6 +285,7 @@ class Game:
         cp = self.cpath[:]        
 
         # if jumped then display each move of the jump with pause between
+        
         if self.cpath[0] != 0:
             time.sleep(0.5) 
             pbp = self.pre_board[:]
@@ -295,27 +297,35 @@ class Game:
                     break
                 
                 self.board.move_piece(cp[i], cp[i + 1])
+
+                Gdk.threads_enter()
                 self.board.display_board()
          
-                while Gtk.events_pending():                      
+                while Gtk.events_pending():                    
                     Gtk.main_iteration()
+
+                Gdk.threads_leave()
 
                 time.sleep(0.5)      
                 
             post_b = self.post_board[:]
             self.board.set_board_position(post_b)                   
-
+        
         end_time = time.time()
         elapsed = end_time - self.start_time
 
         # if the computers move was too fast, slow it down a bit (by 1 sec)                  
         if elapsed < 1.0:
             time.sleep(1)            
-                    
-        self.board.display_board()        
-         
+        
+        Gdk.threads_enter()            
+        self.board.display_board()               
+        Gdk.threads_leave() 
+
         self.src = 0
         self.dst = 0  
+
+        Gdk.threads_enter()
 
         if self.gameover == WHITE:
             text = "Game Over - White Wins"
@@ -332,8 +342,10 @@ class Game:
                 self.gui.append_panel_text(text)
             self.gui.set_status_bar_msg(text)
         else:
-            # set side to move msg in status bar            
+            # set side to move msg in status bar                  
             self.gui.set_status_bar_msg(self.get_side_to_move_msg())                   
+
+        Gdk.threads_leave()
 
         return False    
 
@@ -415,7 +427,9 @@ class Game:
         s.action_settings = self.gui.get_action_settings()
         s.custom_search_depth = self.custom_search_depth
         s.custom_time_limit = self.custom_time_limit
-        (s.board_size_width, s.board_size_height, s.board_size_font_size) = self.board.get_board_size()
+        #(s.board_size_width, s.board_size_height, s.board_size_font_size) = self.board.get_board_size()
+        (s.window_width, s.window_height) = self.gui.get_main_window_size()        
+        s.font_size = 8
             
         # pickle and save settings
         try:                        
@@ -455,8 +469,9 @@ class Game:
             try:
                 self.custom_search_depth = x.custom_search_depth
                 self.custom_time_limit = x.custom_time_limit           
-                self.board.resize_board(None, x.board_size_width, x.board_size_height, x.board_size_font_size)           
-                
+                #self.board.resize_board(None, x.board_size_width, x.board_size_height, x.board_size_font_size)                           
+                self.gui.set_window_size(x.window_width, x.window_height)
+
                 #for (ag_name, setting, active) in x.action_settings:
                 for tup in x.action_settings:
                     # activate the menu option                                                           
