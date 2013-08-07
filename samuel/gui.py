@@ -46,6 +46,18 @@ class Gui:
         self.window.add(main_vbox)
         main_vbox.show()
         
+        # 1 eventbox per board square
+        self.eb = [ \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            [Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox(), Gtk.EventBox()], \
+            ]     
+
         # menu
         # Create a UIManager instance
         uimanager = Gtk.UIManager()
@@ -354,9 +366,9 @@ class Gui:
 
 
     def load_images(self):
-        print "in load images"
+        
         prefix = self.game.get_prefix()
-        print "prefix=",prefix
+        
         # create a cairo surface from each image 
         self.wchecksel = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wchecksel.png"))
         self.wcheck    = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wcheck.png"))
@@ -369,6 +381,13 @@ class Gui:
         self.rking     = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Rking.png"))
         self.wsquare   = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/Wsquare.png"))
 
+        # Drag and Drop
+        #self.wcheckdnd = cairo.ImageSurface.create_from_png(os.path.join(prefix, "images/WcheckDnD.png"))        
+        self.wcheckdnd = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/WcheckDnD.png"))
+        self.rcheckdnd = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/RcheckDnD.png"))
+        self.wkingdnd = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/WkingDnD.png"))
+        self.rkingdnd = GdkPixbuf.Pixbuf.new_from_file(os.path.join(prefix, "images/RkingDnD.png"))
+
         self.board_squares = [
                     (37, 1, 0), (38, 3, 0), (39, 5, 0), (40, 7, 0),         
                     (32, 0, 1), (33, 2, 1), (34, 4, 1), (35, 6, 1),
@@ -378,30 +397,6 @@ class Gui:
                     (14, 0, 5), (15, 2, 5), (16, 4, 5), (17, 6, 5),
                     (10, 1, 6), (11, 3, 6), (12, 5, 6), (13, 7, 6),        
                     (5, 0, 7), (6, 2, 7), (7, 4, 7), (8, 6, 7)]
-        """
-        # loop through all squares on the board setting the correct
-        # image for that square
-        for x in range(0, 8):
-            for y in range(0, 8): 
-                found = False
-                for sq in self.board_squares:
-                    gc_loc, sqx, sqy = sq
-                    if (sqx, sqy) == (x, y):
-                        found = True                        
-                        self.setpiece(gc_loc, x, y)                        
-                                                
-                        # call gui to process this square when clicked on
-                        self.gui.init_black_board_square(self.myimage[x][y], x, y)                        
-
-                        break 
-
-                if not found:
-                    # if not in board squares then must be a white square (not used)                    
-                    self.myimage[x][y].set_from_pixbuf(self.wsquare_pixbuf)                    
-
-                    # call gui to show this square
-                    self.gui.init_white_board_square(self.myimage[x][y], x, y)
-        """
  
     # about box
     def about_box(self, widget):
@@ -434,7 +429,7 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
 
 
     def init_black_board_square(self, x, y):
-
+        
         da = Gtk.DrawingArea()
         #da.connect('draw', self.da_draw_eventw, x, y)
         da.show()
@@ -446,17 +441,180 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
         event_box.show()    
         event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         data = (x, y)
-        event_box.connect('button_press_event', self.game.square_clicked, data)
+        event_box.connect('button_press_event', self.game.square_clicked_CB, data)
         #image.show()
+       
+        self.eb[x][y] = event_box
 
+        # connect signals for drag source
+        event_box.connect("drag_begin", self.drag_begin, (x, y))
+        event_box.connect("drag-data-get", self.sendCallback)
+        event_box.connect("drag_end", self.drag_end)
 
-    def draw_board(self):
+        # connect signals for drag dest
+        event_box.connect("drag-data-received", self.receiveCallback, (x, y))
+
+   # set up drag and drop
+   # see http://python-gtk-3-tutorial.readthedocs.org/en/latest/drag_and_drop.html
+   # see https://wiki.gnome.org/GnomeLove/DragNDropTutorial    
+    def init_all_dnd(self):      
+        self.unset_all_dnd()      
+        stm = self.game.get_side_to_move()        
+        red_player, white_player = self.game.get_players()
+        if stm == RED and red_player != HUMAN:   
+            return
+        if stm == WHITE and white_player != HUMAN:             
+            return 
+        
+        # loop through all squares on the board setting the correct
+        # drag src/dst for that square
+        board_squares = self.board.get_board_squares()
+        for sq in board_squares:
+            gc_loc, x, y = sq            
+            pce = self.board.get_piece_at_square(x, y)
+            if (stm == RED and (pce == 1 or pce == 5)) or (stm == WHITE and (pce == 2 or pce == 6)):                
+                self.eb[x][y].drag_source_set(Gdk.ModifierType.BUTTON1_MASK, [], Gdk.DragAction.COPY)           
+                self.eb[x][y].drag_source_add_text_targets()            
+            elif pce == 0:                
+                self.eb[x][y].drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)           
+                self.eb[x][y].drag_dest_add_text_targets()           
+
+    def unset_all_dnd(self):
+        board_squares = self.board.get_board_squares()                
+        for sq in board_squares:
+            gc_loc, x, y = sq
+            self.eb[x][y].drag_source_unset()
+            self.eb[x][y].drag_dest_unset()
+
+    def drag_begin(self, widget, drag_context, data):       
+        self.dnd_data_received = False 
+        # get x,y co-ords of source square
+        x, y = data            
+
+        # convert the x, y co-ords into the gui checkers representation
+        gc_loc = self.board.get_gc_loc(x, y) 
+        self.src = gc_loc
+        # set the icon for the drag and drop to the piece that is being dragged    
+        pce = self.board.get_piece_at_square(x, y)
+        self.dnd_pce = pce  
+       
+        #   0 is unoccupied
+        #   1 is a red piece   
+        #   2 is a white piece
+        #   5 is a red king
+        #   6 is a white king
+        if pce == 1:
+            scaled_pixbuf = self.rcheckdnd.scale_simple(self.width, self.height, GdkPixbuf.InterpType.HYPER) 
+        elif pce == 2:
+            scaled_pixbuf = self.wcheckdnd.scale_simple(self.width, self.height, GdkPixbuf.InterpType.HYPER)
+        elif pce == 5:
+            scaled_pixbuf = self.rkingdnd.scale_simple(self.width, self.height, GdkPixbuf.InterpType.HYPER)
+        elif pce == 6:
+            scaled_pixbuf = self.wkingdnd.scale_simple(self.width, self.height, GdkPixbuf.InterpType.HYPER)
+        else:
+            return
+        
+        hot_x = scaled_pixbuf.get_width() / 2
+        hot_y = scaled_pixbuf.get_height() / 2      
+        Gtk.drag_set_icon_pixbuf(drag_context, scaled_pixbuf, hot_x, hot_y)
+
+        # Set piece at source square as unoccupied (0)
+        self.board.set_piece_at_square(gc_loc, 0)
+        self.eb[x][y].queue_draw()
+
+    # if drag and drop failed then reinstate the piece where it
+    # was dragged from
+    def drag_end(self, widget, drag_context):        
+        # if receiveCallback function not entered then restore board
+        # to before the drag started
+        if not self.dnd_data_received:            
+            # set piece back at source square            
+            self.board.set_piece_at_square(self.src, self.dnd_pce)
+            self.board.display_board()          
+            return        
+
+    def sendCallback(self, widget, context, selection, targetType, eventTime):
+        selection.set_text("samuel", -1)
+
+    def receiveCallback(self, widget, context, x, y, selection, targetType,
+                        time, data):        
+        self.dnd_data_received = True        
+
+        if selection.get_text() != "samuel":
+            print "invalid selection data. ignored"
+            return False
+
+        x, y = data
+        # convert the x, y co-ords into the gui checkers representation
+        gc_loc = self.board.get_gc_loc(x, y) 
+        self.dst = gc_loc
+        board_position = engine.hmove(self.src, self.dst)
+        self.board.set_board_position(board_position)       
+        self.board.set_board_status()
+      
+        # fixme
+        if self.game.legalmove == 0: 
+            # illegal move so set piece back at source square
+            zx, zy = self.board.get_x_y(self.src)
+            pce = self.board.get_piece_at_square(zx, zy)
+            self.board.set_piece_at_square(self.src, pce)
+            self.board.display_board()
+            return False
+
+        # Set piece at dest square as dragged piece
+        pce = self.board.get_piece_at_square(x, y) 
+        self.board.set_piece_at_square(gc_loc, pce)              
+
+        # if move was a jump then set the square jumped over to empty
+        diff = self.dst - self.src
+        if diff < 0: diff = -diff
+        hdiff = diff / 2
+       
+        # 8 or 10 is a jump
+        # 4 or 5 is normal move 
+        if diff > 5:
+            if self.dst > self.src:                
+                gc_loc = self.src + hdiff 
+            else:
+                gc_loc = self.src - hdiff               
+            self.board.set_piece_at_square(gc_loc, 0)
+            zx,zy = self.board.get_x_y(gc_loc)           
+            self.eb[zx][zy].queue_draw()           
+
+        Gtk.drag_finish(context, True, True, time)
+
+        # fixme
+        if self.game.legalmove == 2000:
+            # double jump not yet completed - don't call computer move
+            self.init_all_dnd()
+            return False
+
+        stm = self.game.get_side_to_move()        
+        red_player, white_player = self.game.get_players()        
+
+        self.init_all_dnd()
+
+        # If human is playing both sides (i.e. computer is off) then return
+        # now without calling the engine
+        if stm == RED and red_player != COMPUTER:                    
+            return False
+
+        if stm == WHITE and white_player != COMPUTER:                    
+            return False 
+
+        # kick off computer move
+        self.game.comp_move()
+        
+        return False
+
+    def draw_board(self):       
         self.table.queue_draw()
-
 
     def eb_draw_event(self, eb, cr, x, y):
         allocation = eb.get_allocation()
         width, height = allocation.width, allocation.height
+        self.width = width
+        self.height = height
         cr.scale(width / 64.00, height / 64.00) 
         pce = self.board.get_piece_at_square(x, y)
         gc_loc = self.board.get_gc_loc(x, y)
@@ -464,7 +622,7 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
             selected = True 
         else:
             selected = False
-        #print "pce=",pce 
+        
         #   0 is unoccupied
         #   1 is a red piece   
         #   2 is a white piece
@@ -494,25 +652,20 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
                 cr.set_source_surface(self.wking, 0.0, 0.0)
         else:
             cr.set_source_surface(self.bsquare, 0.0, 0.0)
-        cr.paint()
-
- 
+        cr.paint() 
 
     def init_white_board_square(self, x, y):
         da = Gtk.DrawingArea()
         da.connect('draw', self.da_draw_eventw, x, y)
         da.show()
         self.table.attach(da, x, x+1, y, y+1, Gtk.AttachOptions.FILL, Gtk.AttachOptions.FILL)
-        #image.show()
-
 
     def da_draw_eventw(self, da, cr, x, y):      
         allocation = da.get_allocation()
         width, height = allocation.width, allocation.height
         cr.scale(width / 64.00, height / 64.00) 
         cr.set_source_surface(self.wsquare, 0.0, 0.0)       
-        cr.paint() 
-
+        cr.paint()
 
     # return the side to move after a position edit as set in the radio button
     def get_side_to_move(self):
@@ -558,7 +711,6 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
         # if infopanel was visible prior to position edit then show it        
         if self.infopanel_visible:                    
             self.bot_hbox.show()            
-            
 
     def enable_move_now(self):
         self.actiongroup.get_action('MoveNow').set_sensitive(True)

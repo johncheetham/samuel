@@ -76,7 +76,9 @@ class Game:
         self.restore_settings()    
 
         # set status bar msg
-        self.gui.set_status_bar_msg(self.get_side_to_move_msg()) 
+        self.gui.set_status_bar_msg(self.get_side_to_move_msg())
+        self.gui.init_all_dnd()
+ 
 
     def set_data_paths(self):
 
@@ -135,8 +137,7 @@ class Game:
 
         return (opening_book_path, end_game_2pc_path, end_game_3pc_path, end_game_4pc_path) 
 
-    def square_clicked(self, widget, event, data):       
-
+    def square_clicked_CB(self, widget, event, data):               
         #self.gui.draw_board()
 
         # if we are in position edit mode then pass all clicks on squares to the
@@ -154,6 +155,10 @@ class Game:
 
         if self.side_to_move == WHITE and self.white_player != HUMAN:            
             return             
+
+        self.square_clicked(data)
+
+    def square_clicked(self, data):
 
         # get x,y co-ords of square clicked on
         x, y = data        
@@ -179,7 +184,8 @@ class Game:
             # to destination square (dst)            
             board_position = engine.hmove(self.src, self.dst)
             self.board.set_board_position(board_position)                      
-            self.board.display_board()            
+            self.board.display_board()
+            self.gui.init_all_dnd()            
             
             if self.legalmove == 0:                
                 # legalmove = 0 means human made illegal move
@@ -205,8 +211,11 @@ class Game:
                 # It's the computers turn to move
                 # kick off a separate thread for computers move so that gui is still useable                              
                 self.ct= thread.start_new_thread( self.computer_move, () )                                 
-                return           
-    
+                return
+
+    def comp_move(self):
+        self.ct= thread.start_new_thread( self.computer_move, () )
+
     def computer_move(self):
         try:
             
@@ -241,7 +250,7 @@ class Game:
             self.gui.enable_menu_items()
             Gdk.threads_leave()
                                    
-            self.thinking = False
+            self.thinking = False            
 
             # display updated board
             GObject.timeout_add(200, self.show_computer_move)                                              
@@ -346,6 +355,7 @@ class Game:
             self.gui.set_status_bar_msg(self.get_side_to_move_msg())                   
 
         Gdk.threads_leave()
+        self.gui.init_all_dnd()
 
         return False    
 
@@ -398,7 +408,7 @@ class Game:
             engine.setcomputercolour(WHITE)
 
         self.set_panel_msg2()
-
+        self.gui.init_all_dnd()
 
     def flip_the_board(self, w):
         
@@ -413,7 +423,7 @@ class Game:
         board_position = engine.flipboard(flipped)        
         self.board.set_board_position(board_position)                      
         self.board.display_board()        
-                
+        self.gui.init_all_dnd()        
 
     #
     # save users settings at program termination
@@ -497,6 +507,7 @@ class Game:
         self.gui.set_panel_text("Red to Move")
         # set status bar msg
         self.gui.set_status_bar_msg(self.get_side_to_move_msg())        
+        self.gui.init_all_dnd()
 
 
     # Load Board Position from a previously saved game
@@ -886,6 +897,9 @@ class Game:
 
     def get_side_to_move(self):
         return self.side_to_move
+
+    def get_players(self):
+        return self.red_player, self.white_player
 
     def open_help(self, w):
         try:        

@@ -147,12 +147,22 @@ class Board:
         print "x,y=",x,y
         sys.exit()
 
-    def init_board(self):
+    #
+    # Converts a gc_loc into the x,y square position   
+    #
+    def get_x_y(self, gc_loc):
+        for sq in self.board_squares:
+            #print sq
+            loc, sqx, sqy = sq
+            if loc == gc_loc:
+                return sqx, sqy
+        print "get_x_y error"
+        print "gc_loc=",gc_loc
+        sys.exit()
 
-        # Board images
-        #del pb
-        #gc.collect()
-        #return  
+
+    def init_board(self):       
+        
         self.font_size = 8      
 
         prefix = self.game.get_prefix()
@@ -166,26 +176,19 @@ class Board:
                 for sq in self.board_squares:
                     gc_loc, sqx, sqy = sq
                     if (sqx, sqy) == (x, y):
-                        found = True                        
-                        #self.setpiece(gc_loc, x, y)                        
-                                                
+                        found = True                                                
                         # call gui to process this square when clicked on
                         self.gui.init_black_board_square(x, y)                        
-
                         break 
 
                 if not found:
-                    # if not in board squares then must be a white square (not used)                    
-                    #self.myimage[x][y].set_from_pixbuf(self.wsquare_pixbuf)                    
-
+                    # if not in board squares then must be a white square (not used)
                     # call gui to show this square
                     self.gui.init_white_board_square(x, y)
 
-
     def get_board_size(self):
         return (64, 64, 8)
-        #return (self.wcheck_pixbuf.get_width(), self.wcheck_pixbuf.get_height(), self.font_size)  
-
+        #return (self.wcheck_pixbuf.get_width(), self.wcheck_pixbuf.get_height(), self.font_size)
 
     # Edit Board Position     
     def position_edit_init(self, b):
@@ -199,8 +202,7 @@ class Board:
         text += "Click Cancel to discard changes"                      
         
         self.gui.disable_posedit_menu_items()
-        self.gui.init_posedit_panel(text)
-        
+        self.gui.init_posedit_panel(text)        
 
     def position_edit(self, event, data):
         
@@ -217,8 +219,7 @@ class Board:
             elif self.board_position[gc_loc] == self.red_piece:
                 self.board_position[gc_loc] = self.red_king            
             else:  
-                self.board_position[gc_loc] = self.red_piece               
-            #self.setpiece(gc_loc, x, y)
+                self.board_position[gc_loc] = self.red_piece           
 
         # if right click then set white pieces 
         if event.button == 3:
@@ -227,8 +228,8 @@ class Board:
             elif self.board_position[gc_loc] == self.white_piece:
                 self.board_position[gc_loc] = self.white_king            
             else:  
-                self.board_position[gc_loc] = self.white_piece               
-            #self.setpiece(gc_loc, x, y)
+                self.board_position[gc_loc] = self.white_piece
+           
         self.gui.draw_board()       
 
 
@@ -241,10 +242,6 @@ class Board:
         #    14, 15, 16, 17,
         #      10, 11, 12, 13,
         #     5,  6,  7,  8)
-        #for sq in sqs:
-        #    self.board_position[gc_loc] = self.not_occupied
-        #    self.setpiece(gc_loc, x, y)
-
         for (gc_loc, x, y) in self.board_squares:            
             self.board_position[gc_loc] = self.not_occupied
             #self.setpiece(gc_loc, x, y)
@@ -261,6 +258,7 @@ class Board:
         self.board_position = engine.prev()    
         self.display_board()
         self.game.set_panel_msg()
+        self.gui.init_all_dnd()
 
     # forward board 1 move
     # This method is invoked by clicking the forward button or by
@@ -269,6 +267,7 @@ class Board:
         self.board_position = engine.next()
         self.display_board()
         self.game.set_panel_msg()
+        self.gui.init_all_dnd()
 
     # rewind board to start of game
     # This method is invoked by clicking the rewind to start button or by
@@ -277,6 +276,7 @@ class Board:
         self.board_position = engine.start()    
         self.display_board()
         self.game.set_panel_msg()
+        self.gui.init_all_dnd()
 
     # forward board to end of game
     # This method is invoked by clicking the forward to end button or by
@@ -285,6 +285,7 @@ class Board:
         self.board_position = engine.end()
         self.display_board()
         self.game.set_panel_msg()
+        self.gui.init_all_dnd()
 
     # retract the last move
     # This method is invoked by clicking the Retract button or by
@@ -292,7 +293,8 @@ class Board:
     def retract(self):
         self.board_position = engine.retract()
         self.display_board()
-        self.game.set_panel_msg()        
+        self.game.set_panel_msg()
+        self.gui.init_all_dnd()        
 
 
     #
@@ -382,6 +384,10 @@ class Board:
         self.board_position[src] = self.not_occupied
         self.board_position[dst] = piece
 
+    def set_piece_at_square(self, gc_loc, piece):
+        self.board_position[gc_loc] = piece
 
+    def get_board_squares(self):
+        return self.board_squares
 
 
