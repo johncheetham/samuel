@@ -405,11 +405,11 @@ class Gui:
         about = Gtk.AboutDialog()        
         about.set_program_name(NAME)
         about.set_version(VERSION)
-        about.set_copyright('Copyright \u00A9 2009 John Cheetham')                             
+        about.set_copyright('Copyright \u00A9 2009,2019 John Cheetham')                             
         about.set_comments("Samuel is a draughts program for the Gnome desktop.\n \
 It is based on the windows program guicheckers")
         about.set_authors(["John Cheetham"])
-        about.set_website("http://www.johncheetham.com/projects/samuel/index.shtml")
+        about.set_website("http://www.johncheetham.com/projects/samuel/index.html")
         about.set_logo(GdkPixbuf.Pixbuf.new_from_file(os.path.join(self.game.prefix, "images/logo.png")))
 
         license = '''Samuel is free software: you can redistribute it and/or modify
@@ -426,6 +426,7 @@ You should have received a copy of the GNU General Public License
 along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
 
         about.set_license(license)
+        about.set_transient_for(self.window)
         about.run()
         about.destroy()
 
