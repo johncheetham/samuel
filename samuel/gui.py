@@ -23,7 +23,7 @@ from gi.repository import GdkPixbuf
 import cairo
 import os
 import engine
-from constants import *
+from .constants import *
 
 class Gui:    
 
@@ -403,7 +403,7 @@ class Gui:
         about = Gtk.AboutDialog()        
         about.set_program_name(NAME)
         about.set_version(VERSION)
-        about.set_copyright(u'Copyright \u00A9 2009 John Cheetham')                             
+        about.set_copyright('Copyright \u00A9 2009 John Cheetham')                             
         about.set_comments("Samuel is a draughts program for the Gnome desktop.\n \
 It is based on the windows program guicheckers")
         about.set_authors(["John Cheetham"])
@@ -541,7 +541,7 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
         self.dnd_data_received = True        
 
         if selection.get_text() != "samuel":
-            print "invalid selection data. ignored"
+            print("invalid selection data. ignored")
             return False
 
         x, y = data
@@ -759,8 +759,8 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
                     action = ag.get_action(a_name)                    
                     try:                        
                         action.activate()
-                    except Exception, e:
-                        print "unable to set ",ag_name                    
+                    except Exception as e:
+                        print("unable to set ",ag_name)                    
 
         elif action_type == 'toggleaction':            
             (at, ag_name, a_name, active) = tup

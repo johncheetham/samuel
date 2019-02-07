@@ -26,7 +26,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
 
-import sys, time, thread, traceback
+import sys, time, _thread, traceback
 import engine
 from gi.repository import GObject
 import os
@@ -34,8 +34,8 @@ import errno
 import pickle
 import webbrowser
 
-import gui, board
-from constants import *
+from . import gui, board
+from .constants import *
 
 
 class Game:    
@@ -82,38 +82,38 @@ class Game:
 
     def set_data_paths(self):
 
-        print "sys.prefix=", sys.prefix
-        print "sys.exec_prefix=", sys.exec_prefix
+        print("sys.prefix=", sys.prefix)
+        print("sys.exec_prefix=", sys.exec_prefix)
         # Find the absolute path that this python program is running in 
         progpath = os.path.abspath(os.path.dirname(__file__))        
-        print "progpath=", progpath
+        print("progpath=", progpath)
 
         # work out if we are running from an installed version
         # or from the source directory
         if progpath.startswith(sys.prefix):
-            print "we are installed"
+            print("we are installed")
             self.prefix = os.path.join (sys.prefix, "share/samuel")
             
             if os.path.isdir(self.prefix):
-                print "images/data path=", self.prefix
+                print("images/data path=", self.prefix)
             else:
-                print "setting images/data path"
+                print("setting images/data path")
 
                 for dir in ("share", "games", "share/games",
                     "local/share", "local/games", "local/share/games"):
                     self.prefix = os.path.join (sys.prefix, dir, "samuel")
                     if os.path.isdir(self.prefix):
-                        print "found images/data path=", self.prefix                        
+                        print("found images/data path=", self.prefix)                        
                         break
                 else:
                     raise Exception("can't find data directory")
        
         else:
-            print "we are NOT installed"
+            print("we are NOT installed")
             # get data files (images, opening book, endgame databases) from same directory as this program 
             self.prefix = os.path.abspath(os.path.dirname(__file__))
             self.prefix = os.path.dirname(self.prefix)            
-            print "using images/data path=", self.prefix 
+            print("using images/data path=", self.prefix) 
 
 
         # set up samuel directory under home directory
@@ -121,7 +121,7 @@ class Game:
         if not os.path.exists(self.sampath):
             try:
                 os.makedirs(self.sampath)
-            except OSError, exc:
+            except OSError as exc:
                 #if exc.errno == errno.EEXIST:
                 #    pass
                 #else:
@@ -210,11 +210,11 @@ class Game:
                 
                 # It's the computers turn to move
                 # kick off a separate thread for computers move so that gui is still useable                              
-                self.ct= thread.start_new_thread( self.computer_move, () )                                 
+                self.ct= _thread.start_new_thread( self.computer_move, () )                                 
                 return
 
     def comp_move(self):
-        self.ct= thread.start_new_thread( self.computer_move, () )
+        self.ct= _thread.start_new_thread( self.computer_move, () )
 
     def computer_move(self):
         try:
@@ -267,15 +267,15 @@ class Game:
     # print text version of board (for debugging)
     def print_board(self):
         bp = self.board.board_position
-        print " ", bp[37], " ", bp[38], " ", bp[39], " ",bp[40]
-        print bp[32], " ", bp[33], " ", bp[34], " ",bp[35]
-        print " ", bp[28], " ", bp[29], " ", bp[30], " ",bp[31]
-        print bp[23], " ", bp[24], " ", bp[25], " ",bp[26]
-        print " ", bp[19], " ", bp[20], " ", bp[21], " ",bp[22]
-        print bp[14], " ", bp[15], " ", bp[16], " ",bp[17]
-        print " ", bp[10], " ", bp[11], " ", bp[12], " ",bp[13]
-        print bp[5], " ", bp[6], " ", bp[7], " ",bp[8]
-        print
+        print(" ", bp[37], " ", bp[38], " ", bp[39], " ",bp[40])
+        print(bp[32], " ", bp[33], " ", bp[34], " ",bp[35])
+        print(" ", bp[28], " ", bp[29], " ", bp[30], " ",bp[31])
+        print(bp[23], " ", bp[24], " ", bp[25], " ",bp[26])
+        print(" ", bp[19], " ", bp[20], " ", bp[21], " ",bp[22])
+        print(bp[14], " ", bp[15], " ", bp[16], " ",bp[17])
+        print(" ", bp[10], " ", bp[11], " ", bp[12], " ",bp[13])
+        print(bp[5], " ", bp[6], " ", bp[7], " ",bp[8])
+        print()
 
     
     # shows the computers progress as it works out the next move
@@ -447,14 +447,14 @@ class Game:
             f = open(settings_file, 'w')            
             pickle.dump(s, f)            
             f.close()        
-        except AttributeError, ae:
-            print "attribute error:",ae
-        except pickle.PickleError, pe:
-            print "PickleError:", pe
-        except pickle.PicklingError, pe2:
-            print "PicklingError:", pe2
-        except Exception, exc:
-            print "cannot save settings:", exc         
+        except AttributeError as ae:
+            print("attribute error:",ae)
+        except pickle.PickleError as pe:
+            print("PickleError:", pe)
+        except pickle.PicklingError as pe2:
+            print("PicklingError:", pe2)
+        except Exception as exc:
+            print("cannot save settings:", exc)         
 
     #
     # restore users settings at program start-up
@@ -466,14 +466,14 @@ class Game:
             f = open(settings_file, 'rb')            
             x = pickle.load(f)           
             f.close()        
-        except EOFError, eofe:
-            print "eof error:",eofe        
-        except pickle.PickleError, pe:
-            print "pickle error:", pe
-        except IOError, ioe:
+        except EOFError as eofe:
+            print("eof error:",eofe)        
+        except pickle.PickleError as pe:
+            print("pickle error:", pe)
+        except IOError as ioe:
             pass    # Normally this error means it is the 1st run and the settings file does not exist        
-        except Exception, exc:
-            print "Cannot restore settings:", exc             
+        except Exception as exc:
+            print("Cannot restore settings:", exc)             
 
         if x:
             try:
@@ -486,8 +486,8 @@ class Game:
                 for tup in x.action_settings:
                     # activate the menu option                                                           
                     self.gui.activate(tup)                    
-            except Exception, e:                        
-                print "Not all settings were restored"                          
+            except Exception as e:                        
+                print("Not all settings were restored")                          
                   
 
     #
@@ -810,7 +810,7 @@ class Game:
             return            
             
         # engine is stopped and it's the computers turn to move. start thread to make the move        
-        self.ct = thread.start_new_thread( self.computer_move, () )             
+        self.ct = _thread.start_new_thread( self.computer_move, () )             
 
 
     def set_panel_msg(self):        
@@ -904,7 +904,7 @@ class Game:
     def open_help(self, w):
         try:        
             webbrowser.open("http://www.johncheetham.com/projects/samuel/help/help.html")
-        except Exception, e:
+        except Exception as e:
             pass
 
 # class to save settings on program exit and restore on program start

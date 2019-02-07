@@ -19,9 +19,9 @@
 
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import os.path
-import sys, thread, time
+import sys, _thread, time
 import engine
-from constants import *
+from .constants import *
 
 
 class Board:
@@ -125,7 +125,7 @@ class Board:
             gc_loc, sx, sy = sq
             if sx == x and sy == y:
                 return self.board_position[gc_loc]
-        print "error in board.py get_piece_at_square" 
+        print("error in board.py get_piece_at_square") 
         sys.exit()      
 
 
@@ -143,8 +143,8 @@ class Board:
             if (sqx, sqy) == (x, y):
                 return gc_loc
 
-        print "get_gc_loc error"
-        print "x,y=",x,y
+        print("get_gc_loc error")
+        print("x,y=",x,y)
         sys.exit()
 
     #
@@ -156,8 +156,8 @@ class Board:
             loc, sqx, sqy = sq
             if loc == gc_loc:
                 return sqx, sqy
-        print "get_x_y error"
-        print "gc_loc=",gc_loc
+        print("get_x_y error")
+        print("gc_loc=",gc_loc)
         sys.exit()
 
 

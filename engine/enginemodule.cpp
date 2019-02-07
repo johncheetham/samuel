@@ -350,10 +350,10 @@ engine_setboard(PyObject *self, PyObject *args)
     {    	
     	
         item = PyList_GetItem(boardlistobj, i);
-        if (!PyInt_Check(item))
+        if (!PyLong_Check(item))
             return NULL; /* return error if non integer */
 
-        int piece = PyInt_AsLong(item);        
+        int piece = PyLong_AsLong(item);        
 
         // only update squares which contain a piece
         if (piece != -1)        
@@ -471,10 +471,20 @@ static PyMethodDef EngineMethods[] = {
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
-PyMODINIT_FUNC
-initengine(void)
-{    
-    (void) Py_InitModule("engine", EngineMethods);    
-}
+static struct PyModuleDef enginedef = {
+    PyModuleDef_HEAD_INIT,
+    "enginemodule",      /* m_name */
+    "This is the engine module",  /* m_doc */
+    -1,                  /* m_size */
+    EngineMethods,       /* m_methods */
+    NULL,                /* m_reload */
+    NULL,                /* m_traverse */
+    NULL,                /* m_clear */
+    NULL,                /* m_free */
+};
 
+PyMODINIT_FUNC PyInit_engine(void)
+{
+    return PyModule_Create(&enginedef);
+}
 
