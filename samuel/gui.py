@@ -17,7 +17,9 @@
 #   along with Samuel.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GLib
 from gi.repository import Pango
 from gi.repository import GdkPixbuf
 import cairo
@@ -603,8 +605,8 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
             return False 
 
         # kick off computer move
-        self.game.comp_move()
-        
+        GLib.timeout_add(1000, self.game.comp_move)
+        self.board.display_board()
         return False
 
     def draw_board(self):       

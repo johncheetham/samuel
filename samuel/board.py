@@ -385,6 +385,7 @@ class Board:
         self.board_position[dst] = piece
 
     def set_piece_at_square(self, gc_loc, piece):
+        gc_loc = int(gc_loc)
         self.board_position[gc_loc] = piece
 
     def get_board_squares(self):
