@@ -212,8 +212,6 @@ class Game:
 
                 # It's the computers turn to move
                 # kick off a separate thread for computers move so that gui is still useable                              
-                #self.ct= _thread.start_new_thread( self.computer_move, () )                                 
-                #GObject.timeout_add(12, self.comp_move)
                 GLib.timeout_add(1000, self.comp_move)  
                 return
 
@@ -249,7 +247,13 @@ class Game:
             self.thinking = False            
 
             # display updated board
-            GObject.timeout_add(200, self.show_computer_move)                                              
+          # for jumps use cpath
+            self.cpath = self.board.get_jumps()               
+            if self.cpath[0] != 0:
+                time.sleep(0.5) 
+                pbp = self.pre_board[:]
+                self.board.set_board_position(pbp)
+            GObject.timeout_add(200, self.show_computer_move, 0)                                              
         except:
             traceback.print_exc()
 
@@ -283,33 +287,28 @@ class Game:
             return True
         else:            
             return False 
-
-    def show_computer_move(self):
-        # for jumps use cpath
-        self.cpath = self.board.get_jumps()               
+                    
+    def show_computer_move(self, jumpidx):
+   
         cp = self.cpath[:]        
 
         # if jumped then display each move of the jump with pause between
         
         if self.cpath[0] != 0:
             time.sleep(0.5) 
-            pbp = self.pre_board[:]
-            self.board.set_board_position(pbp)            
-                                       
-            for i in range(0, len(self.cpath) - 1):
-                
-                if cp[i + 1] == 0:                    
-                    break
-                
-                self.board.move_piece(cp[i], cp[i + 1])
-
-                GLib.timeout_add(500 * (i + 1), self.board.display_board)
-                
-                time.sleep(0.5)      
-                
-            post_b = self.post_board[:]
-            self.board.set_board_position(post_b)                   
-        
+   
+            i = jumpidx    
+     
+            self.board.move_piece(cp[i], cp[i + 1])
+            self.board.display_board()
+            # All jumps shown
+            if cp[i + 1] == 0:                    
+                post_b = self.post_board[:]
+                self.board.set_board_position(post_b)                   
+            else:
+                # more jumps - display next jump
+                GObject.timeout_add(200, self.show_computer_move, i + 1)
+                return
         end_time = time.time()
         elapsed = end_time - self.start_time
 
@@ -317,7 +316,7 @@ class Game:
         if elapsed < 1.0:
             time.sleep(1)            
   
-        GLib.idle_add(self.board.display_board)
+        self.board.display_board()
         
         self.src = 0
         self.dst = 0  
