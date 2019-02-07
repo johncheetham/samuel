@@ -24,7 +24,9 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GLib
 
 import sys, time, _thread, traceback
 import engine
@@ -207,10 +209,12 @@ class Game:
 
                 if self.side_to_move == WHITE and self.white_player != COMPUTER:                    
                     return                
-                
+
                 # It's the computers turn to move
                 # kick off a separate thread for computers move so that gui is still useable                              
-                self.ct= _thread.start_new_thread( self.computer_move, () )                                 
+                #self.ct= _thread.start_new_thread( self.computer_move, () )                                 
+                #GObject.timeout_add(12, self.comp_move)
+                GLib.timeout_add(1000, self.comp_move)  
                 return
 
     def comp_move(self):
@@ -223,16 +227,11 @@ class Game:
             self.src = 0
             self.thinking = True
             # disable some functionality while the computer is thinking
-            Gdk.threads_enter()
-            self.gui.disable_menu_items()
-            Gdk.threads_leave()
+            GLib.idle_add(self.gui.disable_menu_items)
             
-            Gdk.threads_enter()
-            self.gui.set_status_bar_msg(self.get_side_to_move_msg() + '...')
-            Gdk.threads_leave()
-
-            GObject.timeout_add(200, self.running_display)
-            #GObject.idle_add(self.running_display)            
+            GLib.idle_add(self.gui.set_status_bar_msg, self.get_side_to_move_msg() + '...')
+            
+            GLib.timeout_add(200, self.running_display)
                        
             pre_board = self.board.get_board_position()
             self.pre_board = pre_board[:]
@@ -246,10 +245,7 @@ class Game:
             self.post_board = post_board[:]            
 
             # enable functionality previously disabled
-            Gdk.threads_enter()
-            self.gui.enable_menu_items()
-            Gdk.threads_leave()
-                                   
+            GLib.idle_add(self.gui.enable_menu_items)
             self.thinking = False            
 
             # display updated board
@@ -307,14 +303,8 @@ class Game:
                 
                 self.board.move_piece(cp[i], cp[i + 1])
 
-                Gdk.threads_enter()
-                self.board.display_board()
-         
-                while Gtk.events_pending():                    
-                    Gtk.main_iteration()
-
-                Gdk.threads_leave()
-
+                GLib.timeout_add(500 * (i + 1), self.board.display_board)
+                
                 time.sleep(0.5)      
                 
             post_b = self.post_board[:]
@@ -326,16 +316,19 @@ class Game:
         # if the computers move was too fast, slow it down a bit (by 1 sec)                  
         if elapsed < 1.0:
             time.sleep(1)            
+  
+        GLib.idle_add(self.board.display_board)
         
-        Gdk.threads_enter()            
-        self.board.display_board()               
-        Gdk.threads_leave() 
-
         self.src = 0
         self.dst = 0  
 
-        Gdk.threads_enter()
+        GLib.idle_add(self.check_for_gameover)
 
+        self.gui.init_all_dnd()
+
+        return False    
+
+    def check_for_gameover(self):
         if self.gameover == WHITE:
             text = "Game Over - White Wins"
             if self.white_player != COMPUTER:            
@@ -352,13 +345,7 @@ class Game:
             self.gui.set_status_bar_msg(text)
         else:
             # set side to move msg in status bar                  
-            self.gui.set_status_bar_msg(self.get_side_to_move_msg())                   
-
-        Gdk.threads_leave()
-        self.gui.init_all_dnd()
-
-        return False    
-
+            self.gui.set_status_bar_msg(self.get_side_to_move_msg())             
 
     # get msg to show in status bar
     def get_side_to_move_msg(self):        
@@ -913,7 +900,6 @@ class Settings:
 
 def run():
     Game()
-    Gdk.threads_init()        
     GObject.threads_init()
     Gtk.main()
     return 0     
