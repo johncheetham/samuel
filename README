@@ -5,11 +5,11 @@ Project Homepage : http://www.johncheetham.com/projects/samuel
 
 Description
 -----------
-Samuel is a Draughts program written in python/PyGTK/C++.
+Samuel is a Draughts program written in python3/gtk3/C++.
 It is licensed under the GPL (see the file named LICENSE).
 
 It is aimed mainly at Linux users but should work on other systems
-too if you have python, PyGTK, GTK+, C++.
+too if you have python3, gtk3, C++.
 
 It is derived from guicheckers version 1.05. guicheckers is a draughts
 program for windows which comes with source code. The C++ engine code,
@@ -23,52 +23,37 @@ http://en.wikipedia.org/wiki/Arthur_Samuel.
 
 Requirements
 ------------
-Python, PyGTK, GTK+, C++.
+Python3, gtk3, C++.
 
 
 Installation
 ------------
 
-To build it you will need python-devel, gcc and gcc-c++ packages installed.
+To build it you will need python3, python-devel, gcc and gcc-c++
+packages installed.
 
-You can install these on Fedora 11 with:
-    yum install python-devel gcc gcc-c++
+You can install these on debian 9:
+    apt-get install build-essential python3-dev
 
-For Ubuntu 9.04 do:
-    sudo apt-get install build-essential python-dev    
-           
 
 Running Samuel from the Source Directory
 
     You can run samuel from the source directory without
     doing the full install.
 
-    To do this:
+    To do this on debian 9 for example:
 
-        Enter 'python setup.py build' to build it.
+        Enter 'python3.5 setup.py build' to build it.
 
-        Then execute 'run.py' to start samuel
-
-
-    Another way:
-
-        Enter 'python setup.py build' to build it.
-
-        Then locate the engine.so file under the build directory and copy it       
-        into the same folder as samuel.py.
-
-        Then execute 'samuel.py' to start samuel.
+        Then 'python3.5 run.py' to start samuel
 
 
 Installing on the system     
 
-    Enter 'python setup.py build' to build it (as normal user).
-    Then 'python setup.py install' to install it (as root user).
+    Enter 'python3.5 setup.py build' to build it (as normal user).
+    Then 'python3.5 setup.py install' to install it (as root user).
 
     Note:
-
-        You can check the build step worked by looking for a file called
-        engine.so under the build directory.    
 
         Samuel should now be installed on your system. You can launch it from
         the gnome menu (under games) or type 'samuel' in any terminal window.
@@ -126,8 +111,6 @@ Summary of keyboard commands
                 when it's taking a long time thinking
     CTRL+C      Copy game to clipboard (in PDN format)
     CTRL+V      Paste game from clipbaord (in PDN format)
-    CTRL++      Increase the board size
-    CTRL+-      Decrease the board size
     CTRL+0      Reset board size to default size
     g           Same as the 'Go' button.
                 Its main use is to make the computer make its move when the
@@ -170,12 +153,6 @@ Most people will not want to modify the opening book.
 
 Troubleshooting
 ---------------
-Samuel was developed and tested mainly on Fedora 11 64 bit with python 2.6
-and PyGTK 2.14. It should work on most modern distros.
-
-Don't forget you need python-devel, gcc and gcc-c++ packages installed to
-build it.
-
 If it won't start after upgrading from an older version then try deleting the
 file ~/.samuel/settings.
 
