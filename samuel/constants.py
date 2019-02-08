@@ -18,7 +18,7 @@
 #   
 
 NAME = 'Samuel'
-VERSION = '0.1.8'
+VERSION = '0.1.9'
 
 RED = 1
 WHITE = 2

@@ -1,5 +1,5 @@
-Samuel 0.1.8
-John Cheetham March 2013
+Samuel 0.1.9
+John Cheetham February 2019
 
 Project Homepage : http://www.johncheetham.com/projects/samuel
 
@@ -200,6 +200,19 @@ guicheckers web page: http://www.3dkingdoms.com/checkers.htm
 CHANGELOG
 ---------
 
+Changes for 0.1.9
+-----------------
+
+2019-02-08  John Cheetham  developer@johncheetham.com
+
+    * port to python3/gtk3
+
+    * allow drag and drop of pieces
+
+    * Make main window resizable
+
+    * bugfixes
+    
 Changes for 0.1.8
 -----------------
 

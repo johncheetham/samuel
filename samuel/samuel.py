@@ -1,7 +1,7 @@
 #
-#   Samuel 0.1.8    October 2009
+#   Samuel 0.1.9    February 2019
 #
-#   Copyright (C) 2009 John Cheetham    
+#   Copyright (C) 2009, 2019 John Cheetham    
 #   
 #   web   : http://www.johncheetham.com/projects/samuel
 #   email : developer@johncheetham.com

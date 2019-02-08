@@ -67,7 +67,7 @@ int NORMAL_DEPTH = 8;
 int EXPERT_DEPTH = 52; // Max depth for each level
 
 // GLOBAL VARIABLES... ugg, too many?
-const char *g_sNameVer = "Samuel 0.1.8";
+const char *g_sNameVer = "Samuel 0.1.9";
 char *g_sInfo = NULL;
 float fMaxSeconds = 2.0f, g_fPanic; // The number of seconds the computer is allowed to search
 int g_bEndHard = TRUE; // Set to true to stop search after fMaxSeconds no matter what.
