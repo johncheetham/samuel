@@ -591,7 +591,7 @@ void CBoard::ToFen ( char *sFEN )
             strcat(sFEN, buffer);
             strcat( sFEN, ","); }
         }
-    if (strlen(sFEN) > 3) sFEN [ strlen(sFEN)-1 ] = NULL;
+    if (strlen(sFEN) > 3) sFEN [ strlen(sFEN)-1 ] = '\0';
     strcat( sFEN, ":B");
     for (i = 0; i < 32; i++) {
         if ( Sqs[ BoardLoc32[i] ] == BKING) strcat(sFEN, "K");
