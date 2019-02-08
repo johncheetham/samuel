@@ -874,3 +874,6 @@ along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
     def set_status_bar_msg(self, msg):
         self.status_bar.push(self.context_id, msg)
 
+
+    def get_window(self):
+        return self.window

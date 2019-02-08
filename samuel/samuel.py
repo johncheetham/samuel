@@ -518,6 +518,8 @@ class Game:
         filter.add_pattern("*")
         dialog.add_filter(filter)        
 
+        dialog.set_transient_for(self.gui.get_window())
+
         response = dialog.run()
         if response == Gtk.ResponseType.OK:                                    
             self.board.board_position = engine.loadgame(dialog.get_filename())                                
@@ -547,6 +549,8 @@ class Game:
         filter.set_name("All files")
         filter.add_pattern("*")
         dialog.add_filter(filter)        
+
+        dialog.set_transient_for(self.gui.get_window())
 
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
@@ -661,7 +665,9 @@ class Game:
         markup = 'Enter values for Search Depth\n'
         markup += 'and Time Limit.'        
         dialog.format_secondary_markup(markup)
-        
+
+        dialog.set_transient_for(self.gui.get_window())
+
         dialog.vbox.add(tbl)
         dialog.show_all()  
 
