@@ -20,7 +20,10 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 import os.path
 import sys, _thread, time
-import engine
+if os.path.abspath(os.path.dirname(__file__)).startswith(sys.prefix):
+    from samuel import engine
+else:
+    import engine
 from .constants import *
 
 

@@ -29,9 +29,12 @@ from gi.repository import Gdk
 from gi.repository import GLib
 
 import sys, time, _thread, traceback
-import engine
-from gi.repository import GObject
 import os
+if os.path.abspath(os.path.dirname(__file__)).startswith(sys.prefix):
+    from samuel import engine
+else:
+    import engine
+from gi.repository import GObject
 import errno
 import pickle
 import webbrowser

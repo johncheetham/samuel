@@ -23,8 +23,12 @@ from gi.repository import GLib
 from gi.repository import Pango
 from gi.repository import GdkPixbuf
 import cairo
+import sys
 import os
-import engine
+if os.path.abspath(os.path.dirname(__file__)).startswith(sys.prefix):
+    from samuel import engine
+else:
+    import engine
 from .constants import *
 
 class Gui:    
