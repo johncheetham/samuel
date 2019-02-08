@@ -348,6 +348,7 @@ class Board:
             self.board_position = engine.setboard(temp_board)    
             self.display_board()
             self.game.set_panel_msg()
+            self.gui.init_all_dnd()
 
     def get_pos_edit(self):
         if self.pos_edit:

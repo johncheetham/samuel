@@ -528,7 +528,8 @@ class Game:
             self.board.board_position = engine.loadgame(dialog.get_filename())                                
             self.board.display_board()
             self.set_panel_msg()
-                    
+            self.gui.init_all_dnd()
+
         dialog.destroy()
 
     # Save Board Position to a file
@@ -598,7 +599,8 @@ class Game:
         self.board.set_board_position(bp)                
         self.board.display_board()
         self.set_panel_msg()
-        
+        self.gui.init_all_dnd()
+
 
     # Copy the board moves to the clipboard in std PDN format
     def copy_PDN_to_clipboard(self, b): 
@@ -629,7 +631,8 @@ class Game:
         self.board.set_board_position(bp)        
         self.board.display_board()
         self.set_panel_msg()        
- 
+        self.gui.init_all_dnd()
+
 
     def set_custom_search_depth(self, b):   
         
