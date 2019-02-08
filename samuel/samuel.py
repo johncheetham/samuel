@@ -716,12 +716,7 @@ class Game:
     def key_press_event(self, widget, event):        
         kp = Gdk.keyval_name(event.keyval)                   
         kp = kp.lower()
-        
-        # treat ctrl+= same as ctrl++ (i.e. increase board size)
-        if kp == "equal" and event.get_state() & Gdk.ModifierType.CONTROL_MASK:            
-            self.board.resize_board(widget)
-            return        
-         
+
         # If in position edit mode don't allow key presses except 'Delete'
         if self.board.get_pos_edit():
             if kp == 'delete':
