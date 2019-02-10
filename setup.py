@@ -1,10 +1,14 @@
 from distutils.core import setup, Extension
 from glob import glob
+import os
 
 module1 = Extension('samuel.engine',
      sources = ['engine/enginemodule.cpp',
                 'engine/ai.cpp',                
                 ])
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup (name = 'samuel',
     version = '0.1.9',
@@ -13,7 +17,7 @@ setup (name = 'samuel',
     author='John Cheetham',
     author_email='developer@johncheetham.com',  
     url='http://www.johncheetham.com/projects/samuel/', 
-    long_description='A Draughts program for Linux written in Python, GTK, C++. Derived from the windows program guicheckers',
+    long_description=read("README.rst"),
     platforms = ['Linux'],
 
     license = "GPLv3+",
@@ -26,7 +30,7 @@ setup (name = 'samuel',
           'Intended Audience :: End Users/Desktop',                
           'License :: OSI Approved :: GNU General Public License (GPL)',
           'Operating System :: POSIX :: Linux',          
-          'Programming Language :: Python',
+          'Programming Language :: Python :: 3',
           'Programming Language :: C++',
           'Topic :: Games/Entertainment :: Board Games',
           ],
