@@ -1,6 +1,6 @@
 include LICENSE
 include MANIFEST.in
-include README
+include README.rst
 include run.py
 include samuel.desktop
 include samuel.png
