@@ -1,0 +1,12 @@
+DOMAIN = samuel
+BUGSADDR = bugs@ordissimo.com
+
+APPLICATIONSDIR = usr/share/applications
+
+# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*desktop.in" -exec grep -l -E "^Categories=" {} \; | sed -e 's/^/  /;s/$/ \\/'
+SOURCES_PY = \
+	../samuel/board.py  ../samuel/gui.py  ../samuel/samuel.py
+
+# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*desktop.in" -exec grep -l -E "^Categories=.*(Game|Ordissimo)" {} \; | sed -e 's/^/  /;s/$/ \\/'
+SOURCES_DESKTOP = \
+	../samuel.desktop.in

@@ -26,6 +26,8 @@ else:
     import engine
 from .constants import *
 
+from .tools import *
+import gettext
 
 class Board:
 
@@ -198,11 +200,11 @@ class Board:
         
         self.pos_edit = True
         self.saved_board_position = self.board_position[:]
-        text = "Use left mouse to set red pieces\n"
-        text += "Use right mouse to set white pieces\n"
-        text += "Set Side to Move with the radio buttons\n"
-        text += "Click OK to apply changes.\n"
-        text += "Click Cancel to discard changes"                      
+        text = _("Use left mouse to set red pieces\n")
+        text += _("Use right mouse to set white pieces\n")
+        text += _("Set Side to Move with the radio buttons\n")
+        text += _("Click OK to apply changes.\n")
+        text += _("Click Cancel to discard changes")                      
         
         self.gui.disable_posedit_menu_items()
         self.gui.init_posedit_panel(text)        

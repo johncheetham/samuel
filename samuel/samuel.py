@@ -41,7 +41,18 @@ import webbrowser
 
 from . import gui, board
 from .constants import *
+from .tools import *
+import gettext
 
+## Localization.
+# if getattr(sys, 'frozen', False):
+#     APP_DIR = os.path.dirname(dirname(sys.executable))
+# else:
+#     APP_DIR     = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+# LOCALDIR      = os.path.join(APP_DIR, 'locale')
+
+# DOMAIN = 'samuel'
+gettext.install(DOMAIN, LOCALDIR)
 
 class Game:    
 
@@ -332,14 +343,14 @@ class Game:
 
     def check_for_gameover(self):
         if self.gameover == WHITE:
-            text = "Game Over - White Wins"
+            text = _("Game Over - White Wins")
             if self.white_player != COMPUTER:            
                 self.gui.set_panel_text(text)
             else:
                 self.gui.append_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.gameover == RED:
-            text = "Game Over - Red Wins"
+            text = _("Game Over - Red Wins")
             if self.red_player != COMPUTER:
                 self.gui.set_panel_text(text)
             else:
@@ -353,16 +364,16 @@ class Game:
     def get_side_to_move_msg(self):        
         
         if self.side_to_move == RED:
-            msg = 'Red'
+            msg = _('Red')
             player = self.red_player
         else:
-            msg = 'White'
+            msg = _('White')
             player = self.white_player
 
         if player == HUMAN:
-            msg = msg + '/Human to move'
+            msg = msg + _('/Human to move')
         else:
-            msg = msg + '/Computer to move'        
+            msg = msg + _('/Computer to move')        
 
         return msg       
 
@@ -493,7 +504,7 @@ class Game:
         bp = engine.newgame()
         self.board.set_board_position(bp)         
         self.board.display_board()
-        self.gui.set_panel_text("Red to Move")
+        self.gui.set_panel_text(_("Red to Move"))
         # set status bar msg
         self.gui.set_status_bar_msg(self.get_side_to_move_msg())        
         self.gui.init_all_dnd()
@@ -503,7 +514,7 @@ class Game:
     # The file to be loaded must be in pdn format with a .pdn extension
     def load_game(self, b):       
         
-        dialog = Gtk.FileChooserDialog("Load..",
+        dialog = Gtk.FileChooserDialog(_("Load.."),
                                None,
                                Gtk.FileChooserAction.OPEN,
                                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -512,12 +523,12 @@ class Game:
         dialog.set_current_folder(os.path.expanduser("~"))
 
         filter = Gtk.FileFilter()  
-        filter.set_name("pdn files")      
+        filter.set_name(_("pdn files"))      
         filter.add_pattern("*.pdn")        
         dialog.add_filter(filter)
 
         filter = Gtk.FileFilter()
-        filter.set_name("All files")
+        filter.set_name(_("All files"))
         filter.add_pattern("*")
         dialog.add_filter(filter)        
 
@@ -536,7 +547,7 @@ class Game:
     # The file is saved in pdn format with a .pdn extension
     def save_game(self, b):        
 
-        dialog = Gtk.FileChooserDialog("Save..",
+        dialog = Gtk.FileChooserDialog(_("Save.."),
                                None,
                                Gtk.FileChooserAction.SAVE,
                                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -545,12 +556,12 @@ class Game:
         dialog.set_current_folder(os.path.expanduser("~"))
 
         filter = Gtk.FileFilter()  
-        filter.set_name("pdn files")      
+        filter.set_name(_("pdn files"))      
         filter.add_pattern("*.pdn")        
         dialog.add_filter(filter)
 
         filter = Gtk.FileFilter()
-        filter.set_name("All files")
+        filter.set_name(_("All files"))
         filter.add_pattern("*")
         dialog.add_filter(filter)        
 
@@ -643,7 +654,7 @@ class Game:
             Gtk.ButtonsType.OK_CANCEL,  
             None)
         
-        markup = "<b>Set User-Defined Level</b>"
+        markup = _("<b>Set User-Defined Level</b>")
         dialog.set_markup(markup)
 
         #create the text input fields  
@@ -662,14 +673,14 @@ class Game:
         entry2.connect("activate", self.response_to_dialog, dialog, Gtk.ResponseType.OK)  
 
         tbl = Gtk.Table(2, 2, True)
-        tbl.attach(Gtk.Label(label="Search Depth\n(max 52)\n"), 0, 1, 0, 1)
+        tbl.attach(Gtk.Label(label=_("Search Depth\n(max 52)\n")), 0, 1, 0, 1)
         tbl.attach(entry, 1, 2, 0, 1)
-        tbl.attach(Gtk.Label(label="Time Limit\n(in seconds)"), 0, 1, 1, 2)
+        tbl.attach(Gtk.Label(label=_("Time Limit\n(in seconds)")), 0, 1, 1, 2)
         tbl.attach(entry2, 1, 2, 1, 2)
   
         #some secondary text
-        markup = 'Enter values for Search Depth\n'
-        markup += 'and Time Limit.'        
+        markup = _('Enter values for Search Depth\n')
+        markup += _('and Time Limit.')        
         dialog.format_secondary_markup(markup)
 
         dialog.set_transient_for(self.gui.get_window())
@@ -809,32 +820,32 @@ class Game:
     def set_panel_msg(self):        
 
         if self.gameover == RED:
-            text = "Gameover - red wins"            
+            text = _("Gameover - red wins")         
             self.gui.set_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.gameover == WHITE:
-            text = "Gameover - white wins" 
+            text = _("Gameover - white wins") 
             self.gui.set_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.side_to_move == WHITE:
-            text = "White to Move\n"
+            text = _("White to Move\n")
             #self.gui.set_status_bar_msg("White to Move")
             self.gui.set_status_bar_msg(self.get_side_to_move_msg())            
             if self.white_player == COMPUTER:
-                text = text + "Press Go to restart the game from here\n"
+                text = text + _("Press Go to restart the game from here\n")
             else:
-                text = text + "Move a white piece to restart the game from here\n"
-            text = text + "Press the < > buttons to browse the game"            
+                text = text + _("Move a white piece to restart the game from here\n")
+            text = text + _("Press the < > buttons to browse the game")            
             self.gui.set_panel_text(text)            
         elif self.side_to_move == RED:
-            text = "Red to Move\n"
+            text = _("Red to Move\n")
             #self.gui.set_status_bar_msg("Red to Move")
             self.gui.set_status_bar_msg(self.get_side_to_move_msg())            
             if self.red_player == COMPUTER:
-                text = text + "Press Go to restart the game from here\n"
+                text = text + _("Press Go to restart the game from here\n")
             else:
-                text = text + "Move a red piece to restart the game from here\n"
-            text = text + "Press the < > buttons to browse the game"            
+                text = text + _("Move a red piece to restart the game from here\n")
+            text = text + _("Press the < > buttons to browse the game")            
             self.gui.set_panel_text(text)          
 
     def set_panel_msg2(self):
@@ -844,11 +855,11 @@ class Game:
         #print inspect.stack()[2][3]
 
         if self.gameover == RED:
-            text = "Gameover - red wins"            
+            text = _("Gameover - red wins")            
             self.gui.set_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.gameover == WHITE:
-            text = "Gameover - white wins" 
+            text = _("Gameover - white wins") 
             self.gui.set_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.side_to_move == WHITE:
@@ -860,7 +871,7 @@ class Game:
             #else:
             #    text = text + "Move a white piece to restart the game from here\n"
             #text = text + "Press the < > buttons to browse the game"
-            text = "White to Move"            
+            text = _("White to Move")            
             self.gui.set_panel_text(text)            
         elif self.side_to_move == RED:
             #text = "Red to Move\n"
@@ -871,7 +882,7 @@ class Game:
             #else:
             #    text = text + "Move a red piece to restart the game from here\n"
             #text = text + "Press the < > buttons to browse the game"
-            text = "Red to Move"            
+            text = _("Red to Move")            
             self.gui.set_panel_text(text)  
 
     def update_board_status(self, side_to_move, legalmove, gameover):
