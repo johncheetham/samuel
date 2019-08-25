@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Samuel
-Comment=Samuel is a draughts program for the Gnome desktop
-GenericName=Draughts Game
-Icon=samuel.png
-Exec=samuel
-Terminal=false
-Categories=GNOME;Game;BoardGame;

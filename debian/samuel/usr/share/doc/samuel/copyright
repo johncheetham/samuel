@@ -1,7 +1,0 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: gscrabble
-Upstream-Contact: https://github.com/RaaH/gscrabble
-Source: https://github.com/RaaH/gscrabble.git
-
-Files: *
-License: GPL v2 or above.
