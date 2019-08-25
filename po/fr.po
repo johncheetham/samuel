@@ -126,31 +126,31 @@ msgstr ""
 #. go button
 #: ../samuel/gui.py:263
 msgid "Go"
-msgstr ""
+msgstr "Commencer"
 
 #: ../samuel/gui.py:139
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 #: ../samuel/gui.py:93
 msgid "Information Panel"
-msgstr ""
+msgstr "Panneau d'information"
 
 #: ../samuel/gui.py:134
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 #: ../samuel/gui.py:117
 msgid "Load Game"
-msgstr ""
+msgstr "Charger une parie"
 
 #: ../samuel/samuel.py:517
 msgid "Load.."
-msgstr ""
+msgstr "Chargement.."
 
 #: ../samuel/gui.py:119
 msgid "Move Now"
-msgstr ""
+msgstr "Déplacer maintenant"
 
 #: ../samuel/samuel.py:847
 msgid "Move a red piece to restart the game from here\n"
@@ -166,11 +166,11 @@ msgstr "Nouvelle partie"
 
 #: ../samuel/gui.py:341
 msgid "OK"
-msgstr ""
+msgstr "Ok"
 
 #: ../samuel/gui.py:135
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: ../samuel/gui.py:125
 msgid "Paste FEN from clipboard"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: ../samuel/gui.py:121
 msgid "Position Edit"
-msgstr ""
+msgstr "Modifier la position"
 
 #: ../samuel/samuel.py:835 ../samuel/samuel.py:845
 msgid "Press Go to restart the game from here\n"
@@ -195,15 +195,15 @@ msgstr ""
 #. Create actions
 #: ../samuel/gui.py:115 ../samuel/gui.py:142
 msgid "Quit"
-msgstr ""
+msgstr "Fermer"
 
 #: ../samuel/gui.py:115
 msgid "Quit the Program"
-msgstr ""
+msgstr "Fermer le programme"
 
 #: ../samuel/gui.py:346 ../samuel/samuel.py:367
 msgid "Red"
-msgstr ""
+msgstr "Rouge"
 
 #. if self.red_player == COMPUTER:
 #. text = text + "Press Go to restart the game from here\n"
@@ -221,7 +221,7 @@ msgstr ""
 #. retract button
 #: ../samuel/gui.py:269
 msgid "Retract"
-msgstr ""
+msgstr "Annuler le coup"
 
 #: ../samuel.desktop.in:4
 msgid "Samuel"
@@ -259,11 +259,11 @@ msgstr ""
 
 #: ../samuel/gui.py:118
 msgid "Save Game"
-msgstr "Nouvelle partie"
+msgstr "Sauvegarder la partie"
 
 #: ../samuel/samuel.py:550
 msgid "Save.."
-msgstr ""
+msgstr "Sauvegarder.."
 
 #: ../samuel/samuel.py:676
 msgid ""
@@ -285,7 +285,7 @@ msgstr ""
 
 #: ../samuel/gui.py:136
 msgid "Show About Box"
-msgstr ""
+msgstr "Afficher le dialog à propos"
 
 #: ../samuel/gui.py:313
 msgid "Side to Move"
@@ -293,7 +293,7 @@ msgstr ""
 
 #: ../samuel/gui.py:95
 msgid "Status Bar"
-msgstr ""
+msgstr "Barre d'état"
 
 #: ../samuel/samuel.py:678
 msgid ""
@@ -315,7 +315,7 @@ msgstr ""
 
 #: ../samuel/gui.py:350 ../samuel/samuel.py:370
 msgid "White"
-msgstr ""
+msgstr "Blanc à déplacer"
 
 #. if self.white_player == COMPUTER:
 #. text = text + "Press Go to restart the game from here\n"
@@ -332,7 +332,7 @@ msgstr ""
 
 #: ../samuel/gui.py:137
 msgid "_Help (online)"
-msgstr ""
+msgstr "Aide (en ligne)"
 
 #: ../samuel/gui.py:119
 msgid "_Move Now (m)"
@@ -340,11 +340,11 @@ msgstr ""
 
 #: ../samuel/samuel.py:683
 msgid "and Time Limit."
-msgstr ""
+msgstr "et limite de temps."
 
 #: ../samuel/samuel.py:526 ../samuel/samuel.py:559
 msgid "pdn files"
-msgstr ""
+msgstr "fichier pdn"
 
 #: ../samuel.desktop.in:7
 msgid "samuel.png"
