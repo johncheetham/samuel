@@ -39,6 +39,12 @@ setup (name = 'samuel',
             ("share/doc/samuel-0.1.9", ["README.rst", "LICENSE"]),
             ('share/applications',['samuel.desktop']),
             ('share/pixmaps', ['samuel.png']),
+            ('share/locale/de/LC_MESSAGES/', ['locale/de/LC_MESSAGES/samuel.mo']),
+            ('share/locale/en/LC_MESSAGES/', ['locale/en/LC_MESSAGES/samuel.mo']),
+            ('share/locale/es/LC_MESSAGES/', ['locale/es/LC_MESSAGES/samuel.mo']),
+            ('share/locale/fr/LC_MESSAGES/', ['locale/fr/LC_MESSAGES/samuel.mo']),
+            ('share/locale/it/LC_MESSAGES/', ['locale/it/LC_MESSAGES/samuel.mo']),
+            ('share/locale/nl/LC_MESSAGES/', ['locale/nl/LC_MESSAGES/samuel.mo']),
     ],    
     scripts = [
         'scripts/samuel'
