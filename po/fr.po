@@ -76,11 +76,11 @@ msgstr "Computer Plays White et les Rouges"
 
 #: ../samuel/gui.py:123
 msgid "Copy FEN to clipboard"
-msgstr "Copie FEN dans le press papier"
+msgstr "Copier FEN dans le press papier"
 
 #: ../samuel/gui.py:127
 msgid "Copy PDN to clipboard"
-msgstr "Copie PDN dans le press papier"
+msgstr "Copier PDN dans le press papier"
 
 #: ../samuel/gui.py:414
 msgid "Copyright \\u00A9 2009,2019 John Cheetham"
