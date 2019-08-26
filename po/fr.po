@@ -510,17 +510,3 @@ msgstr "fichiers pdn"
 msgid "samuel.png"
 msgstr ""
 
-#~ msgid "Copy PDN to clipboard."
-#~ msgstr "Copier PDN dans le presse-papier"
-
-#~ msgid "Load Game."
-#~ msgstr "Charger une partie."
-
-#~ msgid "Move Now."
-#~ msgstr "Jouer maintenant."
-
-#~ msgid "New Game."
-#~ msgstr "Nouvelle partie."
-
-#~ msgid "Save Game."
-#~ msgstr "Sauvegarder la partie."
