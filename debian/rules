@@ -8,3 +8,9 @@ export PATH := $(CURDIR)/debian/utils:$(PATH)
 	dh $@ --with python3 --buildsystem=pybuild --with bash-completion
 
 override_dh_auto_test:
+	echo 'Test'
+
+override_dh_auto_clean:
+	dh_auto_clean
+	make -C po clean
+	rm -rf $(CURDIR)/locale $(CURDIR)/samuel.desktop 

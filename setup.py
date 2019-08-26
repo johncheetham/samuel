@@ -10,6 +10,17 @@ module1 = Extension('samuel.engine',
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+def create_mo_files():
+    mo_files = []
+    os.system('bash create_po.sh')
+    mo_files.append(('share/locale/de/LC_MESSAGES/', ['locale/de/LC_MESSAGES/samuel.mo']))
+    mo_files.append(('share/locale/en/LC_MESSAGES/', ['locale/en/LC_MESSAGES/samuel.mo']))
+    mo_files.append(('share/locale/es/LC_MESSAGES/', ['locale/es/LC_MESSAGES/samuel.mo']))
+    mo_files.append(('share/locale/fr/LC_MESSAGES/', ['locale/fr/LC_MESSAGES/samuel.mo']))
+    mo_files.append(('share/locale/it/LC_MESSAGES/', ['locale/it/LC_MESSAGES/samuel.mo']))
+    mo_files.append(('share/locale/nl/LC_MESSAGES/', ['locale/nl/LC_MESSAGES/samuel.mo']))
+    return mo_files
+
 setup (name = 'samuel',
     version = '0.1.9',
     description = 'A Draughts Program',
@@ -39,13 +50,7 @@ setup (name = 'samuel',
             ("share/doc/samuel-0.1.9", ["README.rst", "LICENSE"]),
             ('share/applications',['samuel.desktop']),
             ('share/pixmaps', ['samuel.png']),
-            ('share/locale/de/LC_MESSAGES/', ['locale/de/LC_MESSAGES/samuel.mo']),
-            ('share/locale/en/LC_MESSAGES/', ['locale/en/LC_MESSAGES/samuel.mo']),
-            ('share/locale/es/LC_MESSAGES/', ['locale/es/LC_MESSAGES/samuel.mo']),
-            ('share/locale/fr/LC_MESSAGES/', ['locale/fr/LC_MESSAGES/samuel.mo']),
-            ('share/locale/it/LC_MESSAGES/', ['locale/it/LC_MESSAGES/samuel.mo']),
-            ('share/locale/nl/LC_MESSAGES/', ['locale/nl/LC_MESSAGES/samuel.mo']),
-    ],    
+    ]+ create_mo_files(),    
     scripts = [
         'scripts/samuel'
     ]
