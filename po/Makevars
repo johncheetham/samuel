@@ -10,3 +10,9 @@ SOURCES_PY = \
 # find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*desktop.in" -exec grep -l -E "^Categories=.*(Game|Ordissimo)" {} \; | sed -e 's/^/  /;s/$/ \\/'
 SOURCES_DESKTOP = \
 	../samuel.desktop.in
+
+# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*.cc" -o -name "*.hh" -exec grep -lF '_(' {} \; | sed -e 's/^/  /;s/$/ \\/'
+XGETTEXTOPTIONS_C = --keyword=_
+SOURCES_C = \
+  ../engine/ai.cpp  ../engine/board.cpp ../engine/obook.cpp ../engine/enginemodule.cpp
+

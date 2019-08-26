@@ -84,12 +84,27 @@ update-po: $(DOMAIN).pot
 	$(MSGMERGE) --previous -U $$po $(DOMAIN).pot; \
 	done;
 
-$(DOMAIN).pot: Makevars $(SOURCES_PY) $(SOURCES_DESKTOP)
+$(DOMAIN).pot: Makevars $(SOURCES_SH) $(SOURCES_PY) $(SOURCES_JAVA) $(SOURCES_C) $(SOURCES_DESKTOP)
 	@echo "Updating $@ .. "
 	@$(shell :> $@)
+ifdef SOURCES_SH
+	@echo -n "  - SH .. "
+	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_SH) -o $@ -j $(SOURCES_SH)
+	@echo done
+endif
 ifdef SOURCES_PY
 	@echo -n "  - PY .. "
 	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_PY) -o $@ -j $(SOURCES_PY)
+	@echo done
+endif
+ifdef SOURCES_JAVA
+	@echo -n "  - JAVA .. "
+	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_JAVA) -o $@ -j $(SOURCES_JAVA)
+	@echo done
+endif
+ifdef SOURCES_C
+	@echo -n "  - C .. "
+	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_C) -o $@ -j $(SOURCES_C)
 	@echo done
 endif
 ifdef SOURCES_DESKTOP

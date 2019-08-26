@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-26 10:44+0200\n"
+"POT-Creation-Date: 2019-08-26 14:07+0200\n"
 "PO-Revision-Date: 2019-08-14 16:42+0200\n"
 "Last-Translator: Sara <sisajola@gmail.com>\n"
 "Language-Team: \n"
@@ -17,6 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.1.6\n"
+
+#. char msg[ 255 ];
+#: ../engine/obook.cpp:306
+#, c-format
+msgid "%d Positions Loaded"
+msgstr ""
+
+#. char msg[ 255 ];
+#: ../engine/obook.cpp:347
+#, c-format
+msgid "%d Positions Saved"
+msgstr ""
+
+#: ../engine/ai.cpp:527
+#, c-format
+msgid "(searching...)\n"
+msgstr ""
 
 #: ../samuel/samuel.py:376
 msgid "/Computer to move"
@@ -42,6 +59,10 @@ msgstr ""
 msgid "Beginner"
 msgstr ""
 
+#: ../engine/obook.cpp:209
+msgid "Book Full!"
+msgstr ""
+
 #: ../samuel/gui.py:336
 msgid "Cancel"
 msgstr ""
@@ -52,6 +73,10 @@ msgstr ""
 
 #: ../samuel/board.py:206
 msgid "Click OK to apply changes.\n"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:456
+msgid "Computer Move"
 msgstr ""
 
 #: ../samuel/gui.py:104
@@ -74,7 +99,7 @@ msgstr ""
 msgid "Copy FEN to clipboard"
 msgstr ""
 
-#: ../samuel/gui.py:127
+#: ../samuel/gui.py:127 ../engine/enginemodule.cpp:463
 msgid "Copy PDN to clipboard"
 msgstr ""
 
@@ -82,8 +107,21 @@ msgstr ""
 msgid "Copyright \\u00A9 2009,2019 John Cheetham"
 msgstr ""
 
+#: ../engine/ai.cpp:540
+#, c-format
+msgid "Depth: %d/%d (%d/%d)   Eval: %d  "
+msgstr ""
+
 #: ../samuel.desktop.in:6
 msgid "Draughts Game"
+msgstr ""
+
+#: ../samuel/gui.py:131
+msgid "Edit"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:470
+msgid "End of Moves"
 msgstr ""
 
 #. some secondary text
@@ -93,6 +131,10 @@ msgstr ""
 
 #: ../samuel/gui.py:87
 msgid "Expert"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:476
+msgid "Flip Board"
 msgstr ""
 
 #: ../samuel/gui.py:110 ../samuel/gui.py:111
@@ -127,6 +169,14 @@ msgstr ""
 msgid "Gameover - white wins"
 msgstr ""
 
+#: ../engine/enginemodule.cpp:461
+msgid "Get FEN"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:464
+msgid "Get PDN"
+msgstr ""
+
 #. go button
 #: ../samuel/gui.py:263
 msgid "Go"
@@ -136,15 +186,27 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: ../samuel/gui.py:137
+msgid "Help (online)"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:455
+msgid "Human Move"
+msgstr ""
+
 #: ../samuel/gui.py:93
 msgid "Information Panel"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:454
+msgid "Initialise the engine"
 msgstr ""
 
 #: ../samuel/gui.py:134
 msgid "Level"
 msgstr ""
 
-#: ../samuel/gui.py:117
+#: ../samuel/gui.py:117 ../engine/enginemodule.cpp:459
 msgid "Load Game"
 msgstr ""
 
@@ -152,8 +214,12 @@ msgstr ""
 msgid "Load.."
 msgstr ""
 
-#: ../samuel/gui.py:119
+#: ../samuel/gui.py:119 ../engine/enginemodule.cpp:465
 msgid "Move Now"
+msgstr ""
+
+#: ../samuel/gui.py:119
+msgid "Move Now (m)"
 msgstr ""
 
 #: ../samuel/samuel.py:847
@@ -164,12 +230,25 @@ msgstr ""
 msgid "Move a white piece to restart the game from here\n"
 msgstr ""
 
-#: ../samuel/gui.py:116
+#: ../engine/ai.cpp:543
+#, c-format
+msgid "Move: %ld%c%ld Time: %.2fs  KNodes: %ld KN/Sec: %d"
+msgstr ""
+
+#: ../samuel/gui.py:116 ../engine/enginemodule.cpp:458
 msgid "New Game"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:468
+msgid "Next Move"
 msgstr ""
 
 #: ../samuel/gui.py:341
 msgid "OK"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:472
+msgid "Opening Book"
 msgstr ""
 
 #: ../samuel/gui.py:135
@@ -184,8 +263,34 @@ msgstr ""
 msgid "Paste PDN from clipboard"
 msgstr ""
 
+#: ../engine/obook.cpp:226
+#, c-format
+msgid ""
+"Position Added. %d\n"
+"Value %d"
+msgstr ""
+
 #: ../samuel/gui.py:121
 msgid "Position Edit"
+msgstr ""
+
+#: ../engine/obook.cpp:199
+#, c-format
+msgid ""
+"Position Exists. %d\n"
+"Value was %d now %d"
+msgstr ""
+
+#: ../engine/obook.cpp:256
+#, c-format
+msgid ""
+"Position Removed. %d\n"
+"Value was %d"
+msgstr ""
+
+#: ../engine/obook.cpp:274
+#, c-format
+msgid "Position does not exist. %d\n"
 msgstr ""
 
 #: ../samuel/samuel.py:835 ../samuel/samuel.py:845
@@ -194,6 +299,10 @@ msgstr ""
 
 #: ../samuel/samuel.py:838 ../samuel/samuel.py:848
 msgid "Press the < > buttons to browse the game"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:467
+msgid "Previous Move"
 msgstr ""
 
 #. Create actions
@@ -222,6 +331,14 @@ msgstr ""
 #. retract button
 #: ../samuel/gui.py:269
 msgid "Retract"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:471
+msgid "Retract Move"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:466
+msgid "Running Display"
 msgstr ""
 
 #: ../samuel.desktop.in:4
@@ -258,7 +375,7 @@ msgid ""
 "along with Samuel.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: ../samuel/gui.py:118
+#: ../samuel/gui.py:118 ../engine/enginemodule.cpp:460
 msgid "Save Game"
 msgstr ""
 
@@ -272,8 +389,24 @@ msgid ""
 "(max 52)\n"
 msgstr ""
 
+#: ../engine/enginemodule.cpp:473
+msgid "Set Board"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:475
+msgid "Set Computer Colour"
+msgstr ""
+
 #: ../samuel/gui.py:132
 msgid "Set Custom Level Depth"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:457
+msgid "Set Level"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:474
+msgid "Set Side To Move"
 msgstr ""
 
 #: ../samuel/board.py:205
@@ -288,12 +421,20 @@ msgstr ""
 msgid "Set User-defined Level"
 msgstr ""
 
+#: ../engine/enginemodule.cpp:462
+msgid "Set board position from FEN"
+msgstr ""
+
 #: ../samuel/gui.py:136
 msgid "Show About Box"
 msgstr ""
 
 #: ../samuel/gui.py:313
 msgid "Side to Move"
+msgstr ""
+
+#: ../engine/enginemodule.cpp:469
+msgid "Start of Moves"
 msgstr ""
 
 #: ../samuel/gui.py:95
@@ -329,14 +470,6 @@ msgstr ""
 #. text = text + "Press the < > buttons to browse the game"
 #: ../samuel/samuel.py:831 ../samuel/samuel.py:874
 msgid "White to Move"
-msgstr ""
-
-#: ../samuel/gui.py:137
-msgid "_Help (online)"
-msgstr ""
-
-#: ../samuel/gui.py:119
-msgid "_Move Now (m)"
 msgstr ""
 
 #: ../samuel/samuel.py:683

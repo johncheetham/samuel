@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-26 10:44+0200\n"
+"POT-Creation-Date: 2019-08-26 14:07+0200\n"
 "PO-Revision-Date: 2019-06-05 14:56+0200\n"
 "Last-Translator: Brice <brice@ordissimo.com>\n"
 "Language-Team: \n"
@@ -17,6 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.1.6\n"
+
+#. char msg[ 255 ];
+#: ../engine/obook.cpp:306
+#, c-format
+msgid "%d Positions Loaded"
+msgstr "%d Position sauvée"
+
+#. char msg[ 255 ];
+#: ../engine/obook.cpp:347
+#, c-format
+msgid "%d Positions Saved"
+msgstr "%d Position sauvée"
+
+#: ../engine/ai.cpp:527
+#, c-format
+msgid "(searching...)\n"
+msgstr "(Recherche en cours...)\n"
 
 #: ../samuel/samuel.py:376
 msgid "/Computer to move"
@@ -43,6 +60,10 @@ msgstr "Tous les fichiers"
 msgid "Beginner"
 msgstr "Débutant"
 
+#: ../engine/obook.cpp:209
+msgid "Book Full!"
+msgstr "Livre complet"
+
 #: ../samuel/gui.py:336
 msgid "Cancel"
 msgstr "Annuler"
@@ -54,6 +75,10 @@ msgstr "Cliquer sur Annuler pour ne pas enregistrer les changements"
 #: ../samuel/board.py:206
 msgid "Click OK to apply changes.\n"
 msgstr "Cliquer sur Valider pour enregistrer les changements.\n"
+
+#: ../engine/enginemodule.cpp:456
+msgid "Computer Move"
+msgstr "Déplacement de l'ordinateur."
 
 #: ../samuel/gui.py:104
 msgid "Computer Off"
@@ -75,7 +100,7 @@ msgstr "L'ordinateur joue les Blancs et les Rouges"
 msgid "Copy FEN to clipboard"
 msgstr "Copier FEN dans le presse-papier"
 
-#: ../samuel/gui.py:127
+#: ../samuel/gui.py:127 ../engine/enginemodule.cpp:463
 msgid "Copy PDN to clipboard"
 msgstr "Copier PDN dans le presse-papier"
 
@@ -83,9 +108,22 @@ msgstr "Copier PDN dans le presse-papier"
 msgid "Copyright \\u00A9 2009,2019 John Cheetham"
 msgstr "Copyright \\u00A9 2009,2019 John Cheetham"
 
+#: ../engine/ai.cpp:540
+#, c-format
+msgid "Depth: %d/%d (%d/%d)   Eval: %d  "
+msgstr "Profondeur: %d/%d (%d/%d)   Évaluation: %d  "
+
 #: ../samuel.desktop.in:6
 msgid "Draughts Game"
 msgstr "Jeu de dames"
+
+#: ../samuel/gui.py:131
+msgid "Edit"
+msgstr "Édition"
+
+#: ../engine/enginemodule.cpp:470
+msgid "End of Moves"
+msgstr "Fin des déplacements"
 
 #. some secondary text
 #: ../samuel/samuel.py:682
@@ -96,9 +134,13 @@ msgstr "Régler le nombre de coups d'avance calculés'\n"
 msgid "Expert"
 msgstr "Expert"
 
+#: ../engine/enginemodule.cpp:476
+msgid "Flip Board"
+msgstr "Tourner le damier."
+
 #: ../samuel/gui.py:110 ../samuel/gui.py:111
 msgid "Flip the Board"
-msgstr "Tourner de damier"
+msgstr "Tourner le damier"
 
 #: ../samuel/gui.py:120
 msgid "Game"
@@ -113,12 +155,10 @@ msgid "Game Over - White Wins"
 msgstr "Fin de la partie - Victoire des Blancs"
 
 #: ../samuel/samuel.py:823
-#| msgid "Gameover - red wins"
 msgid "Game Over - red wins"
 msgstr "Fin de la partie - Victoire des Rouges"
 
 #: ../samuel/samuel.py:827
-#| msgid "Gameover - white wins"
 msgid "Game Over - white wins"
 msgstr "Fin de la partie - Victoire des Blancs"
 
@@ -130,6 +170,14 @@ msgstr "Fin de la partie - Victoire des Rouges"
 msgid "Gameover - white wins"
 msgstr "Fin de la partie - Victoire des Blancs"
 
+#: ../engine/enginemodule.cpp:461
+msgid "Get FEN"
+msgstr "Récuperer FEN."
+
+#: ../engine/enginemodule.cpp:464
+msgid "Get PDN"
+msgstr "Récuperer PDN"
+
 #. go button
 #: ../samuel/gui.py:263
 msgid "Go"
@@ -139,15 +187,27 @@ msgstr "Commencer"
 msgid "Help"
 msgstr "Aide"
 
+#: ../samuel/gui.py:137
+msgid "Help (online)"
+msgstr "Aide (en ligne)"
+
+#: ../engine/enginemodule.cpp:455
+msgid "Human Move"
+msgstr "L'utilisateur joue"
+
 #: ../samuel/gui.py:93
 msgid "Information Panel"
 msgstr "Panneau d'information"
+
+#: ../engine/enginemodule.cpp:454
+msgid "Initialise the engine"
+msgstr "Initialisation de l'inteligence artificielle"
 
 #: ../samuel/gui.py:134
 msgid "Level"
 msgstr "Niveau"
 
-#: ../samuel/gui.py:117
+#: ../samuel/gui.py:117 ../engine/enginemodule.cpp:459
 msgid "Load Game"
 msgstr "Charger une partie"
 
@@ -155,8 +215,12 @@ msgstr "Charger une partie"
 msgid "Load.."
 msgstr "Chargement..."
 
-#: ../samuel/gui.py:119
+#: ../samuel/gui.py:119 ../engine/enginemodule.cpp:465
 msgid "Move Now"
+msgstr "Jouer maintenant"
+
+#: ../samuel/gui.py:119
+msgid "Move Now (m)"
 msgstr "Jouer maintenant"
 
 #: ../samuel/samuel.py:847
@@ -167,13 +231,26 @@ msgstr "Jouer un pion rouge pour reprendre la partie\n"
 msgid "Move a white piece to restart the game from here\n"
 msgstr "Jouer un pion blanc pour reprendre la partie\n"
 
-#: ../samuel/gui.py:116
+#: ../engine/ai.cpp:543
+#, c-format
+msgid "Move: %ld%c%ld Time: %.2fs  KNodes: %ld KN/Sec: %d"
+msgstr "Déplacement: %ld%c%ld Temps: %.2fs  NCoeurs: %ld NC/Sec: %d"
+
+#: ../samuel/gui.py:116 ../engine/enginemodule.cpp:458
 msgid "New Game"
 msgstr "Nouvelle partie"
+
+#: ../engine/enginemodule.cpp:468
+msgid "Next Move"
+msgstr "Coup suivant"
 
 #: ../samuel/gui.py:341
 msgid "OK"
 msgstr "Valider"
+
+#: ../engine/enginemodule.cpp:472
+msgid "Opening Book"
+msgstr "Ouvrir un livre"
 
 #: ../samuel/gui.py:135
 msgid "Options"
@@ -187,9 +264,41 @@ msgstr "Coller FEN depuis le presse-papier"
 msgid "Paste PDN from clipboard"
 msgstr "Coller PDN depuis le presse-papier"
 
+#: ../engine/obook.cpp:226
+#, c-format
+msgid ""
+"Position Added. %d\n"
+"Value %d"
+msgstr ""
+"Position ajoutées. %d\n"
+"Valeur %d"
+
 #: ../samuel/gui.py:121
 msgid "Position Edit"
 msgstr "Modifier la position"
+
+#: ../engine/obook.cpp:199
+#, c-format
+msgid ""
+"Position Exists. %d\n"
+"Value was %d now %d"
+msgstr ""
+"Position existe. %d\n"
+"La valeur était %d, maintenant %d"
+
+#: ../engine/obook.cpp:256
+#, c-format
+msgid ""
+"Position Removed. %d\n"
+"Value was %d"
+msgstr ""
+"Position supprimées. %d\n"
+"La valeur était %d"
+
+#: ../engine/obook.cpp:274
+#, c-format
+msgid "Position does not exist. %d\n"
+msgstr "La position n'éxiste pas. %d\n"
 
 #: ../samuel/samuel.py:835 ../samuel/samuel.py:845
 msgid "Press Go to restart the game from here\n"
@@ -198,6 +307,10 @@ msgstr "Cliquer sur Commencer pour reprendre la partie\n"
 #: ../samuel/samuel.py:838 ../samuel/samuel.py:848
 msgid "Press the < > buttons to browse the game"
 msgstr "Cliquer sur les boutons < > pour afficher les coups joués"
+
+#: ../engine/enginemodule.cpp:467
+msgid "Previous Move"
+msgstr "Coup précédent"
 
 #. Create actions
 #: ../samuel/gui.py:115 ../samuel/gui.py:142
@@ -226,6 +339,14 @@ msgstr "Aux Rouges de jouer"
 #: ../samuel/gui.py:269
 msgid "Retract"
 msgstr "Annuler le dernier coup"
+
+#: ../engine/enginemodule.cpp:471
+msgid "Retract Move"
+msgstr "Annuler le dernier coup"
+
+#: ../engine/enginemodule.cpp:466
+msgid "Running Display"
+msgstr "Affichage en cours"
 
 #: ../samuel.desktop.in:4
 msgid "Samuel"
@@ -276,7 +397,7 @@ msgstr ""
 "en même temps que Samuel ; si ce n'est pas le cas, consultez\n"
 "<http://www.gnu.org/licenses>."
 
-#: ../samuel/gui.py:118
+#: ../samuel/gui.py:118 ../engine/enginemodule.cpp:460
 msgid "Save Game"
 msgstr "Sauvegarder la partie"
 
@@ -289,12 +410,28 @@ msgid ""
 "Search Depth\n"
 "(max 52)\n"
 msgstr ""
-"Nombre de coups d'avance calculés\n"
-"(max 52)\n"
+"Nombre de coups d'avance\n"
+"calculés (max 52)\n"
+
+#: ../engine/enginemodule.cpp:473
+msgid "Set Board"
+msgstr "Positionner le damier"
+
+#: ../engine/enginemodule.cpp:475
+msgid "Set Computer Colour"
+msgstr "Choix de la couleur pour l'ordinateur"
 
 #: ../samuel/gui.py:132
 msgid "Set Custom Level Depth"
 msgstr "Régler le nombre de coups d'avance calculés"
+
+#: ../engine/enginemodule.cpp:457
+msgid "Set Level"
+msgstr "Changer le niveau"
+
+#: ../engine/enginemodule.cpp:474
+msgid "Set Side To Move"
+msgstr "Tourner le damier"
 
 #: ../samuel/board.py:205
 msgid "Set Side to Move with the radio buttons\n"
@@ -302,11 +439,15 @@ msgstr "Choisir le côté à modifier avec les boutons radio\n"
 
 #: ../samuel/samuel.py:657
 msgid "Set User-Defined Level"
-msgstr "Utiliser le niveau personnalisé"
+msgstr "Régler le niveau personnalisé"
 
 #: ../samuel/gui.py:132
 msgid "Set User-defined Level"
 msgstr "Utiliser le niveau personnalisé"
+
+#: ../engine/enginemodule.cpp:462
+msgid "Set board position from FEN"
+msgstr "Choix de la position du damier depuis FEN"
 
 #: ../samuel/gui.py:136
 msgid "Show About Box"
@@ -315,6 +456,10 @@ msgstr "Afficher le dialogue A propos"
 #: ../samuel/gui.py:313
 msgid "Side to Move"
 msgstr "Côté à jouer"
+
+#: ../engine/enginemodule.cpp:469
+msgid "Start of Moves"
+msgstr "Début des déplacements"
 
 #: ../samuel/gui.py:95
 msgid "Status Bar"
@@ -353,14 +498,6 @@ msgstr "Blancs"
 msgid "White to Move"
 msgstr "Aux Blancs de jouer"
 
-#: ../samuel/gui.py:137
-msgid "_Help (online)"
-msgstr "Aide (en ligne)"
-
-#: ../samuel/gui.py:119
-msgid "_Move Now (m)"
-msgstr "Jouer maintenant"
-
 #: ../samuel/samuel.py:683
 msgid "and Time Limit."
 msgstr "et limite de temps."
@@ -373,3 +510,17 @@ msgstr "fichiers pdn"
 msgid "samuel.png"
 msgstr ""
 
+#~ msgid "Copy PDN to clipboard."
+#~ msgstr "Copier PDN dans le presse-papier"
+
+#~ msgid "Load Game."
+#~ msgstr "Charger une partie."
+
+#~ msgid "Move Now."
+#~ msgstr "Jouer maintenant."
+
+#~ msgid "New Game."
+#~ msgstr "Nouvelle partie."
+
+#~ msgid "Save Game."
+#~ msgstr "Sauvegarder la partie."

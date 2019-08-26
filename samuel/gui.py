@@ -116,7 +116,7 @@ class Gui:
                                  ('NewGame', Gtk.STOCK_NEW, _('New Game'), None, _('New Game'), self.game.new_game),
                                  ('LoadGame', Gtk.STOCK_OPEN, _('Load Game'), None, _('Load Game'), self.game.load_game),
                                  ('SaveGame', Gtk.STOCK_SAVE, _('Save Game'), None, _('Save Game'), self.game.save_game),
-                                 ('MoveNow', None, _('_Move Now (m)'), None, _('Move Now'), self.game.move_now),
+                                 ('MoveNow', None, _('Move Now (m)'), None, _('Move Now'), self.game.move_now),
                                  ('Game', None, _('Game')),
                                  ('PositionEdit', None, _('Position Edit'), None, _('Position Edit'), \
                                      self.board.position_edit_init),
@@ -128,13 +128,13 @@ class Gui:
                                      self.game.copy_PDN_to_clipboard),
                                  ('PastePDNFromCB', Gtk.STOCK_PASTE, _('Paste PDN from clipboard'), None, _('Paste PDN from clipboard'), \
                                      self.game.paste_PDN_from_clipboard),                      
-                                 ('Edit', None, '_Edit'),
+                                 ('Edit', None, _('Edit')),
                                  ('SetCustomLevelDepth', None, _('Set User-defined Level'), None, _('Set Custom Level Depth'), \
                                     self.game.set_custom_search_depth),                                 
                                  ('Level', None, _('Level')), 
                                  ('Options', None, _('Options')),                                                    
                                  ('About', Gtk.STOCK_ABOUT, _('About'), None, _('Show About Box'), self.about_box),
-                                 ('samhelp', Gtk.STOCK_HELP, _('_Help (online)'), None, _('Samuel Help (Online)'), \
+                                 ('samhelp', Gtk.STOCK_HELP, _('Help (online)'), None, _('Samuel Help (Online)'), \
                                     self.game.open_help),
                                  ('Help', None, _('Help')),
                                 ])        

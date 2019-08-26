@@ -524,7 +524,7 @@ void RunningDisplay ( int bestMove, int bSearching )
 		else if (computerLevel == 2) j+=sprintf(msg+j, "Level: Expert  ");
         else j+=sprintf(msg+j, "Level: U/Def %d/%ds  ", g_MaxDepth, (int)fMaxSeconds);        
 
-		if (bSearching) j+=sprintf (msg+j, "(searching...)\n");
+		if (bSearching) j+=sprintf (msg+j, _("(searching...)\n"));
 			else j+=sprintf (msg+j,"\n");
 		}	
 
@@ -537,10 +537,10 @@ void RunningDisplay ( int bestMove, int bSearching )
 
 	if (abs (g_SearchEval) < 3000) LastEval = g_SearchEval;
 	char cCap = (bestMove>>12) ? 'x' : '-';
-	j+=sprintf( msg+j, "Depth: %d/%d (%d/%d)   Eval: %d  ", SearchDepth, g_SelectiveDepth, g_SearchingMove, g_Movelist[1].nMoves, -LastEval);
+	j+=sprintf( msg+j, _("Depth: %d/%d (%d/%d)   Eval: %d  "), SearchDepth, g_SelectiveDepth, g_SearchingMove, g_Movelist[1].nMoves, -LastEval);
 	if ( !bCheckerBoard ) j+=sprintf( msg+j, "\n" );	
 
-    j+=sprintf (msg+j, "Move: %ld%c%ld Time: %.2fs  KNodes: %ld KN/Sec: %d", FlipX (BoardLocTo32[bestMove&63])+1, cCap, FlipX (BoardLocTo32[(bestMove>>6)&63])+1, elapsed, (nodes/1000), nps);
+    j+=sprintf (msg+j, _("Move: %ld%c%ld Time: %.2fs  KNodes: %ld KN/Sec: %d"), FlipX (BoardLocTo32[bestMove&63])+1, cCap, FlipX (BoardLocTo32[(bestMove>>6)&63])+1, elapsed, (nodes/1000), nps);
   
 	//DisplayText (msg);    
 }
