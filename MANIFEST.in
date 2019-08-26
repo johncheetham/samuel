@@ -10,6 +10,7 @@ include data/3pc.cdb
 include data/4pc.cdb
 include data/opening.gbk
 include engine/ai.cpp
+include engine/ai.hh
 include engine/board.cpp
 include engine/database.cpp
 include engine/enginemodule.cpp
@@ -37,3 +38,19 @@ include samuel/constants.py
 include samuel/gui.py
 include samuel/samuel.py
 include scripts/samuel
+include po/de.po
+include po/en.po
+include po/es.po
+include po/fr.po
+include po/it.po
+include po/Makefile
+include po/Makevars
+include po/nl.po
+include po/samuel.pot
+include locale/de/LC_MESSAGES/samuel.mo
+include locale/en/LC_MESSAGES/samuel.mo
+include locale/es/LC_MESSAGES/samuel.mo
+include locale/fr/LC_MESSAGES/samuel.mo
+include locale/it/LC_MESSAGES/samuel.mo
+include locale/nl/LC_MESSAGES/samuel.mo
+include create_po.sh
