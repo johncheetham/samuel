@@ -72,7 +72,7 @@ msgstr "L'ordinateur jour les Blancs"
 
 #: ../samuel/gui.py:103
 msgid "Computer Plays White and Red"
-msgstr "Computer Plays White et les Rouges"
+msgstr "L'ordinateur jour les Blancs et les Rouges"
 
 #: ../samuel/gui.py:123
 msgid "Copy FEN to clipboard"
