@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-25 16:36+0200\n"
+"POT-Creation-Date: 2019-08-26 10:44+0200\n"
 "PO-Revision-Date: 2019-08-16 19:09+0200\n"
 "Last-Translator: Thierry <thierry@ordissimo.com>\n"
 "Language-Team: \n"
@@ -24,10 +24,6 @@ msgstr ""
 
 #: ../samuel/samuel.py:374
 msgid "/Human to move"
-msgstr ""
-
-#: ../samuel/samuel.py:657
-msgid "<b>Set User-Defined Level</b>"
 msgstr ""
 
 #: ../samuel/gui.py:136
@@ -115,11 +111,19 @@ msgstr ""
 msgid "Game Over - White Wins"
 msgstr ""
 
-#: ../samuel/samuel.py:823 ../samuel/samuel.py:858
+#: ../samuel/samuel.py:823
+msgid "Game Over - red wins"
+msgstr ""
+
+#: ../samuel/samuel.py:827
+msgid "Game Over - white wins"
+msgstr ""
+
+#: ../samuel/samuel.py:858
 msgid "Gameover - red wins"
 msgstr ""
 
-#: ../samuel/samuel.py:827 ../samuel/samuel.py:862
+#: ../samuel/samuel.py:862
 msgid "Gameover - white wins"
 msgstr ""
 
@@ -210,12 +214,9 @@ msgstr ""
 #. else:
 #. text = text + "Move a red piece to restart the game from here\n"
 #. text = text + "Press the < > buttons to browse the game"
-#: ../samuel/gui.py:362 ../samuel/samuel.py:507 ../samuel/samuel.py:885
+#: ../samuel/gui.py:362 ../samuel/samuel.py:507 ../samuel/samuel.py:841
+#: ../samuel/samuel.py:885
 msgid "Red to Move"
-msgstr ""
-
-#: ../samuel/samuel.py:841
-msgid "Red to Move\n"
 msgstr ""
 
 #. retract button
@@ -279,6 +280,10 @@ msgstr ""
 msgid "Set Side to Move with the radio buttons\n"
 msgstr ""
 
+#: ../samuel/samuel.py:657
+msgid "Set User-Defined Level"
+msgstr ""
+
 #: ../samuel/gui.py:132
 msgid "Set User-defined Level"
 msgstr ""
@@ -322,12 +327,8 @@ msgstr ""
 #. else:
 #. text = text + "Move a white piece to restart the game from here\n"
 #. text = text + "Press the < > buttons to browse the game"
-#: ../samuel/samuel.py:874
+#: ../samuel/samuel.py:831 ../samuel/samuel.py:874
 msgid "White to Move"
-msgstr ""
-
-#: ../samuel/samuel.py:831
-msgid "White to Move\n"
 msgstr ""
 
 #: ../samuel/gui.py:137

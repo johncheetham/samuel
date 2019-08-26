@@ -654,7 +654,7 @@ class Game:
             Gtk.ButtonsType.OK_CANCEL,  
             None)
         
-        markup = _("<b>Set User-Defined Level</b>")
+        markup = ('<b>%s</b>' % _('Set User-Defined Level'))
         dialog.set_markup(markup)
 
         #create the text input fields  
@@ -820,15 +820,15 @@ class Game:
     def set_panel_msg(self):        
 
         if self.gameover == RED:
-            text = _("Gameover - red wins")         
+            text = _("Game Over - red wins")         
             self.gui.set_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.gameover == WHITE:
-            text = _("Gameover - white wins") 
+            text = _("Game Over - white wins") 
             self.gui.set_panel_text(text)
             self.gui.set_status_bar_msg(text)
         elif self.side_to_move == WHITE:
-            text = _("White to Move\n")
+            text = ('%s\n' % _('White to Move'))
             #self.gui.set_status_bar_msg("White to Move")
             self.gui.set_status_bar_msg(self.get_side_to_move_msg())            
             if self.white_player == COMPUTER:
@@ -838,7 +838,7 @@ class Game:
             text = text + _("Press the < > buttons to browse the game")            
             self.gui.set_panel_text(text)            
         elif self.side_to_move == RED:
-            text = _("Red to Move\n")
+            text = ('%s\n' % _('Red to Move'))
             #self.gui.set_status_bar_msg("Red to Move")
             self.gui.set_status_bar_msg(self.get_side_to_move_msg())            
             if self.red_player == COMPUTER:

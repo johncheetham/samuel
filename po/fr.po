@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-25 16:36+0200\n"
+"POT-Creation-Date: 2019-08-26 10:44+0200\n"
 "PO-Revision-Date: 2019-06-05 14:56+0200\n"
 "Last-Translator: Brice <brice@ordissimo.com>\n"
 "Language-Team: \n"
@@ -20,15 +20,11 @@ msgstr ""
 
 #: ../samuel/samuel.py:376
 msgid "/Computer to move"
-msgstr "/A l'ordinateur de jouer"
+msgstr "/Au tour de l'ordinateur"
 
 #: ../samuel/samuel.py:374
 msgid "/Human to move"
-msgstr "/A l'utilisateuyr de jouer"
-
-#: ../samuel/samuel.py:657
-msgid "<b>Set User-Defined Level</b>"
-msgstr "<b></b>"
+msgstr "/Au tour de l'utilisateur"
 
 #: ../samuel/gui.py:136
 msgid "About"
@@ -38,9 +34,10 @@ msgstr "A propos"
 msgid "Advanced"
 msgstr "Avancé"
 
+# ../samuel/samuel.py:531 ../samuel/samuel.py:564
 #: ../samuel/samuel.py:531 ../samuel/samuel.py:564
 msgid "All files"
-msgstr "Touts les fichiers"
+msgstr "Tous les fichiers"
 
 #: ../samuel/gui.py:85
 msgid "Beginner"
@@ -52,35 +49,35 @@ msgstr "Annuler"
 
 #: ../samuel/board.py:207
 msgid "Click Cancel to discard changes"
-msgstr "Cliquer sur Annuler pour ne pas enregister les changements"
+msgstr "Cliquer sur Annuler pour ne pas enregistrer les changements"
 
 #: ../samuel/board.py:206
 msgid "Click OK to apply changes.\n"
-msgstr "Cliquer sur Valider pour enregister les changements.\n"
+msgstr "Cliquer sur Valider pour enregistrer les changements.\n"
 
 #: ../samuel/gui.py:104
 msgid "Computer Off"
-msgstr "Arret de l'ordinateur"
+msgstr "Arrêt de l'ordinateur"
 
 #: ../samuel/gui.py:102
 msgid "Computer Plays Red"
-msgstr "L'ordinateur jour les Rouges"
+msgstr "L'ordinateur joue les Rouges"
 
 #: ../samuel/gui.py:101
 msgid "Computer Plays White"
-msgstr "L'ordinateur jour les Blancs"
+msgstr "L'ordinateur joue les Blancs"
 
 #: ../samuel/gui.py:103
 msgid "Computer Plays White and Red"
-msgstr "L'ordinateur jour les Blancs et les Rouges"
+msgstr "L'ordinateur joue les Blancs et les Rouges"
 
 #: ../samuel/gui.py:123
 msgid "Copy FEN to clipboard"
-msgstr "Copier FEN dans le press papier"
+msgstr "Copier FEN dans le presse-papier"
 
 #: ../samuel/gui.py:127
 msgid "Copy PDN to clipboard"
-msgstr "Copier PDN dans le press papier"
+msgstr "Copier PDN dans le presse-papier"
 
 #: ../samuel/gui.py:414
 msgid "Copyright \\u00A9 2009,2019 John Cheetham"
@@ -93,7 +90,7 @@ msgstr "Jeu de dames"
 #. some secondary text
 #: ../samuel/samuel.py:682
 msgid "Enter values for Search Depth\n"
-msgstr ""
+msgstr "Régler le nombre de coups d'avance calculés'\n"
 
 #: ../samuel/gui.py:87
 msgid "Expert"
@@ -101,7 +98,7 @@ msgstr "Expert"
 
 #: ../samuel/gui.py:110 ../samuel/gui.py:111
 msgid "Flip the Board"
-msgstr ""
+msgstr "Tourner de damier"
 
 #: ../samuel/gui.py:120
 msgid "Game"
@@ -109,19 +106,29 @@ msgstr "Jeu"
 
 #: ../samuel/samuel.py:353
 msgid "Game Over - Red Wins"
-msgstr "Fin de parie - Victoire des Rouges"
+msgstr "Fin de la partie - Victoire des Rouges"
 
 #: ../samuel/samuel.py:346
 msgid "Game Over - White Wins"
-msgstr "Fin de parie - Victoire des Blancs"
+msgstr "Fin de la partie - Victoire des Blancs"
 
-#: ../samuel/samuel.py:823 ../samuel/samuel.py:858
+#: ../samuel/samuel.py:823
+#| msgid "Gameover - red wins"
+msgid "Game Over - red wins"
+msgstr "Fin de la partie - Victoire des Rouges"
+
+#: ../samuel/samuel.py:827
+#| msgid "Gameover - white wins"
+msgid "Game Over - white wins"
+msgstr "Fin de la partie - Victoire des Blancs"
+
+#: ../samuel/samuel.py:858
 msgid "Gameover - red wins"
-msgstr "Fin de parie - Victoire des Rouges"
+msgstr "Fin de la partie - Victoire des Rouges"
 
-#: ../samuel/samuel.py:827 ../samuel/samuel.py:862
+#: ../samuel/samuel.py:862
 msgid "Gameover - white wins"
-msgstr "Fin de parie - Victoire des Blancs"
+msgstr "Fin de la partie - Victoire des Blancs"
 
 #. go button
 #: ../samuel/gui.py:263
@@ -146,7 +153,7 @@ msgstr "Charger une partie"
 
 #: ../samuel/samuel.py:517
 msgid "Load.."
-msgstr "Chargement.."
+msgstr "Chargement..."
 
 #: ../samuel/gui.py:119
 msgid "Move Now"
@@ -174,11 +181,11 @@ msgstr "Options"
 
 #: ../samuel/gui.py:125
 msgid "Paste FEN from clipboard"
-msgstr "Copier FEN depuis le presse papier"
+msgstr "Coller FEN depuis le presse-papier"
 
 #: ../samuel/gui.py:129
 msgid "Paste PDN from clipboard"
-msgstr "Copier PDN depuis le presse papier"
+msgstr "Coller PDN depuis le presse-papier"
 
 #: ../samuel/gui.py:121
 msgid "Position Edit"
@@ -186,7 +193,7 @@ msgstr "Modifier la position"
 
 #: ../samuel/samuel.py:835 ../samuel/samuel.py:845
 msgid "Press Go to restart the game from here\n"
-msgstr "Cliquer sur Comencer pour reprendre la partie\n"
+msgstr "Cliquer sur Commencer pour reprendre la partie\n"
 
 #: ../samuel/samuel.py:838 ../samuel/samuel.py:848
 msgid "Press the < > buttons to browse the game"
@@ -210,18 +217,15 @@ msgstr "Rouge"
 #. else:
 #. text = text + "Move a red piece to restart the game from here\n"
 #. text = text + "Press the < > buttons to browse the game"
-#: ../samuel/gui.py:362 ../samuel/samuel.py:507 ../samuel/samuel.py:885
+#: ../samuel/gui.py:362 ../samuel/samuel.py:507 ../samuel/samuel.py:841
+#: ../samuel/samuel.py:885
 msgid "Red to Move"
 msgstr "Aux Rouges de jouer"
-
-#: ../samuel/samuel.py:841
-msgid "Red to Move\n"
-msgstr "Aux Rouges de jouer\n"
 
 #. retract button
 #: ../samuel/gui.py:269
 msgid "Retract"
-msgstr "Annuler le coup"
+msgstr "Annuler le dernier coup"
 
 #: ../samuel.desktop.in:4
 msgid "Samuel"
@@ -233,13 +237,14 @@ msgstr "Aide pour Samuel (En ligne)"
 
 #: ../samuel.desktop.in:5
 msgid "Samuel is a draughts program for the Gnome desktop"
-msgstr "Samuel est un programme pour le bureau Gnome"
+msgstr "Samuel est un jeu de dames pour le bureau Gnome"
 
 #: ../samuel/gui.py:415
 msgid ""
 "Samuel is a draughts program for the Gnome desktop.\n"
 " It is based on the windows program guicheckers"
-msgstr "Samuel est un programme pour le bureau Gnome\n"
+msgstr ""
+"Samuel est un jeu de dames pour le bureau Gnome\n"
 " Il est basé sur le programme Windows guicheckers"
 
 #: ../samuel/gui.py:421
@@ -257,6 +262,19 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Samuel.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"Samuel est un logiciel libre ; vous pouvez le redistribuer\n"
+"ou le modifier suivant les termes de la GNU General Public License\n"
+"telle que publiée par la Free Software Foundation ; soit la version 3\n"
+"de la licence, soit (à votre gré) toute version ultérieure.\n"
+"\n"
+"Samuel est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE\n"
+"GARANTIE ; sans même la garantie tacite de QUALITÉ MARCHANDE ou\n"
+"d'ADÉQUATION à UN BUT PARTICULIER. Consultez la GNU General Public\n"
+"License pour plus de détails.\n"
+"\n"
+"Vous devez avoir reçu une copie de la GNU General Public License\n"
+"en même temps que Samuel ; si ce n'est pas le cas, consultez\n"
+"<http://www.gnu.org/licenses>."
 
 #: ../samuel/gui.py:118
 msgid "Save Game"
@@ -264,33 +282,39 @@ msgstr "Sauvegarder la partie"
 
 #: ../samuel/samuel.py:550
 msgid "Save.."
-msgstr "Sauvegarder.."
+msgstr "Sauvegarder..."
 
 #: ../samuel/samuel.py:676
 msgid ""
 "Search Depth\n"
 "(max 52)\n"
 msgstr ""
+"Nombre de coups d'avance calculés\n"
+"(max 52)\n"
 
 #: ../samuel/gui.py:132
 msgid "Set Custom Level Depth"
-msgstr ""
+msgstr "Régler le nombre de coups d'avance calculés"
 
 #: ../samuel/board.py:205
 msgid "Set Side to Move with the radio buttons\n"
-msgstr ""
+msgstr "Choisir le côté à modifier avec les boutons radio\n"
+
+#: ../samuel/samuel.py:657
+msgid "Set User-Defined Level"
+msgstr "Utiliser le niveau personnalisé"
 
 #: ../samuel/gui.py:132
 msgid "Set User-defined Level"
-msgstr ""
+msgstr "Utiliser le niveau personnalisé"
 
 #: ../samuel/gui.py:136
 msgid "Show About Box"
-msgstr "Afficher le dialog à propos"
+msgstr "Afficher le dialogue A propos"
 
 #: ../samuel/gui.py:313
 msgid "Side to Move"
-msgstr ""
+msgstr "Côté à jouer"
 
 #: ../samuel/gui.py:95
 msgid "Status Bar"
@@ -301,35 +325,33 @@ msgid ""
 "Time Limit\n"
 "(in seconds)"
 msgstr ""
+"Temps limite\n"
+"(en secondes)"
 
 #: ../samuel/board.py:203
 msgid "Use left mouse to set red pieces\n"
-msgstr ""
+msgstr "Utiliser le bouton gauche de la souris pour modifier les Rouges\n"
 
 #: ../samuel/board.py:204
 msgid "Use right mouse to set white pieces\n"
-msgstr ""
+msgstr "Utiliser le bouton gauche de la souris pour modifier les Blancs\n"
 
 #: ../samuel/gui.py:88
 msgid "User-defined"
-msgstr ""
+msgstr "Personnalisé"
 
 #: ../samuel/gui.py:350 ../samuel/samuel.py:370
 msgid "White"
-msgstr "Blanc à déplacer"
+msgstr "Blancs"
 
 #. if self.white_player == COMPUTER:
 #. text = text + "Press Go to restart the game from here\n"
 #. else:
 #. text = text + "Move a white piece to restart the game from here\n"
 #. text = text + "Press the < > buttons to browse the game"
-#: ../samuel/samuel.py:874
+#: ../samuel/samuel.py:831 ../samuel/samuel.py:874
 msgid "White to Move"
-msgstr ""
-
-#: ../samuel/samuel.py:831
-msgid "White to Move\n"
-msgstr ""
+msgstr "Aux Blancs de jouer"
 
 #: ../samuel/gui.py:137
 msgid "_Help (online)"
@@ -337,7 +359,7 @@ msgstr "Aide (en ligne)"
 
 #: ../samuel/gui.py:119
 msgid "_Move Now (m)"
-msgstr ""
+msgstr "Jouer maintenant"
 
 #: ../samuel/samuel.py:683
 msgid "and Time Limit."
@@ -345,8 +367,9 @@ msgstr "et limite de temps."
 
 #: ../samuel/samuel.py:526 ../samuel/samuel.py:559
 msgid "pdn files"
-msgstr "fichier pdn"
+msgstr "fichiers pdn"
 
 #: ../samuel.desktop.in:7
 msgid "samuel.png"
 msgstr ""
+
