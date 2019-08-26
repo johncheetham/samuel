@@ -129,7 +129,7 @@ class Gui:
                                  ('PastePDNFromCB', Gtk.STOCK_PASTE, _('Paste PDN from clipboard'), None, _('Paste PDN from clipboard'), \
                                      self.game.paste_PDN_from_clipboard),                      
                                  ('Edit', None, _('Edit')),
-                                 ('SetCustomLevelDepth', None, _('Set User-defined Level'), None, _('Set Custom Level Depth'), \
+                                 ('SetCustomLevelDepth', None, _('Set User-Defined Level'), None, _('Set Custom Level Depth'), \
                                     self.game.set_custom_search_depth),                                 
                                  ('Level', None, _('Level')), 
                                  ('Options', None, _('Options')),                                                    

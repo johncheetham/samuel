@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-26 14:07+0200\n"
+"POT-Creation-Date: 2019-08-26 14:24+0200\n"
 "PO-Revision-Date: 2018-08-01 11:55+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -413,12 +413,8 @@ msgstr ""
 msgid "Set Side to Move with the radio buttons\n"
 msgstr ""
 
-#: ../samuel/samuel.py:657
+#: ../samuel/gui.py:132 ../samuel/samuel.py:657
 msgid "Set User-Defined Level"
-msgstr ""
-
-#: ../samuel/gui.py:132
-msgid "Set User-defined Level"
 msgstr ""
 
 #: ../engine/enginemodule.cpp:462

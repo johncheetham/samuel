@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-26 14:07+0200\n"
+"POT-Creation-Date: 2019-08-26 14:24+0200\n"
 "PO-Revision-Date: 2019-06-05 14:56+0200\n"
 "Last-Translator: Brice <brice@ordissimo.com>\n"
 "Language-Team: \n"
@@ -437,13 +437,9 @@ msgstr "Tourner le damier"
 msgid "Set Side to Move with the radio buttons\n"
 msgstr "Choisir le côté à modifier avec les boutons radio\n"
 
-#: ../samuel/samuel.py:657
+#: ../samuel/gui.py:132 ../samuel/samuel.py:657
 msgid "Set User-Defined Level"
 msgstr "Régler le niveau personnalisé"
-
-#: ../samuel/gui.py:132
-msgid "Set User-defined Level"
-msgstr "Utiliser le niveau personnalisé"
 
 #: ../engine/enginemodule.cpp:462
 msgid "Set board position from FEN"
