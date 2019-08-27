@@ -9,8 +9,3 @@ export PATH := $(CURDIR)/debian/utils:$(PATH)
 
 override_dh_auto_test:
 	echo 'Test'
-
-override_dh_auto_clean:
-	dh_auto_clean
-	make -C po clean
-	rm -rf $(CURDIR)/locale $(CURDIR)/samuel.desktop 

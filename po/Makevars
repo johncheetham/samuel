@@ -1,18 +1,23 @@
 DOMAIN = samuel
 BUGSADDR = bugs@ordissimo.com
 
-APPLICATIONSDIR = usr/share/applications
+LOCALEDIR = locale
+APPLICATIONSDIR = .
 
-# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*desktop.in" -exec grep -l -E "^Categories=" {} \; | sed -e 's/^/  /;s/$/ \\/'
+# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" \! -path "*/.pybuild/*" -name "*.py" -exec grep -lF '_(' {} \; | sed -e 's/^/  /;s/$/ \\/'
 SOURCES_PY = \
-	../samuel/board.py  ../samuel/gui.py  ../samuel/samuel.py
+  ../samuel/gui.py \
+  ../samuel/samuel.py \
+  ../samuel/board.py
+
+# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*.cpp" -exec grep -lF '_(' {} \; | sed -e 's/^/  /;s/$/ \\/'
+XGETTEXTOPTIONS_CPP = --keyword=_
+SOURCES_CPP = \
+  ../engine/ai.cpp \
+  ../engine/obook.cpp \
+  ../engine/enginemodule.cpp
 
 # find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*desktop.in" -exec grep -l -E "^Categories=.*(Game|Ordissimo)" {} \; | sed -e 's/^/  /;s/$/ \\/'
 SOURCES_DESKTOP = \
-	../samuel.desktop.in
-
-# find .. -type f \! -path "*/.svn/*" \! -path "../po/*" -name "*.cc" -o -name "*.hh" -exec grep -lF '_(' {} \; | sed -e 's/^/  /;s/$/ \\/'
-XGETTEXTOPTIONS_C = --keyword=_
-SOURCES_C = \
-  ../engine/ai.cpp  ../engine/board.cpp ../engine/obook.cpp ../engine/enginemodule.cpp
+  ../desktop/samuel.desktop.in
 

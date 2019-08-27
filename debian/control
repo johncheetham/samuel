@@ -1,13 +1,14 @@
 Source: samuel
 Section: web
 Priority: extra
-Maintainer: Rogério Brito <rbrito@ime.usp.br>
+Maintainer: Thierry HUCHARD <thierry@ordissimo.com>
 Build-Depends:
  debhelper (>= 11),
  dh-exec,
  dh-python,
  python3-pkg-resources,
  python3-cairo,
+ python3-dev,
  g++,
  bash-completion
 Build-Depends-Indep:

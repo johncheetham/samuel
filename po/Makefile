@@ -5,7 +5,8 @@ MSGFMT = msgfmt
 MSGMERGE = msgmerge
 MSGINIT = msginit
 
-LOCALEDIR ?= locale
+LOCALEDIR ?= usr/share/locale
+APPLICATIONSDIR ?= usr/share/applications
 
 XGETTEXTOPTIONSCOMMON = --add-comments --sort-output --msgid-bugs-address=$(BUGSADDR) --package-name=$(DOMAIN) --from-code=UTF-8
 
@@ -27,7 +28,7 @@ $(call check_defined, BUGSADDR)
 
 PO = $(wildcard *.po)
 LANG = $(basename $(PO))
-ifneq ($(SOURCES_SH)$(SOURCES_PY)$(SOURCES_JAVA)$(SOURCES_C),)
+ifneq ($(SOURCES_SH)$(SOURCES_PY)$(SOURCES_JAVA)$(SOURCES_C)$(SOURCES_CPP),)
 MO = $(addsuffix .mo,$(LANG))
 endif
 DESKTOPS = $(basename $(SOURCES_DESKTOP))
@@ -84,7 +85,7 @@ update-po: $(DOMAIN).pot
 	$(MSGMERGE) --previous -U $$po $(DOMAIN).pot; \
 	done;
 
-$(DOMAIN).pot: Makevars $(SOURCES_SH) $(SOURCES_PY) $(SOURCES_JAVA) $(SOURCES_C) $(SOURCES_DESKTOP)
+$(DOMAIN).pot: Makevars $(SOURCES_SH) $(SOURCES_PY) $(SOURCES_JAVA) $(SOURCES_C) $(SOURCES_CPP) $(SOURCES_DESKTOP)
 	@echo "Updating $@ .. "
 	@$(shell :> $@)
 ifdef SOURCES_SH
@@ -107,6 +108,11 @@ ifdef SOURCES_C
 	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_C) -o $@ -j $(SOURCES_C)
 	@echo done
 endif
+ifdef SOURCES_CPP
+	@echo -n "  - CPP .. "
+	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_CPP) -o $@ -j $(SOURCES_CPP)
+	@echo done
+endif
 ifdef SOURCES_DESKTOP
 	@echo -n "  - DESKTOP .. "
 	@$(XGETTEXT) $(XGETTEXTOPTIONSCOMMON) $(XGETTEXTOPTIONS_DESKTOP) -o $@ -j $(SOURCES_DESKTOP)
@@ -115,9 +121,14 @@ endif
 
 install: all
 	for i in $(MO) ; do \
-	  t=../$(LOCALEDIR)/`basename $$i .mo`/LC_MESSAGES ;\
+	  t=$(DESTDIR)/$(LOCALEDIR)/`basename $$i .mo`/LC_MESSAGES ;\
 	  install -d $$t ;\
 	  install -m 644 $$i $$t/$(DOMAIN).mo ;\
+	done
+	for i in $(DESKTOPS) ; do \
+	  t=$(DESTDIR)/$(APPLICATIONSDIR) ;\
+	  install -d $$t ;\
+	  install -m 644 $$i $$t/`basename $$i` ;\
 	done
 
 clean:
