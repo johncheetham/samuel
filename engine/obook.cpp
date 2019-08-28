@@ -26,6 +26,8 @@
 #include <cstdio>
 #include <ctime>
 
+#include "ai.hh"
+
 #define BOOK_EXTRA_SIZE 200000
 #define NOVAL -30000
 
@@ -194,7 +196,7 @@ void COpeningBook::AddPosition( unsigned long ulKey,  unsigned long ulCheck, sho
             }
             if (!bQuiet) 
             {
-                    sprintf( msg, "Position Exists. %d\nValue was %d now %d", nEntry, pEntry->wValue, pEntry->wValue + wValue);
+                    sprintf( msg, _("Position Exists. %d\nValue was %d now %d"), nEntry, pEntry->wValue, pEntry->wValue + wValue);
                     DisplayText ( msg );
             }
             pEntry->wValue += wValue;
@@ -204,7 +206,7 @@ void COpeningBook::AddPosition( unsigned long ulKey,  unsigned long ulCheck, sho
         {
             if (m_nListSize >= BOOK_EXTRA_SIZE)
             {
-                DisplayText ("Book Full!");
+                DisplayText (_("Book Full!"));
                 return;
             }
             pEntry->pNext = &m_pExtra[ m_nListSize ];
@@ -221,7 +223,7 @@ void COpeningBook::AddPosition( unsigned long ulKey,  unsigned long ulCheck, sho
     pEntry->wValue = wValue;
     if (!bQuiet)
     {
-        sprintf ( msg, "Position Added. %d\nValue %d", nEntry, wValue);
+        sprintf ( msg, _("Position Added. %d\nValue %d"), nEntry, wValue);
         //DisplayText ( msg );
     }
 }
@@ -251,7 +253,7 @@ void COpeningBook::RemovePosition( CBoard &Board, int bQuiet )
             m_nPositions--;
             if (!bQuiet)
             {
-                sprintf ( msg, "Position Removed. %d\nValue was %d", nEntry, m_pHash [ nEntry ].wValue);
+                sprintf ( msg, _("Position Removed. %d\nValue was %d"), nEntry, m_pHash [ nEntry ].wValue);
                 //DisplayText ( msg );
             }
             if (pPrev != NULL)
@@ -269,7 +271,7 @@ void COpeningBook::RemovePosition( CBoard &Board, int bQuiet )
 
     if (!bQuiet)
     {
-        sprintf ( msg, "Position does not exist. %d\n",nEntry);
+        sprintf ( msg, _("Position does not exist. %d\n"),nEntry);
         DisplayText ( msg );
     }
 }
@@ -301,7 +303,7 @@ int COpeningBook::Load( char *sFileName )
     fclose ( fp );
 
     //char msg[ 255 ];
-    sprintf( msg, "%d Positions Loaded", i);
+    sprintf( msg, _("%d Positions Loaded"), i);
     DisplayText( msg );
     cout << "Opening Book database loaded from " << sFileName << endl;
     return true;
@@ -342,7 +344,7 @@ void COpeningBook::Save ( char *sFileName )
     fclose ( fp );
 
     //char msg[ 255 ];
-    sprintf ( msg, "%d Positions Saved", Num);
+    sprintf ( msg, _("%d Positions Saved"), Num);
     //DisplayText ( msg );
 }
 

@@ -25,6 +25,8 @@
 #include <iostream>
 #include <cstdio>
 
+#include "ai.hh"
+
 using namespace std;
 
 // Functions in ai.cpp to be called by enginemodule
@@ -101,6 +103,10 @@ engine_init(PyObject *self, PyObject *args)
     char *endgame3pcpath;
     char *endgame4pcpath;
     
+    setlocale(LC_ALL, "");
+    bindtextdomain("samuel", "/usr/share/locale/");
+    textdomain("samuel");
+
     // store the path to samuel config files
     if (!PyArg_ParseTuple(args, "ssss", &openingbookpath, &endgame2pcpath, &endgame3pcpath, &endgame4pcpath))
         return NULL;
@@ -445,29 +451,29 @@ void DisplayText(const char *sText)
 }
 
 static PyMethodDef EngineMethods[] = {    
-    {"init", engine_init, METH_VARARGS, "Initialise the engine."},
-    {"hmove", engine_hmove, METH_VARARGS, "Human Move."},
-    {"cmove", engine_cmove, METH_VARARGS, "Computer Move."}, 
-    {"setlevel", engine_setlevel, METH_VARARGS, "Set Level."},          
-    {"newgame", engine_newgame, METH_VARARGS, "New Game."}, 
-    {"loadgame", engine_loadgame, METH_VARARGS, "Load Game."},     
-    {"savegame", engine_savegame, METH_VARARGS, "Save Game."},
-    {"getFEN", engine_getFEN, METH_VARARGS, "Get FEN."},  
-    {"setposfromFEN", engine_set_pos_from_FEN, METH_VARARGS, "Set board position from FEN."}, 
-    {"PDNtoCB", engine_copyPDNtoCB, METH_VARARGS, "Copy PDN to clipboard."}, 
-    {"getPDN", engine_getPDN, METH_VARARGS, "Get PDN."}, 
-    {"movenow", engine_movenow, METH_VARARGS, "Move Now."}, 
-    {"rdisp", engine_running_display, METH_VARARGS, "Running Display."}, 
-    {"prev", engine_prev, METH_VARARGS, "Previous Move."}, 
-    {"next", engine_next, METH_VARARGS, "Next Move."},  
-    {"start", engine_start, METH_VARARGS, "Start of Moves."},
-    {"end", engine_end, METH_VARARGS, "End of Moves."},  
-    {"retract", engine_retract, METH_VARARGS, "Retract Move."}, 
-    {"openingbook", engine_opening_book, METH_VARARGS, "Opening Book."},
-    {"setboard", engine_setboard, METH_VARARGS, "Set Board."},   
-    {"setsidetomove", engine_set_side_to_move, METH_VARARGS, "Set Side To Move."}, 
-    {"setcomputercolour", engine_set_computer_colour, METH_VARARGS, "Set Computer Colour."},
-    {"flipboard", engine_flip_board, METH_VARARGS, "Flip Board."},                           
+    {"init", engine_init, METH_VARARGS, _("Initialise the engine")},
+    {"hmove", engine_hmove, METH_VARARGS, _("Human Move")},
+    {"cmove", engine_cmove, METH_VARARGS, _("Computer Move")}, 
+    {"setlevel", engine_setlevel, METH_VARARGS, _("Set Level")},          
+    {"newgame", engine_newgame, METH_VARARGS, _("New Game")}, 
+    {"loadgame", engine_loadgame, METH_VARARGS, _("Load Game")},     
+    {"savegame", engine_savegame, METH_VARARGS, _("Save Game")},
+    {"getFEN", engine_getFEN, METH_VARARGS, _("Get FEN")},  
+    {"setposfromFEN", engine_set_pos_from_FEN, METH_VARARGS, _("Set board position from FEN")}, 
+    {"PDNtoCB", engine_copyPDNtoCB, METH_VARARGS, _("Copy PDN to clipboard")}, 
+    {"getPDN", engine_getPDN, METH_VARARGS, _("Get PDN")}, 
+    {"movenow", engine_movenow, METH_VARARGS, _("Move Now")}, 
+    {"rdisp", engine_running_display, METH_VARARGS, _("Running Display")}, 
+    {"prev", engine_prev, METH_VARARGS, _("Previous Move")}, 
+    {"next", engine_next, METH_VARARGS, _("Next Move")},  
+    {"start", engine_start, METH_VARARGS, _("Start of Moves")},
+    {"end", engine_end, METH_VARARGS, _("End of Moves")},  
+    {"retract", engine_retract, METH_VARARGS, _("Retract Move")}, 
+    {"openingbook", engine_opening_book, METH_VARARGS, _("Opening Book")},
+    {"setboard", engine_setboard, METH_VARARGS, _("Set Board")},   
+    {"setsidetomove", engine_set_side_to_move, METH_VARARGS, _("Set Side To Move")}, 
+    {"setcomputercolour", engine_set_computer_colour, METH_VARARGS, _("Set Computer Colour")},
+    {"flipboard", engine_flip_board, METH_VARARGS, _("Flip Board")},                           
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 

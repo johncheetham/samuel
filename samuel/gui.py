@@ -30,6 +30,8 @@ if os.path.abspath(os.path.dirname(__file__)).startswith(sys.prefix):
 else:
     import engine
 from .constants import *
+from .tools import *
+import gettext
 
 class Gui:    
 
@@ -80,64 +82,64 @@ class Gui:
 
         # action group for setting search depth level        
         search_depth_actiongroup = Gtk.ActionGroup('AGSearchDepth')              
-        search_depth_actiongroup.add_radio_actions([('Beginner', None, '_Beginner', None, None, 0),
-                                       ('Advanced', None, '_Advanced', None, None, 1),
-                                       ('Expert', None, '_Expert', None, None, 2),
-                                       ('Custom', None, '_User-defined', None, None, 3), 
+        search_depth_actiongroup.add_radio_actions([('Beginner', None, _('Beginner'), None, None, 0),
+                                       ('Advanced', None, _('Advanced'), None, None, 1),
+                                       ('Expert', None, _('Expert'), None, None, 2),
+                                       ('Custom', None, _('User-defined'), None, None, 3), 
                                        ], 0, self.game.set_level)        
 
         # action group for showing/hiding panel        
         panel_action_group = Gtk.ActionGroup('AGPanel')
-        panel_action_group.add_toggle_actions([('showpanel', None, '_Information Panel', None, None,
+        panel_action_group.add_toggle_actions([('showpanel', None, _('Information Panel'), None, None,
                                                self.set_info_panel)])
-        panel_action_group.add_toggle_actions([('statusbar', None, '_Status Bar', None, None,
+        panel_action_group.add_toggle_actions([('statusbar', None, _('Status Bar'), None, None,
                                                self.set_status_bar)])
         self.panel_action_group = panel_action_group                                        
         
         # Computer Player
         computer_player_action_group = Gtk.ActionGroup('ComputerPlayer')
-        computer_player_action_group.add_radio_actions([('ComputerPlaysWhite', None, '_Computer Plays White', None, None, 0),
-                                              ('ComputerPlaysRed', None, '_Computer Plays Red', None, None, 1),
-                                              ('ComputerPlaysWhiteAndRed', None, '_Computer Plays White and Red', None, None, 2),
-                                              ('ComputerOff', None, '_Computer Off', None, None, 3),  
+        computer_player_action_group.add_radio_actions([('ComputerPlaysWhite', None, _('Computer Plays White'), None, None, 0),
+                                              ('ComputerPlaysRed', None, _('Computer Plays Red'), None, None, 1),
+                                              ('ComputerPlaysWhiteAndRed', None, _('Computer Plays White and Red'), None, None, 2),
+                                              ('ComputerOff', None, _('Computer Off'), None, None, 3),  
                                         ], 0, self.game.set_computer_player) 
         self.computer_player_action_group = computer_player_action_group        
 
         # Create a ToggleAction for flipping the board        
         flip_the_board_action_group = Gtk.ActionGroup('FlipTheBoard')
-        flip_the_board_action_group.add_toggle_actions([('FlipTheBoard', None, '_Flip the Board', None,
-                                         'Flip the Board', self.game.flip_the_board)])
+        flip_the_board_action_group.add_toggle_actions([('FlipTheBoard', None, _('Flip the Board'), None,
+                                         _('Flip the Board'), self.game.flip_the_board)])
         self.flip_the_board_action_group = flip_the_board_action_group
 
         # Create actions
-        actiongroup.add_actions([('Quit', Gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.game.quit_game),
-                                 ('NewGame', Gtk.STOCK_NEW, '_New Game', None, 'New Game', self.game.new_game),
-                                 ('LoadGame', Gtk.STOCK_OPEN, '_Load Game', None, 'Load Game', self.game.load_game),
-                                 ('SaveGame', Gtk.STOCK_SAVE, '_Save Game', None, 'Save Game', self.game.save_game),
-                                 ('MoveNow', None, '_Move Now (m)', None, 'Move Now', self.game.move_now),
-                                 ('Game', None, '_Game'),
-                                 ('PositionEdit', None, '_Position Edit', None, 'Position Edit', \
+        actiongroup.add_actions([('Quit', Gtk.STOCK_QUIT, _('Quit'), None, _('Quit the Program'), self.game.quit_game),
+                                 ('NewGame', Gtk.STOCK_NEW, _('New Game'), None, _('New Game'), self.game.new_game),
+                                 ('LoadGame', Gtk.STOCK_OPEN, _('Load Game'), None, _('Load Game'), self.game.load_game),
+                                 ('SaveGame', Gtk.STOCK_SAVE, _('Save Game'), None, _('Save Game'), self.game.save_game),
+                                 ('MoveNow', None, _('Move Now (m)'), None, _('Move Now'), self.game.move_now),
+                                 ('Game', None, _('Game')),
+                                 ('PositionEdit', None, _('Position Edit'), None, _('Position Edit'), \
                                      self.board.position_edit_init),
-                                 ('CopyFenToCB', None, '_Copy FEN to clipboard', None, 'Copy FEN to clipboard', \
+                                 ('CopyFenToCB', None, _('Copy FEN to clipboard'), None, _('Copy FEN to clipboard'), \
                                      self.game.copy_FEN_to_clipboard),
-                                 ('PasteFenFromCB', None, '_Paste FEN from clipboard', None, 'Paste FEN from clipboard', \
+                                 ('PasteFenFromCB', None, _('Paste FEN from clipboard'), None, _('Paste FEN from clipboard'), \
                                      self.game.paste_FEN_from_clipboard),       
-                                 ('CopyPDNToCB', Gtk.STOCK_COPY, '_Copy PDN to clipboard', None, 'Copy PDN to clipboard', \
+                                 ('CopyPDNToCB', Gtk.STOCK_COPY, _('Copy PDN to clipboard'), None, _('Copy PDN to clipboard'), \
                                      self.game.copy_PDN_to_clipboard),
-                                 ('PastePDNFromCB', Gtk.STOCK_PASTE, '_Paste PDN from clipboard', None, 'Paste PDN from clipboard', \
+                                 ('PastePDNFromCB', Gtk.STOCK_PASTE, _('Paste PDN from clipboard'), None, _('Paste PDN from clipboard'), \
                                      self.game.paste_PDN_from_clipboard),                      
-                                 ('Edit', None, '_Edit'),
-                                 ('SetCustomLevelDepth', None, '_Set User-defined Level', None, 'Set Custom Level Depth', \
+                                 ('Edit', None, _('Edit')),
+                                 ('SetCustomLevelDepth', None, _('Set User-Defined Level'), None, _('Set Custom Level Depth'), \
                                     self.game.set_custom_search_depth),                                 
-                                 ('Level', None, '_Level'), 
-                                 ('Options', None, '_Options'),                                                    
-                                 ('About', Gtk.STOCK_ABOUT, '_About', None, 'Show About Box', self.about_box),
-                                 ('samhelp', Gtk.STOCK_HELP, '_Help (online)', None, 'Samuel Help (Online)', \
+                                 ('Level', None, _('Level')), 
+                                 ('Options', None, _('Options')),                                                    
+                                 ('About', Gtk.STOCK_ABOUT, _('About'), None, _('Show About Box'), self.about_box),
+                                 ('samhelp', Gtk.STOCK_HELP, _('Help (online)'), None, _('Samuel Help (Online)'), \
                                     self.game.open_help),
-                                 ('Help', None, '_Help'),
+                                 ('Help', None, _('Help')),
                                 ])        
    
-        actiongroup.get_action('Quit').set_property('short-label', '_Quit')
+        actiongroup.get_action('Quit').set_property('short-label', _('Quit'))
         actiongroup.get_action('MoveNow').set_sensitive(False)                                                    
 
         # Add the actiongroups to the uimanager
@@ -258,13 +260,13 @@ class Gui:
         self.infolabel.set_text(msg)              
 
         # go button
-        self.go_button = Gtk.Button("Go")
+        self.go_button = Gtk.Button(_("Go"))
         self.go_button.connect("clicked", self.game.callback, 'Go') 
         hbox1.pack_start(self.go_button, True, False, 0) 
         self.go_button.show()
         
         # retract button
-        self.retract_button = Gtk.Button("Retract")
+        self.retract_button = Gtk.Button(_("Retract"))
         self.retract_button.connect("clicked", self.game.callback, 'Retract') 
         hbox1.pack_start(self.retract_button, True, False, 0) 
         self.retract_button.show()
@@ -308,7 +310,7 @@ class Gui:
         hbox1 = Gtk.HBox(False, 0) 
         vbox.pack_start(hbox1, True, False, 0) 
         label = Gtk.Label()
-        label.set_text("Side to Move")
+        label.set_text(_("Side to Move"))
         label.show()
         vbox.pack_start(label, True, False, 7) 
         hbox2 = Gtk.HBox(False, 0) 
@@ -331,21 +333,21 @@ class Gui:
         frame.add(self.infolabel2)
         self.infolabel2.show()        
         
-        self.cancel_button = Gtk.Button("Cancel")
+        self.cancel_button = Gtk.Button(_("Cancel"))
         self.cancel_button.connect("clicked", self.game.callback, 'Cancel') 
         hbox1.pack_start(self.cancel_button, True, False, 0) 
         self.cancel_button.show()       
 
-        button = Gtk.Button("OK")
+        button = Gtk.Button(_("OK"))
         button.connect("clicked", self.game.callback, 'OK') 
         hbox1.pack_start(button, True, False, 0) 
         button.show()        
 
-        self.radio_button_red = Gtk.RadioButton.new_with_label_from_widget(None, "Red")        
+        self.radio_button_red = Gtk.RadioButton.new_with_label_from_widget(None, _("Red"))        
         hbox2.pack_start(self.radio_button_red, True, False, 0) 
         self.radio_button_red.show()
 
-        self.radio_button_white = Gtk.RadioButton.new_with_label_from_widget(self.radio_button_red, "White")
+        self.radio_button_white = Gtk.RadioButton.new_with_label_from_widget(self.radio_button_red, _("White"))
         hbox2.pack_start(self.radio_button_white, True, False, 0) 
         self.radio_button_white.show()        
 
@@ -357,7 +359,7 @@ class Gui:
         self.status_bar = Gtk.Statusbar() 
         main_vbox.pack_start(self.status_bar, False, False, 0)        
         self.context_id = self.status_bar.get_context_id("samuel statusbar")        
-        self.set_status_bar_msg("Red to Move")           
+        self.set_status_bar_msg(_("Red to Move"))           
 
         self.window.show_all() 
         self.posedit_hbox.hide()        
@@ -409,14 +411,14 @@ class Gui:
         about = Gtk.AboutDialog()        
         about.set_program_name(NAME)
         about.set_version(VERSION)
-        about.set_copyright('Copyright \u00A9 2009,2019 John Cheetham')                             
-        about.set_comments("Samuel is a draughts program for the Gnome desktop.\n \
-It is based on the windows program guicheckers")
+        about.set_copyright(_('Copyright \u00A9 2009,2019 John Cheetham'))                             
+        about.set_comments(_("Samuel is a draughts program for the Gnome desktop.\n \
+It is based on the windows program guicheckers"))
         about.set_authors(["John Cheetham"])
         about.set_website("http://www.johncheetham.com/projects/samuel/index.html")
         about.set_logo(GdkPixbuf.Pixbuf.new_from_file(os.path.join(self.game.prefix, "images/logo.png")))
 
-        license = '''Samuel is free software: you can redistribute it and/or modify
+        license = _('''Samuel is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
@@ -427,7 +429,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Samuel.  If not, see <http://www.gnu.org/licenses/>.'''
+along with Samuel.  If not, see <http://www.gnu.org/licenses/>.''')
 
         about.set_license(license)
         about.set_transient_for(self.window)

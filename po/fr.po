@@ -1,0 +1,508 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
+"POT-Creation-Date: 2019-08-26 14:24+0200\n"
+"PO-Revision-Date: 2019-06-05 14:56+0200\n"
+"Last-Translator: Brice <brice@ordissimo.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.1.6\n"
+
+#. char msg[ 255 ];
+#: ../engine/obook.cpp:306
+#, c-format
+msgid "%d Positions Loaded"
+msgstr "%d Position sauvée"
+
+#. char msg[ 255 ];
+#: ../engine/obook.cpp:347
+#, c-format
+msgid "%d Positions Saved"
+msgstr "%d Position sauvée"
+
+#: ../engine/ai.cpp:527
+#, c-format
+msgid "(searching...)\n"
+msgstr "(Recherche en cours...)\n"
+
+#: ../samuel/samuel.py:376
+msgid "/Computer to move"
+msgstr "/Au tour de l'ordinateur"
+
+#: ../samuel/samuel.py:374
+msgid "/Human to move"
+msgstr "/Au tour de l'utilisateur"
+
+#: ../samuel/gui.py:136
+msgid "About"
+msgstr "A propos"
+
+#: ../samuel/gui.py:86
+msgid "Advanced"
+msgstr "Avancé"
+
+# ../samuel/samuel.py:531 ../samuel/samuel.py:564
+#: ../samuel/samuel.py:531 ../samuel/samuel.py:564
+msgid "All files"
+msgstr "Tous les fichiers"
+
+#: ../samuel/gui.py:85
+msgid "Beginner"
+msgstr "Débutant"
+
+#: ../engine/obook.cpp:209
+msgid "Book Full!"
+msgstr "Livre complet"
+
+#: ../samuel/gui.py:336
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../samuel/board.py:207
+msgid "Click Cancel to discard changes"
+msgstr "Cliquer sur Annuler pour ne pas enregistrer les changements"
+
+#: ../samuel/board.py:206
+msgid "Click OK to apply changes.\n"
+msgstr "Cliquer sur Valider pour enregistrer les changements.\n"
+
+#: ../engine/enginemodule.cpp:456
+msgid "Computer Move"
+msgstr "Déplacement de l'ordinateur."
+
+#: ../samuel/gui.py:104
+msgid "Computer Off"
+msgstr "Arrêt de l'ordinateur"
+
+#: ../samuel/gui.py:102
+msgid "Computer Plays Red"
+msgstr "L'ordinateur joue les Rouges"
+
+#: ../samuel/gui.py:101
+msgid "Computer Plays White"
+msgstr "L'ordinateur joue les Blancs"
+
+#: ../samuel/gui.py:103
+msgid "Computer Plays White and Red"
+msgstr "L'ordinateur joue les Blancs et les Rouges"
+
+#: ../samuel/gui.py:123
+msgid "Copy FEN to clipboard"
+msgstr "Copier FEN dans le presse-papier"
+
+#: ../samuel/gui.py:127 ../engine/enginemodule.cpp:463
+msgid "Copy PDN to clipboard"
+msgstr "Copier PDN dans le presse-papier"
+
+#: ../samuel/gui.py:414
+msgid "Copyright \\u00A9 2009,2019 John Cheetham"
+msgstr "Copyright \\u00A9 2009,2019 John Cheetham"
+
+#: ../engine/ai.cpp:540
+#, c-format
+msgid "Depth: %d/%d (%d/%d)   Eval: %d  "
+msgstr "Profondeur: %d/%d (%d/%d)   Évaluation: %d  "
+
+#: ../samuel.desktop.in:6
+msgid "Draughts Game"
+msgstr "Jeu de dames"
+
+#: ../samuel/gui.py:131
+msgid "Edit"
+msgstr "Édition"
+
+#: ../engine/enginemodule.cpp:470
+msgid "End of Moves"
+msgstr "Fin des déplacements"
+
+#. some secondary text
+#: ../samuel/samuel.py:682
+msgid "Enter values for Search Depth\n"
+msgstr "Régler le nombre de coups d'avance calculés'\n"
+
+#: ../samuel/gui.py:87
+msgid "Expert"
+msgstr "Expert"
+
+#: ../engine/enginemodule.cpp:476
+msgid "Flip Board"
+msgstr "Tourner le damier."
+
+#: ../samuel/gui.py:110 ../samuel/gui.py:111
+msgid "Flip the Board"
+msgstr "Tourner le damier"
+
+#: ../samuel/gui.py:120
+msgid "Game"
+msgstr "Jeu"
+
+#: ../samuel/samuel.py:353
+msgid "Game Over - Red Wins"
+msgstr "Fin de la partie - Victoire des Rouges"
+
+#: ../samuel/samuel.py:346
+msgid "Game Over - White Wins"
+msgstr "Fin de la partie - Victoire des Blancs"
+
+#: ../samuel/samuel.py:823
+msgid "Game Over - red wins"
+msgstr "Fin de la partie - Victoire des Rouges"
+
+#: ../samuel/samuel.py:827
+msgid "Game Over - white wins"
+msgstr "Fin de la partie - Victoire des Blancs"
+
+#: ../samuel/samuel.py:858
+msgid "Gameover - red wins"
+msgstr "Fin de la partie - Victoire des Rouges"
+
+#: ../samuel/samuel.py:862
+msgid "Gameover - white wins"
+msgstr "Fin de la partie - Victoire des Blancs"
+
+#: ../engine/enginemodule.cpp:461
+msgid "Get FEN"
+msgstr "Récuperer FEN."
+
+#: ../engine/enginemodule.cpp:464
+msgid "Get PDN"
+msgstr "Récuperer PDN"
+
+#. go button
+#: ../samuel/gui.py:263
+msgid "Go"
+msgstr "Commencer"
+
+#: ../samuel/gui.py:139
+msgid "Help"
+msgstr "Aide"
+
+#: ../samuel/gui.py:137
+msgid "Help (online)"
+msgstr "Aide (en ligne)"
+
+#: ../engine/enginemodule.cpp:455
+msgid "Human Move"
+msgstr "L'utilisateur joue"
+
+#: ../samuel/gui.py:93
+msgid "Information Panel"
+msgstr "Panneau d'information"
+
+#: ../engine/enginemodule.cpp:454
+msgid "Initialise the engine"
+msgstr "Initialisation de l'inteligence artificielle"
+
+#: ../samuel/gui.py:134
+msgid "Level"
+msgstr "Niveau"
+
+#: ../samuel/gui.py:117 ../engine/enginemodule.cpp:459
+msgid "Load Game"
+msgstr "Charger une partie"
+
+#: ../samuel/samuel.py:517
+msgid "Load.."
+msgstr "Chargement..."
+
+#: ../samuel/gui.py:119 ../engine/enginemodule.cpp:465
+msgid "Move Now"
+msgstr "Jouer maintenant"
+
+#: ../samuel/gui.py:119
+msgid "Move Now (m)"
+msgstr "Jouer maintenant"
+
+#: ../samuel/samuel.py:847
+msgid "Move a red piece to restart the game from here\n"
+msgstr "Jouer un pion rouge pour reprendre la partie\n"
+
+#: ../samuel/samuel.py:837
+msgid "Move a white piece to restart the game from here\n"
+msgstr "Jouer un pion blanc pour reprendre la partie\n"
+
+#: ../engine/ai.cpp:543
+#, c-format
+msgid "Move: %ld%c%ld Time: %.2fs  KNodes: %ld KN/Sec: %d"
+msgstr "Déplacement: %ld%c%ld Temps: %.2fs  NCoeurs: %ld NC/Sec: %d"
+
+#: ../samuel/gui.py:116 ../engine/enginemodule.cpp:458
+msgid "New Game"
+msgstr "Nouvelle partie"
+
+#: ../engine/enginemodule.cpp:468
+msgid "Next Move"
+msgstr "Coup suivant"
+
+#: ../samuel/gui.py:341
+msgid "OK"
+msgstr "Valider"
+
+#: ../engine/enginemodule.cpp:472
+msgid "Opening Book"
+msgstr "Ouvrir un livre"
+
+#: ../samuel/gui.py:135
+msgid "Options"
+msgstr "Options"
+
+#: ../samuel/gui.py:125
+msgid "Paste FEN from clipboard"
+msgstr "Coller FEN depuis le presse-papier"
+
+#: ../samuel/gui.py:129
+msgid "Paste PDN from clipboard"
+msgstr "Coller PDN depuis le presse-papier"
+
+#: ../engine/obook.cpp:226
+#, c-format
+msgid ""
+"Position Added. %d\n"
+"Value %d"
+msgstr ""
+"Position ajoutées. %d\n"
+"Valeur %d"
+
+#: ../samuel/gui.py:121
+msgid "Position Edit"
+msgstr "Modifier la position"
+
+#: ../engine/obook.cpp:199
+#, c-format
+msgid ""
+"Position Exists. %d\n"
+"Value was %d now %d"
+msgstr ""
+"Position existe. %d\n"
+"La valeur était %d, maintenant %d"
+
+#: ../engine/obook.cpp:256
+#, c-format
+msgid ""
+"Position Removed. %d\n"
+"Value was %d"
+msgstr ""
+"Position supprimées. %d\n"
+"La valeur était %d"
+
+#: ../engine/obook.cpp:274
+#, c-format
+msgid "Position does not exist. %d\n"
+msgstr "La position n'éxiste pas. %d\n"
+
+#: ../samuel/samuel.py:835 ../samuel/samuel.py:845
+msgid "Press Go to restart the game from here\n"
+msgstr "Cliquer sur Commencer pour reprendre la partie\n"
+
+#: ../samuel/samuel.py:838 ../samuel/samuel.py:848
+msgid "Press the < > buttons to browse the game"
+msgstr "Cliquer sur les boutons < > pour afficher les coups joués"
+
+#: ../engine/enginemodule.cpp:467
+msgid "Previous Move"
+msgstr "Coup précédent"
+
+#. Create actions
+#: ../samuel/gui.py:115 ../samuel/gui.py:142
+msgid "Quit"
+msgstr "Fermer"
+
+#: ../samuel/gui.py:115
+msgid "Quit the Program"
+msgstr "Fermer le programme"
+
+#: ../samuel/gui.py:346 ../samuel/samuel.py:367
+msgid "Red"
+msgstr "Rouge"
+
+#. if self.red_player == COMPUTER:
+#. text = text + "Press Go to restart the game from here\n"
+#. else:
+#. text = text + "Move a red piece to restart the game from here\n"
+#. text = text + "Press the < > buttons to browse the game"
+#: ../samuel/gui.py:362 ../samuel/samuel.py:507 ../samuel/samuel.py:841
+#: ../samuel/samuel.py:885
+msgid "Red to Move"
+msgstr "Aux Rouges de jouer"
+
+#. retract button
+#: ../samuel/gui.py:269
+msgid "Retract"
+msgstr "Annuler le dernier coup"
+
+#: ../engine/enginemodule.cpp:471
+msgid "Retract Move"
+msgstr "Annuler le dernier coup"
+
+#: ../engine/enginemodule.cpp:466
+msgid "Running Display"
+msgstr "Affichage en cours"
+
+#: ../samuel.desktop.in:4
+msgid "Samuel"
+msgstr ""
+
+#: ../samuel/gui.py:137
+msgid "Samuel Help (Online)"
+msgstr "Aide pour Samuel (En ligne)"
+
+#: ../samuel.desktop.in:5
+msgid "Samuel is a draughts program for the Gnome desktop"
+msgstr "Samuel est un jeu de dames pour le bureau Gnome"
+
+#: ../samuel/gui.py:415
+msgid ""
+"Samuel is a draughts program for the Gnome desktop.\n"
+" It is based on the windows program guicheckers"
+msgstr ""
+"Samuel est un jeu de dames pour le bureau Gnome\n"
+" Il est basé sur le programme Windows guicheckers"
+
+#: ../samuel/gui.py:421
+msgid ""
+"Samuel is free software: you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"Samuel is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with Samuel.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Samuel est un logiciel libre ; vous pouvez le redistribuer\n"
+"ou le modifier suivant les termes de la GNU General Public License\n"
+"telle que publiée par la Free Software Foundation ; soit la version 3\n"
+"de la licence, soit (à votre gré) toute version ultérieure.\n"
+"\n"
+"Samuel est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE\n"
+"GARANTIE ; sans même la garantie tacite de QUALITÉ MARCHANDE ou\n"
+"d'ADÉQUATION à UN BUT PARTICULIER. Consultez la GNU General Public\n"
+"License pour plus de détails.\n"
+"\n"
+"Vous devez avoir reçu une copie de la GNU General Public License\n"
+"en même temps que Samuel ; si ce n'est pas le cas, consultez\n"
+"<http://www.gnu.org/licenses>."
+
+#: ../samuel/gui.py:118 ../engine/enginemodule.cpp:460
+msgid "Save Game"
+msgstr "Sauvegarder la partie"
+
+#: ../samuel/samuel.py:550
+msgid "Save.."
+msgstr "Sauvegarder..."
+
+#: ../samuel/samuel.py:676
+msgid ""
+"Search Depth\n"
+"(max 52)\n"
+msgstr ""
+"Nombre de coups d'avance\n"
+"calculés (max 52)\n"
+
+#: ../engine/enginemodule.cpp:473
+msgid "Set Board"
+msgstr "Positionner le damier"
+
+#: ../engine/enginemodule.cpp:475
+msgid "Set Computer Colour"
+msgstr "Choix de la couleur pour l'ordinateur"
+
+#: ../samuel/gui.py:132
+msgid "Set Custom Level Depth"
+msgstr "Régler le nombre de coups d'avance calculés"
+
+#: ../engine/enginemodule.cpp:457
+msgid "Set Level"
+msgstr "Changer le niveau"
+
+#: ../engine/enginemodule.cpp:474
+msgid "Set Side To Move"
+msgstr "Tourner le damier"
+
+#: ../samuel/board.py:205
+msgid "Set Side to Move with the radio buttons\n"
+msgstr "Choisir le côté à modifier avec les boutons radio\n"
+
+#: ../samuel/gui.py:132 ../samuel/samuel.py:657
+msgid "Set User-Defined Level"
+msgstr "Régler le niveau personnalisé"
+
+#: ../engine/enginemodule.cpp:462
+msgid "Set board position from FEN"
+msgstr "Choix de la position du damier depuis FEN"
+
+#: ../samuel/gui.py:136
+msgid "Show About Box"
+msgstr "Afficher le dialogue A propos"
+
+#: ../samuel/gui.py:313
+msgid "Side to Move"
+msgstr "Côté à jouer"
+
+#: ../engine/enginemodule.cpp:469
+msgid "Start of Moves"
+msgstr "Début des déplacements"
+
+#: ../samuel/gui.py:95
+msgid "Status Bar"
+msgstr "Barre d'état"
+
+#: ../samuel/samuel.py:678
+msgid ""
+"Time Limit\n"
+"(in seconds)"
+msgstr ""
+"Temps limite\n"
+"(en secondes)"
+
+#: ../samuel/board.py:203
+msgid "Use left mouse to set red pieces\n"
+msgstr "Utiliser le bouton gauche de la souris pour modifier les Rouges\n"
+
+#: ../samuel/board.py:204
+msgid "Use right mouse to set white pieces\n"
+msgstr "Utiliser le bouton gauche de la souris pour modifier les Blancs\n"
+
+#: ../samuel/gui.py:88
+msgid "User-defined"
+msgstr "Personnalisé"
+
+#: ../samuel/gui.py:350 ../samuel/samuel.py:370
+msgid "White"
+msgstr "Blancs"
+
+#. if self.white_player == COMPUTER:
+#. text = text + "Press Go to restart the game from here\n"
+#. else:
+#. text = text + "Move a white piece to restart the game from here\n"
+#. text = text + "Press the < > buttons to browse the game"
+#: ../samuel/samuel.py:831 ../samuel/samuel.py:874
+msgid "White to Move"
+msgstr "Aux Blancs de jouer"
+
+#: ../samuel/samuel.py:683
+msgid "and Time Limit."
+msgstr "et limite de temps."
+
+#: ../samuel/samuel.py:526 ../samuel/samuel.py:559
+msgid "pdn files"
+msgstr "fichiers pdn"
+
+#: ../samuel.desktop.in:7
+msgid "samuel.png"
+msgstr ""
+

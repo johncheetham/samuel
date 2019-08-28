@@ -1,0 +1,30 @@
+Source: samuel
+Section: web
+Priority: extra
+Maintainer: Thierry HUCHARD <thierry@ordissimo.com>
+Build-Depends:
+ debhelper (>= 11),
+ dh-exec,
+ dh-python,
+ python3-pkg-resources,
+ python3-cairo,
+ python3-dev,
+ g++,
+ bash-completion
+Build-Depends-Indep:
+ python3
+X-Python3-Version: >= 3.2
+Standards-Version: 3.9.8
+
+Package: samuel
+Architecture: all
+Pre-Depends:
+ dpkg (>= 1.15.7.2)
+Depends: python3, python3-gi, python3-gi-cairo, gir1.2-gtk-3.0, gir1.2-gstreamer-1.0,
+ ${misc:Depends},
+ ${python3:Depends}
+Description: downloader of videos from YouTube and other sites
+ youtube-dl is a small command-line program to download videos from
+ YouTube.com and other sites that don't provide direct links to the
+ videos served.
+
