@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: bugs@ordissimo.com\n"
-"POT-Creation-Date: 2019-08-26 14:24+0200\n"
-"PO-Revision-Date: 2019-08-14 16:42+0200\n"
+"POT-Creation-Date: 2019-08-26 15:02+0000\n"
+"PO-Revision-Date: 2019-08-30 18:59+0200\n"
 "Last-Translator: Sara <sisajola@gmail.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -22,246 +22,246 @@ msgstr ""
 #: ../engine/obook.cpp:306
 #, c-format
 msgid "%d Positions Loaded"
-msgstr ""
+msgstr "%d Posizione salvata"
 
 #. char msg[ 255 ];
 #: ../engine/obook.cpp:347
 #, c-format
 msgid "%d Positions Saved"
-msgstr ""
+msgstr "%d Posizione salvata"
 
 #: ../engine/ai.cpp:527
 #, c-format
 msgid "(searching...)\n"
-msgstr ""
+msgstr "(ricerca in corso...)\n"
 
 #: ../samuel/samuel.py:376
 msgid "/Computer to move"
-msgstr ""
+msgstr "/La mano al computer"
 
 #: ../samuel/samuel.py:374
 msgid "/Human to move"
-msgstr ""
+msgstr "/La mano al giocatore"
 
 #: ../samuel/gui.py:136
 msgid "About"
-msgstr ""
+msgstr "A proposito"
 
 #: ../samuel/gui.py:86
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzato"
 
 #: ../samuel/samuel.py:531 ../samuel/samuel.py:564
 msgid "All files"
-msgstr ""
+msgstr "Tutti i file"
 
 #: ../samuel/gui.py:85
 msgid "Beginner"
-msgstr ""
+msgstr "Principiante"
 
 #: ../engine/obook.cpp:209
 msgid "Book Full!"
-msgstr ""
+msgstr "Libro completo!"
 
 #: ../samuel/gui.py:336
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: ../samuel/board.py:207
 msgid "Click Cancel to discard changes"
-msgstr ""
+msgstr "Clicca su Annulla per non tenere conto dei cambiamenti."
 
 #: ../samuel/board.py:206
 msgid "Click OK to apply changes.\n"
-msgstr ""
+msgstr "Clicca su Convalida per salvare i cambiamenti.\n"
 
 #: ../engine/enginemodule.cpp:456
 msgid "Computer Move"
-msgstr ""
+msgstr "Mossa del computer"
 
 #: ../samuel/gui.py:104
 msgid "Computer Off"
-msgstr ""
+msgstr "Computer Off"
 
 #: ../samuel/gui.py:102
 msgid "Computer Plays Red"
-msgstr ""
+msgstr "Il computer gioca le pedine Rosse"
 
 #: ../samuel/gui.py:101
 msgid "Computer Plays White"
-msgstr ""
+msgstr "Il computer gioca le pedine Bianche"
 
 #: ../samuel/gui.py:103
 msgid "Computer Plays White and Red"
-msgstr ""
+msgstr "Il computer gioca le pedine Bianche e Rosse"
 
 #: ../samuel/gui.py:123
 msgid "Copy FEN to clipboard"
-msgstr ""
+msgstr "Copia il FEN nella clipboard"
 
 #: ../samuel/gui.py:127 ../engine/enginemodule.cpp:463
 msgid "Copy PDN to clipboard"
-msgstr ""
+msgstr "Copia il PDN nella clipboard"
 
 #: ../samuel/gui.py:414
 msgid "Copyright \\u00A9 2009,2019 John Cheetham"
-msgstr ""
+msgstr "Copyright \\u00A9 2009,2019 John Cheetham"
 
 #: ../engine/ai.cpp:540
 #, c-format
 msgid "Depth: %d/%d (%d/%d)   Eval: %d  "
-msgstr ""
+msgstr "Profondità: %d/%d (%d/%d)   Valutazione: %d  "
 
 #: ../samuel.desktop.in:6
 msgid "Draughts Game"
-msgstr ""
+msgstr "Gioco della dama"
 
 #: ../samuel/gui.py:131
 msgid "Edit"
-msgstr ""
+msgstr "Modifica"
 
 #: ../engine/enginemodule.cpp:470
 msgid "End of Moves"
-msgstr ""
+msgstr "Fine delle mosse"
 
 #. some secondary text
 #: ../samuel/samuel.py:682
 msgid "Enter values for Search Depth\n"
-msgstr ""
+msgstr "Impostare il numero di mosse calcolate in precedenza\n"
 
 #: ../samuel/gui.py:87
 msgid "Expert"
-msgstr ""
+msgstr "Esperto"
 
 #: ../engine/enginemodule.cpp:476
 msgid "Flip Board"
-msgstr ""
+msgstr "Girare la damiera"
 
 #: ../samuel/gui.py:110 ../samuel/gui.py:111
 msgid "Flip the Board"
-msgstr ""
+msgstr "Girare la damiera"
 
 #: ../samuel/gui.py:120
 msgid "Game"
-msgstr ""
+msgstr "Partita"
 
 #: ../samuel/samuel.py:353
 msgid "Game Over - Red Wins"
-msgstr ""
+msgstr "Game Over - I Rossi vincono"
 
 #: ../samuel/samuel.py:346
 msgid "Game Over - White Wins"
-msgstr ""
+msgstr "Game Over - I Bianchi vincono"
 
 #: ../samuel/samuel.py:823
 msgid "Game Over - red wins"
-msgstr ""
+msgstr "Game Over - Vittoria dei rossi"
 
 #: ../samuel/samuel.py:827
 msgid "Game Over - white wins"
-msgstr ""
+msgstr "Game Over - Vittoria dei bianchi"
 
 #: ../samuel/samuel.py:858
 msgid "Gameover - red wins"
-msgstr ""
+msgstr "Gameover - I Rossi vincono"
 
 #: ../samuel/samuel.py:862
 msgid "Gameover - white wins"
-msgstr ""
+msgstr "Gameover - I bianchi vincono"
 
 #: ../engine/enginemodule.cpp:461
 msgid "Get FEN"
-msgstr ""
+msgstr "Recupera il FEN"
 
 #: ../engine/enginemodule.cpp:464
 msgid "Get PDN"
-msgstr ""
+msgstr "Recupera il PDN"
 
 #. go button
 #: ../samuel/gui.py:263
 msgid "Go"
-msgstr ""
+msgstr "Inizia"
 
 #: ../samuel/gui.py:139
 msgid "Help"
-msgstr ""
+msgstr "Aiuto"
 
 #: ../samuel/gui.py:137
 msgid "Help (online)"
-msgstr ""
+msgstr "Aiuto (online)"
 
 #: ../engine/enginemodule.cpp:455
 msgid "Human Move"
-msgstr ""
+msgstr "Mossa del giocatore"
 
 #: ../samuel/gui.py:93
 msgid "Information Panel"
-msgstr ""
+msgstr "Pannello Informazioni"
 
 #: ../engine/enginemodule.cpp:454
 msgid "Initialise the engine"
-msgstr ""
+msgstr "Inizializzazione dell'intelligenza artificiale"
 
 #: ../samuel/gui.py:134
 msgid "Level"
-msgstr ""
+msgstr "Livello"
 
 #: ../samuel/gui.py:117 ../engine/enginemodule.cpp:459
 msgid "Load Game"
-msgstr ""
+msgstr "Carica la partita"
 
 #: ../samuel/samuel.py:517
 msgid "Load.."
-msgstr ""
+msgstr "Caricamento..."
 
 #: ../samuel/gui.py:119 ../engine/enginemodule.cpp:465
 msgid "Move Now"
-msgstr ""
+msgstr "Gioca adesso"
 
 #: ../samuel/gui.py:119
 msgid "Move Now (m)"
-msgstr ""
+msgstr "Gioca adesso"
 
 #: ../samuel/samuel.py:847
 msgid "Move a red piece to restart the game from here\n"
-msgstr ""
+msgstr "Muovi una pedina rossa per riprendere il gioco\n"
 
 #: ../samuel/samuel.py:837
 msgid "Move a white piece to restart the game from here\n"
-msgstr ""
+msgstr "Muovi una pedina bianca per riprendere il gioco\n"
 
 #: ../engine/ai.cpp:543
 #, c-format
 msgid "Move: %ld%c%ld Time: %.2fs  KNodes: %ld KN/Sec: %d"
-msgstr ""
+msgstr "Mossa: %ld%c%ld Tempo: %.2fs  KNodo: %ld KN/Sec: %d"
 
 #: ../samuel/gui.py:116 ../engine/enginemodule.cpp:458
 msgid "New Game"
-msgstr ""
+msgstr "Nuova partita"
 
 #: ../engine/enginemodule.cpp:468
 msgid "Next Move"
-msgstr ""
+msgstr "Prossima mossa"
 
 #: ../samuel/gui.py:341
 msgid "OK"
-msgstr ""
+msgstr "Convalida"
 
 #: ../engine/enginemodule.cpp:472
 msgid "Opening Book"
-msgstr ""
+msgstr "Aprire un libro"
 
 #: ../samuel/gui.py:135
 msgid "Options"
-msgstr ""
+msgstr "Opzioni"
 
 #: ../samuel/gui.py:125
 msgid "Paste FEN from clipboard"
-msgstr ""
+msgstr "Incolla il FEN dalla clipboard"
 
 #: ../samuel/gui.py:129
 msgid "Paste PDN from clipboard"
-msgstr ""
+msgstr "Incolla il PDN dalla clipboard"
 
 #: ../engine/obook.cpp:226
 #, c-format
@@ -269,10 +269,12 @@ msgid ""
 "Position Added. %d\n"
 "Value %d"
 msgstr ""
+"Posizione aggiunta. %d\n"
+"Valore %d"
 
 #: ../samuel/gui.py:121
 msgid "Position Edit"
-msgstr ""
+msgstr "Modificare la posizione"
 
 #: ../engine/obook.cpp:199
 #, c-format
@@ -280,6 +282,8 @@ msgid ""
 "Position Exists. %d\n"
 "Value was %d now %d"
 msgstr ""
+"La posizione esiste. %d\n"
+"Il valore era %d, adesso %d"
 
 #: ../engine/obook.cpp:256
 #, c-format
@@ -287,36 +291,38 @@ msgid ""
 "Position Removed. %d\n"
 "Value was %d"
 msgstr ""
+"Posizione soppressa. %d\n"
+"Il valore era %d"
 
 #: ../engine/obook.cpp:274
 #, c-format
 msgid "Position does not exist. %d\n"
-msgstr ""
+msgstr "La posizione non esiste. %d\n"
 
 #: ../samuel/samuel.py:835 ../samuel/samuel.py:845
 msgid "Press Go to restart the game from here\n"
-msgstr ""
+msgstr "Premi Inizia per riprendere la partita\n"
 
 #: ../samuel/samuel.py:838 ../samuel/samuel.py:848
 msgid "Press the < > buttons to browse the game"
-msgstr ""
+msgstr "Clicca sul tasto < > per visualizzare le mosse giocate"
 
 #: ../engine/enginemodule.cpp:467
 msgid "Previous Move"
-msgstr ""
+msgstr "Mossa precedente"
 
 #. Create actions
 #: ../samuel/gui.py:115 ../samuel/gui.py:142
 msgid "Quit"
-msgstr ""
+msgstr "Chiudi"
 
 #: ../samuel/gui.py:115
 msgid "Quit the Program"
-msgstr ""
+msgstr "Chiudere il programma"
 
 #: ../samuel/gui.py:346 ../samuel/samuel.py:367
 msgid "Red"
-msgstr ""
+msgstr "Rosso"
 
 #. if self.red_player == COMPUTER:
 #. text = text + "Press Go to restart the game from here\n"
@@ -326,38 +332,40 @@ msgstr ""
 #: ../samuel/gui.py:362 ../samuel/samuel.py:507 ../samuel/samuel.py:841
 #: ../samuel/samuel.py:885
 msgid "Red to Move"
-msgstr ""
+msgstr "Tocca ai Rossi"
 
 #. retract button
 #: ../samuel/gui.py:269
 msgid "Retract"
-msgstr ""
+msgstr "Annulla"
 
 #: ../engine/enginemodule.cpp:471
 msgid "Retract Move"
-msgstr ""
+msgstr "Annullare l'ultima mossa"
 
 #: ../engine/enginemodule.cpp:466
 msgid "Running Display"
-msgstr ""
+msgstr "Visualizzazione in corso"
 
 #: ../samuel.desktop.in:4
 msgid "Samuel"
-msgstr ""
+msgstr "Samuel"
 
 #: ../samuel/gui.py:137
 msgid "Samuel Help (Online)"
-msgstr ""
+msgstr "Samuel Aiuto (Online)"
 
 #: ../samuel.desktop.in:5
 msgid "Samuel is a draughts program for the Gnome desktop"
-msgstr ""
+msgstr "Samuel è un gioco di dama per il desktop Gnome"
 
 #: ../samuel/gui.py:415
 msgid ""
 "Samuel is a draughts program for the Gnome desktop.\n"
 " It is based on the windows program guicheckers"
 msgstr ""
+"Samuel è un gioco di dama per il desktop Gnome.\n"
+" Si basa sul programma windows program guicheckers"
 
 #: ../samuel/gui.py:421
 msgid ""
@@ -374,90 +382,107 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Samuel.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"Samuel è un software libero: potete ridistribuirlo e/o modificarlo\n"
+"secondo i termini della GNU General Public License pubblicata dalla\n"
+"Free Software Foundation, nella versione 3 della licenza o\n"
+"in una versione successiva.\n"
+"\n"
+"Samuel viene distribuito nella speranza che possa essere utile,\n"
+"ma SENZA NESSUNA GARANZIA; senza una garanzia implicita di\n"
+"COMMERCIABILITA' o IDONEITA' PER UNO SCOPO PARTICOLARE.  Consultare\n"
+"la GNU General Public License per ulteriori informazioni.\n"
+"\n"
+"Una copia della GNU General Public License vi è stata inviata\n"
+"unitamente a Samuel.   In caso contrario, consultare "
+"<http://www.gnu.org/licenses/>."
 
 #: ../samuel/gui.py:118 ../engine/enginemodule.cpp:460
 msgid "Save Game"
-msgstr ""
+msgstr "Salva la partita"
 
 #: ../samuel/samuel.py:550
 msgid "Save.."
-msgstr ""
+msgstr "Salvare..."
 
 #: ../samuel/samuel.py:676
 msgid ""
 "Search Depth\n"
 "(max 52)\n"
 msgstr ""
+"Mosse calcolate in anticipo\n"
+"(max 52)\n"
 
 #: ../engine/enginemodule.cpp:473
 msgid "Set Board"
-msgstr ""
+msgstr "Posizionare la damiera"
 
 #: ../engine/enginemodule.cpp:475
 msgid "Set Computer Colour"
-msgstr ""
+msgstr "Scegli il colore per l'ordinatore"
 
 #: ../samuel/gui.py:132
 msgid "Set Custom Level Depth"
-msgstr ""
+msgstr "Impostare il numero di mosse calcolate in anticipo"
 
 #: ../engine/enginemodule.cpp:457
 msgid "Set Level"
-msgstr ""
+msgstr "Impostare il livello"
 
 #: ../engine/enginemodule.cpp:474
 msgid "Set Side To Move"
-msgstr ""
+msgstr "Girare la damiera"
 
 #: ../samuel/board.py:205
 msgid "Set Side to Move with the radio buttons\n"
-msgstr ""
+msgstr "Scegliere il lato per la mossa con i pulsanti d'opzione\n"
 
 #: ../samuel/gui.py:132 ../samuel/samuel.py:657
 msgid "Set User-Defined Level"
-msgstr ""
+msgstr "Impostare il livello personalizzato"
 
 #: ../engine/enginemodule.cpp:462
 msgid "Set board position from FEN"
-msgstr ""
+msgstr "Impostare la posizione della damiera dal FEN"
 
 #: ../samuel/gui.py:136
 msgid "Show About Box"
-msgstr ""
+msgstr "Mostra la finestra A proposito"
 
 #: ../samuel/gui.py:313
 msgid "Side to Move"
-msgstr ""
+msgstr "Lato per effettuare la mossa"
 
 #: ../engine/enginemodule.cpp:469
 msgid "Start of Moves"
-msgstr ""
+msgstr "Inizio delle mosse"
 
 #: ../samuel/gui.py:95
 msgid "Status Bar"
-msgstr ""
+msgstr "Barra di stato"
 
 #: ../samuel/samuel.py:678
 msgid ""
 "Time Limit\n"
 "(in seconds)"
 msgstr ""
+"Tempo limite\n"
+"(in secondi)"
 
 #: ../samuel/board.py:203
 msgid "Use left mouse to set red pieces\n"
-msgstr ""
+msgstr "Utilizza il tasto sinistro del mouse per posizionare le pedine Rosse\n"
 
 #: ../samuel/board.py:204
 msgid "Use right mouse to set white pieces\n"
-msgstr ""
+msgstr "Utilizza il tasto destro del mouse per posizionare le pedine Bianche\n"
 
 #: ../samuel/gui.py:88
 msgid "User-defined"
-msgstr ""
+msgstr "Personalizzato"
 
 #: ../samuel/gui.py:350 ../samuel/samuel.py:370
 msgid "White"
-msgstr ""
+msgstr "Bianchi"
 
 #. if self.white_player == COMPUTER:
 #. text = text + "Press Go to restart the game from here\n"
@@ -466,16 +491,16 @@ msgstr ""
 #. text = text + "Press the < > buttons to browse the game"
 #: ../samuel/samuel.py:831 ../samuel/samuel.py:874
 msgid "White to Move"
-msgstr ""
+msgstr "La mano ai Bianchi"
 
 #: ../samuel/samuel.py:683
 msgid "and Time Limit."
-msgstr ""
+msgstr "e Tempo limite"
 
 #: ../samuel/samuel.py:526 ../samuel/samuel.py:559
 msgid "pdn files"
-msgstr ""
+msgstr "file pdn"
 
 #: ../samuel.desktop.in:7
 msgid "samuel.png"
-msgstr ""
+msgstr "samuel.png"
