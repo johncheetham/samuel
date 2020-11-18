@@ -1,5 +1,7 @@
 Samuel - John Cheetham - http://www.johncheetham.com/projects/samuel
 
+**NOTE: This project is no longer developed and has been archived.**
+
 Description
 -----------
 Samuel is a Draughts program written in python3/GTK3/C++.
